@@ -2,11 +2,12 @@ import type { Content } from "./types";
 
 export const ru: Content = {
   nav: [
-    { label: "Обо мне", href: "#about" },
-    { label: "Услуги", href: "#services" },
-    { label: "Кейсы", href: "#cases" },
-    { label: "Форматы", href: "#formats" },
-    { label: "Вопросы", href: "#faq" },
+    { label: "Обо мне", href: "/#about" },
+    { label: "Услуги", href: "/#services" },
+    { label: "Кейсы", href: "/#cases" },
+    { label: "Форматы", href: "/#formats" },
+    { label: "Вопросы", href: "/#faq" },
+    { label: "Контакт", href: "/#contact" },
   ],
 
   hero: {

@@ -41,7 +41,7 @@ export function Hero() {
               {hero.primaryCta}
             </TrackedButtonLink>
 
-            <ButtonLink href="#cases" variant="secondary" size="lg">
+            <ButtonLink href="/#cases" variant="secondary" size="lg">
               {hero.secondaryCta}
               <ArrowDown className="size-4" aria-hidden />
             </ButtonLink>

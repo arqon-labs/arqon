@@ -1,36 +1,29 @@
+import Link from "next/link";
 import { Send } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { TrackedButtonLink } from "@/components/shared/tracked-link";
-import { ru } from "@/content/ru";
+import { HeaderNav } from "@/components/layout/header-nav";
 import { site } from "@/lib/site";
 
 export function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-line/80 bg-bg/80 backdrop-blur-md">
       <Container>
-        <div className="flex h-16 items-center justify-between gap-6">
-          <a
-            href="#top"
-            className="text-base font-semibold tracking-[0.14em] text-fg"
+        <div className="flex h-16 items-center gap-4 md:gap-6">
+          <Link
+            href="/"
+            className="shrink-0 text-base font-semibold tracking-[0.14em] text-fg"
             aria-label={`${site.name} — на главную`}
           >
             {site.name}
-          </a>
+          </Link>
 
-          <nav aria-label="Разделы страницы" className="hidden md:block">
-            <ul className="flex items-center gap-7">
-              {ru.nav.map((item) => (
-                <li key={item.href}>
-                  <a
-                    href={item.href}
-                    className="text-[0.9375rem] text-fg-muted transition-colors duration-150 hover:text-fg"
-                  >
-                    {item.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
+          <div className="min-w-0 flex-1 overflow-x-auto">
+            <HeaderNav
+              className="mx-auto"
+              listClassName="min-w-max gap-5 md:min-w-0 md:justify-center md:gap-7"
+            />
+          </div>
 
           <TrackedButtonLink
             event="telegram_click"
@@ -38,6 +31,7 @@ export function Header() {
             target="_blank"
             rel="noopener noreferrer"
             variant="secondary"
+            className="shrink-0"
           >
             <Send className="size-4" aria-hidden />
             Telegram

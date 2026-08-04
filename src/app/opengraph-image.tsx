@@ -1,6 +1,8 @@
 import { ImageResponse } from "next/og";
+import { ru } from "@/content/ru";
+import { site } from "@/lib/site";
 
-export const alt = "ARQON — Product Engineering";
+export const alt = "ARQON — разработка веб-продуктов";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -31,19 +33,19 @@ export default function OpengraphImage() {
               display: "flex",
             }}
           >
-            ARQON
+            {site.name}
           </div>
           <div
             style={{
               marginTop: 48,
-              fontSize: 82,
+              fontSize: 72,
               lineHeight: 1.05,
               letterSpacing: "-0.03em",
               maxWidth: 900,
               display: "flex",
             }}
           >
-            Product engineering: payments, integrations, analytics
+            {ru.hero.title}
           </div>
         </div>
 
@@ -58,8 +60,8 @@ export default function OpengraphImage() {
             color: "#a1a1aa",
           }}
         >
-          <div style={{ display: "flex" }}>Next.js · Go · TypeScript</div>
-          <div style={{ display: "flex", color: "#4f7dff" }}>arqon.by</div>
+          <div style={{ display: "flex" }}>{ru.footer.description}</div>
+          <div style={{ display: "flex", color: "#4f7dff" }}>{site.domain}</div>
         </div>
       </div>
     ),

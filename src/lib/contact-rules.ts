@@ -31,6 +31,12 @@ function asString(value: unknown): string {
   return typeof value === "string" ? value.trim() : "";
 }
 
+function normalizeContactMethod(value: string): string {
+  const tme = value.match(/^(?:https?:\/\/)?t\.me\/([a-zA-Z][a-zA-Z0-9_]{3,31})$/i);
+  if (tme) return `@${tme[1]}`;
+  return value;
+}
+
 function asNumber(value: unknown): number {
   if (typeof value === "number" && Number.isFinite(value)) return value;
   if (typeof value === "string" && value.trim() !== "") {
@@ -55,7 +61,7 @@ export function validateContact(
       : {};
 
   const name = asString(source.name);
-  const contact = asString(source.contact);
+  const contact = normalizeContactMethod(asString(source.contact));
   const message = asString(source.message);
   const company = asString(source.company).slice(0, limits.company.max);
   const startedAt = asNumber(source.startedAt);

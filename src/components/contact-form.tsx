@@ -185,16 +185,14 @@ export function ContactForm() {
         ) : null}
       </div>
 
-      <div className="sr-only" aria-hidden>
-        <label htmlFor="lead-company">Company</label>
-        <input
-          id="lead-company"
-          type="text"
-          tabIndex={-1}
-          autoComplete="off"
-          {...register("company")}
-        />
-      </div>
+      <input
+        type="text"
+        tabIndex={-1}
+        autoComplete="off"
+        className="hidden"
+        aria-hidden
+        {...register("company")}
+      />
       <input type="hidden" {...register("startedAt", { valueAsNumber: true })} />
 
       {failure ? (

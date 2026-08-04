@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { ru } from "@/content/ru";
 import { site } from "@/lib/site";
 
-export default function GlobalError({
+export default function Error({
   error,
   reset,
 }: {
