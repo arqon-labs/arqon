@@ -19,7 +19,9 @@ const csp = [
 ].join("; ");
 
 const nextConfig: NextConfig = {
-  output: "standalone",
+  // standalone нужен только образу Docker. Включённый постоянно, он ломает
+  // локальный `next start` и оставляет в .next сборку, несовместимую с dev.
+  output: process.env.DOCKER_BUILD === "1" ? "standalone" : undefined,
   poweredByHeader: false,
   reactStrictMode: true,
   compress: true,

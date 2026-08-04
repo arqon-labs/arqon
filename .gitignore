@@ -4,6 +4,10 @@ out/
 build/
 next-env.d.ts
 
+# Генерируются `next dev` при каждом запуске
+AGENTS.md
+CLAUDE.md
+
 .env
 .env.local
 .env.*.local
