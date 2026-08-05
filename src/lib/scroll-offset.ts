@@ -1,13 +1,27 @@
 export function scrollOffsetPx(): number {
+  const header = document.querySelector("header");
+  if (header) {
+    return header.getBoundingClientRect().height + scrollGapPx();
+  }
+
   const styles = getComputedStyle(document.documentElement);
   const padding = parseFloat(styles.scrollPaddingTop);
   if (Number.isFinite(padding) && padding > 0) return padding;
 
-  const height = parseFloat(styles.getPropertyValue("--header-height"));
-  const gap = parseFloat(styles.getPropertyValue("--scroll-gap"));
+  const isMobile = window.matchMedia("(max-width: 767px)").matches;
+  const height = parseFloat(
+    styles.getPropertyValue(isMobile ? "--header-height-mobile" : "--header-height"),
+  );
   const rootSize = parseFloat(styles.fontSize) || 16;
 
-  return (height + gap) * rootSize;
+  return height * rootSize + scrollGapPx();
+}
+
+function scrollGapPx(): number {
+  const styles = getComputedStyle(document.documentElement);
+  const gap = parseFloat(styles.getPropertyValue("--scroll-gap"));
+  const rootSize = parseFloat(styles.fontSize) || 16;
+  return gap * rootSize;
 }
 
 export function scrollBehavior(): ScrollBehavior {

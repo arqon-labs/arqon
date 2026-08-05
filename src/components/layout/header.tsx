@@ -7,9 +7,11 @@ import { site } from "@/lib/site";
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-50 border-b border-line/80 bg-bg/80 backdrop-blur-md">
+    <header
+      className="sticky top-0 z-50 border-b border-line/80 bg-bg/80 pt-[env(safe-area-inset-top)] backdrop-blur-md"
+    >
       <Container>
-        <div className="flex h-16 items-center gap-4 md:gap-6">
+        <div className="grid grid-cols-[1fr_auto] items-center gap-x-3 md:flex md:h-16 md:gap-6">
           <Link
             href="/"
             className="shrink-0 text-base font-semibold tracking-[0.14em] text-fg"
@@ -18,21 +20,25 @@ export function Header() {
             {site.name}
           </Link>
 
-          <div className="min-w-0 flex-1 overflow-x-auto">
-            <HeaderNav className="mx-auto" />
-          </div>
-
           <TrackedButtonLink
             event="telegram_click"
             href={site.contacts.telegram}
             target="_blank"
             rel="noopener noreferrer"
             variant="secondary"
-            className="shrink-0"
+            size="md"
+            className="shrink-0 px-3 md:px-4"
+            aria-label="Написать в Telegram"
           >
             <Send className="size-4" aria-hidden />
-            Telegram
+            <span className="hidden md:inline">Telegram</span>
           </TrackedButtonLink>
+
+          <div
+            className="nav-scroll col-span-2 -mx-5 overflow-x-auto border-t border-line/50 px-5 py-2 md:col-span-1 md:mx-0 md:min-w-0 md:flex-1 md:border-t-0 md:px-0 md:py-0 md:overflow-visible"
+          >
+            <HeaderNav className="md:mx-auto" />
+          </div>
         </div>
       </Container>
     </header>

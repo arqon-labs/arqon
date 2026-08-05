@@ -209,7 +209,7 @@ export function ContactForm() {
       ) : null}
 
       <div className="mt-7 flex flex-col gap-4 sm:flex-row sm:items-center">
-        <Button type="submit" size="lg" disabled={isSubmitting}>
+        <Button type="submit" size="lg" disabled={isSubmitting} className="w-full sm:w-auto">
           {isSubmitting ? copy.submitting : copy.submit}
           <Send className="size-4" aria-hidden />
         </Button>

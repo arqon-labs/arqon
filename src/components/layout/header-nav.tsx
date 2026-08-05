@@ -3,7 +3,7 @@ import { ru } from "@/content/ru";
 import { cn } from "@/lib/cn";
 
 const linkClass =
-  "text-[0.9375rem] text-fg-muted transition-colors duration-150 hover:text-fg";
+  "inline-flex min-h-11 items-center py-1 text-[0.9375rem] text-fg-muted transition-colors duration-150 hover:text-fg md:min-h-0 md:py-0";
 
 export function HeaderNav({
   className,

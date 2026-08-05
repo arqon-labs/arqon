@@ -36,12 +36,13 @@ export function Hero() {
               target="_blank"
               rel="noopener noreferrer"
               size="lg"
+              className="w-full sm:w-auto"
             >
               <Send className="size-4" aria-hidden />
               {hero.primaryCta}
             </TrackedButtonLink>
 
-            <ButtonLink href="/#cases" variant="secondary" size="lg">
+            <ButtonLink href="/#cases" variant="secondary" size="lg" className="w-full sm:w-auto">
               {hero.secondaryCta}
               <ArrowDown className="size-4" aria-hidden />
             </ButtonLink>
