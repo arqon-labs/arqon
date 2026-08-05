@@ -13,9 +13,9 @@ function prune(now: number): void {
 }
 
 /**
- * Счётчик живёт в памяти процесса. Это корректно, пока приложение
- * работает одним инстансом (наш случай: один контейнер за Caddy).
- * При масштабировании на несколько реплик потребуется внешнее хранилище.
+ * Counter lives in process memory. Correct while the app runs as a single
+ * instance (our case: one container behind Caddy). Scaling to multiple
+ * replicas will require external storage.
  */
 export function rateLimit(key: string): { ok: boolean; retryAfterSec: number } {
   const now = Date.now();

@@ -19,8 +19,8 @@ const csp = [
 ].join("; ");
 
 const nextConfig: NextConfig = {
-  // standalone нужен только образу Docker. Включённый постоянно, он ломает
-  // локальный `next start` и оставляет в .next сборку, несовместимую с dev.
+  // standalone is only needed for the Docker image. When always enabled, it
+  // breaks local `next start` and leaves a .next build incompatible with dev.
   output: process.env.DOCKER_BUILD === "1" ? "standalone" : undefined,
   poweredByHeader: false,
   reactStrictMode: true,

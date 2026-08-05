@@ -53,10 +53,10 @@ function asNumber(value: unknown): number {
 }
 
 /**
- * Валидация без внешних зависимостей: правила простые и полностью
- * перечислимые, а библиотека схем весила бы больше остального клиентского
- * кода. Одна и та же функция работает на клиенте и на сервере, поэтому
- * правила не расходятся.
+ * Validation without external dependencies: rules are simple and fully
+ * enumerable, and a schema library would weigh more than the rest of the
+ * client code. The same function runs on client and server, so rules stay
+ * in sync.
  */
 export function validateContact(
   input: unknown,

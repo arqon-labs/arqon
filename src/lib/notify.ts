@@ -10,10 +10,10 @@ function escapeHtml(value: string): string {
 
 function buildMessage(input: ContactFields, meta: { ip: string }): string {
   return [
-    "<b>Новая заявка с arqon.by</b>",
+    "<b>New lead from arqon.by</b>",
     "",
-    `<b>Имя:</b> ${escapeHtml(input.name)}`,
-    `<b>Связь:</b> ${escapeHtml(input.contact)}`,
+    `<b>Name:</b> ${escapeHtml(input.name)}`,
+    `<b>Contact:</b> ${escapeHtml(input.contact)}`,
     "",
     escapeHtml(input.message),
     "",
@@ -62,10 +62,10 @@ async function sendEmailCopy(input: ContactFields): Promise<void> {
   const { error } = await resend.emails.send({
     from,
     to,
-    subject: `Заявка с arqon.by — ${input.name}`,
+    subject: `Lead from arqon.by — ${input.name}`,
     text: [
-      `Имя: ${input.name}`,
-      `Связь: ${input.contact}`,
+      `Name: ${input.name}`,
+      `Contact: ${input.contact}`,
       "",
       input.message,
     ].join("\n"),
@@ -75,8 +75,8 @@ async function sendEmailCopy(input: ContactFields): Promise<void> {
 }
 
 /**
- * Telegram — основной канал: если он не доставлен, заявка считается потерянной.
- * Копия на почту отправляется как резерв и не влияет на результат.
+ * Telegram is the primary channel: if delivery fails, the lead is considered lost.
+ * Email copy is sent as backup and does not affect the result.
  */
 export async function notifyNewLead(
   input: ContactFields,

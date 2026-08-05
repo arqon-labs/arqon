@@ -147,9 +147,9 @@
 }
 
 /*
- * Появление при скролле без JavaScript. Там, где scroll-driven анимации
- * не поддерживаются, блок просто отображается сразу: контент никогда
- * не зависит от выполнения скрипта.
+ * Scroll reveal without JavaScript. Where scroll-driven animations are not
+ * supported, the block is shown immediately: content never depends on
+ * script execution.
  */
 @utility reveal {
   @supports (animation-timeline: view()) {
@@ -172,8 +172,8 @@
     transition-duration: 0.01ms !important;
   }
 
-  /* Анимация убирается целиком, а не ускоряется: без неё элемент
-     находится в своём естественном видимом состоянии. */
+  /* Animation is removed entirely, not sped up: without it the element
+     stays in its natural visible state. */
   .reveal,
   .rise {
     animation: none !important;

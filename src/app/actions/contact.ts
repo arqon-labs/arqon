@@ -25,8 +25,8 @@ export async function submitContact(payload: unknown): Promise<ContactResult> {
 
   const input = parsed.data;
 
-  // Honeypot и слишком быстрое заполнение: боту отвечаем успехом,
-  // чтобы не подсказывать, какая именно проверка его отсекла.
+  // Honeypot and too-fast submission: return success to bots so we do not
+  // reveal which check filtered them.
   if (input.company.length > 0) return { status: "ok" };
   if (input.startedAt > 0 && Date.now() - input.startedAt < MIN_FILL_MS) {
     return { status: "ok" };

@@ -11,9 +11,9 @@ function scrollAfterLayout(hash: string): void {
 }
 
 /**
- * Next.js client navigation не всегда прокручивает к hash после смены
- * pathname (например, с 404 на /#about). Нативные якоря на той же странице
- * обрабатываются через scroll-padding-top в CSS.
+ * Next.js client navigation does not always scroll to the hash after pathname
+ * changes (e.g. from 404 to /#about). Native anchors on the same page are
+ * handled via scroll-padding-top in CSS.
  */
 export function HashScroll() {
   const pathname = usePathname();
