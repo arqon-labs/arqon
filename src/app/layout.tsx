@@ -5,6 +5,7 @@ import { GeistMono } from "geist/font/mono";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Analytics } from "@/components/shared/analytics";
+import { HashScroll } from "@/components/shared/hash-scroll";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -20,7 +21,6 @@ export const metadata: Metadata = {
   authors: [{ name: site.person.fullName, url: site.url }],
   creator: site.person.fullName,
   publisher: site.name,
-  alternates: { canonical: "/" },
   keywords: [
     "разработка MVP",
     "SaaS разработка",
@@ -66,6 +66,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <Header />
         <main id="main">{children}</main>
         <Footer />
+        <HashScroll />
         <Analytics />
       </body>
     </html>

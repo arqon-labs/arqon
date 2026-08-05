@@ -122,6 +122,7 @@ export type Content = {
     notFoundTitle: string;
     notFoundText: string;
     notFoundCta: string;
+    homeCta: string;
     crashTitle: string;
     crashText: string;
     crashCta: string;

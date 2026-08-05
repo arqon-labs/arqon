@@ -19,10 +19,7 @@ export function Header() {
           </Link>
 
           <div className="min-w-0 flex-1 overflow-x-auto">
-            <HeaderNav
-              className="mx-auto"
-              listClassName="min-w-max gap-5 md:min-w-0 md:justify-center md:gap-7"
-            />
+            <HeaderNav className="mx-auto" />
           </div>
 
           <TrackedButtonLink

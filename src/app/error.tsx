@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { Container } from "@/components/ui/container";
-import { Button } from "@/components/ui/button";
+import { Button, ButtonLink } from "@/components/ui/button";
 import { ru } from "@/content/ru";
 import { site } from "@/lib/site";
 
@@ -31,6 +31,9 @@ export default function Error({
           <Button onClick={reset} size="lg">
             {ru.errors.crashCta}
           </Button>
+          <ButtonLink href="/" variant="secondary" size="lg">
+            {ru.errors.homeCta}
+          </ButtonLink>
           <a
             href={site.contacts.telegram}
             target="_blank"

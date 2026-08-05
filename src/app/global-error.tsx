@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import { Container } from "@/components/ui/container";
-import { Button } from "@/components/ui/button";
+import { Button, ButtonLink } from "@/components/ui/button";
 import { ru } from "@/content/ru";
 import { site } from "@/lib/site";
 import "./globals.css";
@@ -36,6 +36,9 @@ export default function GlobalError({
               <Button onClick={reset} size="lg">
                 {ru.errors.crashCta}
               </Button>
+              <ButtonLink href="/" variant="secondary" size="lg">
+                {ru.errors.homeCta}
+              </ButtonLink>
               <a
                 href={site.contacts.telegram}
                 target="_blank"

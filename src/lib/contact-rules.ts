@@ -23,17 +23,23 @@ export const limits = {
   company: { max: 200 },
 } as const;
 
-const emailPattern = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/;
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/u;
 const telegramPattern = /^@?[a-zA-Z][a-zA-Z0-9_]{3,31}$/;
-const phonePattern = /^\+?[0-9][0-9\s()-]{6,19}$/;
+const phonePattern = /^\+?(?:\([0-9]{1,4}\)|[0-9])[0-9\s()-]{5,19}$/;
 
 function asString(value: unknown): string {
   return typeof value === "string" ? value.trim() : "";
 }
 
 function normalizeContactMethod(value: string): string {
-  const tme = value.match(/^(?:https?:\/\/)?t\.me\/([a-zA-Z][a-zA-Z0-9_]{3,31})$/i);
-  if (tme) return `@${tme[1]}`;
+  const telegramLink = value.match(
+    /^(?:https?:\/\/)?(?:t\.me|telegram\.me)\/([a-zA-Z][a-zA-Z0-9_]{3,31})$/i,
+  );
+  if (telegramLink) return `@${telegramLink[1]}`;
+
+  const tgResolve = value.match(/^tg:\/\/resolve\?domain=([a-zA-Z][a-zA-Z0-9_]{3,31})$/i);
+  if (tgResolve) return `@${tgResolve[1]}`;
+
   return value;
 }
 

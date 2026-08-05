@@ -281,7 +281,7 @@ export const ru: Content = {
   },
 
   footer: {
-    description: "Product engineering: платежи, интеграции, аналитика, продукты.",
+    description: "Платежи, интеграции, аналитика, внутренние продукты.",
     rights: "Все права защищены.",
     linksLabel: "Ссылки",
   },
@@ -291,6 +291,7 @@ export const ru: Content = {
     notFoundText:
       "Такой страницы здесь нет. Возможно, ссылка устарела или в адресе опечатка.",
     notFoundCta: "На главную",
+    homeCta: "На главную",
     crashTitle: "Что-то сломалось",
     crashText:
       "Ошибка на нашей стороне. Попробуйте обновить страницу — если не поможет, напишите в Telegram.",

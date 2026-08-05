@@ -14,7 +14,12 @@ export function HeaderNav({
 }) {
   return (
     <nav aria-label="Разделы страницы" className={className}>
-      <ul className={cn("flex items-center gap-7", listClassName)}>
+      <ul
+        className={cn(
+          "flex items-center min-w-max gap-5 md:min-w-0 md:justify-center md:gap-7",
+          listClassName,
+        )}
+      >
         {ru.nav.map((item) => (
           <li key={item.href}>
             <Link href={item.href} className={linkClass}>

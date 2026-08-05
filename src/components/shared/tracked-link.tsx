@@ -1,6 +1,6 @@
 "use client";
 
-import type { AnchorHTMLAttributes, ReactNode } from "react";
+import type { AnchorHTMLAttributes, MouseEvent, ReactNode } from "react";
 import { track, type AnalyticsEvent } from "@/lib/analytics";
 import { buttonClass, type ButtonSize, type ButtonVariant } from "@/components/ui/button";
 
@@ -9,9 +9,15 @@ type Props = AnchorHTMLAttributes<HTMLAnchorElement> & {
   children: ReactNode;
 };
 
-export function TrackedLink({ event, children, ...props }: Props) {
+export function TrackedLink({ event, children, onClick, ...props }: Props) {
   return (
-    <a {...props} onClick={() => track(event)}>
+    <a
+      {...props}
+      onClick={(e) => {
+        track(event);
+        onClick?.(e);
+      }}
+    >
       {children}
     </a>
   );
@@ -23,13 +29,17 @@ export function TrackedButtonLink({
   size = "md",
   className,
   children,
+  onClick,
   ...props
 }: Props & { variant?: ButtonVariant; size?: ButtonSize }) {
   return (
     <a
       className={buttonClass(variant, size, className)}
-      onClick={() => track(event)}
       {...props}
+      onClick={(e: MouseEvent<HTMLAnchorElement>) => {
+        track(event);
+        onClick?.(e);
+      }}
     >
       {children}
     </a>
