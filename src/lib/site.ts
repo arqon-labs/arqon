@@ -11,7 +11,7 @@ export const site = {
   person: {
     firstName: "Антон",
     fullName: "Антон Иванов",
-    role: "Senior Fullstack Engineer",
+    role: "Разработчик сайтов и сервисов",
     since: 2017,
   },
   contacts: {

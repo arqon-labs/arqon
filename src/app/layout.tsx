@@ -9,9 +9,9 @@ import { HashScroll } from "@/components/shared/hash-scroll";
 import { site } from "@/lib/site";
 import "./globals.css";
 
-const title = "ARQON — разработка веб-продуктов: MVP, интеграции, платежи";
+const title = "ARQON — сайты, боты и сервисы для бизнеса";
 const description =
-  "Senior fullstack инженер: MVP и SaaS-платформы, интеграции с платёжными провайдерами и 1С, аналитика, Telegram Mini Apps. Next.js, Go, TypeScript. Минск и удалённо.";
+  "Разработка сайтов, ботов, личных кабинетов и сервисов для бизнеса. Оплата на сайте, Telegram, интеграции с 1С. Один специалист — от идеи до запуска. Минск и удалённо.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -22,14 +22,14 @@ export const metadata: Metadata = {
   creator: site.person.fullName,
   publisher: site.name,
   keywords: [
-    "разработка MVP",
-    "SaaS разработка",
-    "Go разработчик",
-    "Next.js разработка",
+    "разработка сайта",
+    "сделать сайт Минск",
+    "бот Telegram заказать",
+    "разработка сервиса",
+    "оплата на сайте",
     "интеграция 1С",
-    "платёжные интеграции",
-    "Telegram Mini App разработка",
-    "fullstack разработчик Минск",
+    "личный кабинет разработка",
+    "разработчик сайтов Минск",
   ],
   openGraph: {
     type: "website",
