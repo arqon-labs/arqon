@@ -1,7 +1,9 @@
+import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { TrackedLink } from "@/components/shared/tracked-link";
 import { ru } from "@/content/ru";
 import { site } from "@/lib/site";
+import { servicePath } from "@/lib/services";
 
 const linkClass =
   "text-[0.9375rem] text-fg-muted transition-colors duration-150 hover:text-fg";
@@ -18,6 +20,24 @@ export function Footer() {
             <p className="mt-3 text-[0.9375rem] text-fg-muted">
               {ru.footer.description}
             </p>
+            <p className="mt-3 text-[0.9375rem] text-fg-muted">
+              {site.person.displayName} · {site.city}, {site.region}
+            </p>
+          </div>
+
+          <div>
+            <p className="font-mono text-meta uppercase text-fg-subtle">
+              {ru.footer.servicesLabel}
+            </p>
+            <ul className="mt-4 space-y-2.5">
+              {ru.services.items.map((item) => (
+                <li key={item.slug}>
+                  <Link href={servicePath(item.slug)} className={linkClass}>
+                    {item.navLabel}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
 
           <div>

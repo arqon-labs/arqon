@@ -6,46 +6,37 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Analytics } from "@/components/shared/analytics";
 import { HashScroll } from "@/components/shared/hash-scroll";
+import { ru } from "@/content/ru";
 import { site } from "@/lib/site";
 import "./globals.css";
 
-const title = "ARQON — сайты, боты и сервисы для бизнеса";
-const description =
-  "Разработка сайтов, ботов, личных кабинетов и сервисов для бизнеса. Оплата на сайте, Telegram, интеграции с 1С. Один специалист — от идеи до запуска. Минск и удалённо.";
-
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: { default: title, template: `%s — ${site.name}` },
-  description,
+  title: { default: ru.seo.title, template: `%s | ${site.name}` },
+  description: ru.seo.description,
   applicationName: site.name,
-  authors: [{ name: site.person.fullName, url: site.url }],
-  creator: site.person.fullName,
+  authors: [{ name: site.person.displayName, url: site.url }],
+  creator: site.person.displayName,
   publisher: site.name,
-  keywords: [
-    "разработка сайта",
-    "сделать сайт Минск",
-    "бот Telegram заказать",
-    "разработка сервиса",
-    "оплата на сайте",
-    "интеграция 1С",
-    "личный кабинет разработка",
-    "разработчик сайтов Минск",
-  ],
+  keywords: ru.seo.keywords,
   openGraph: {
     type: "website",
     locale: site.locale,
-    url: site.url,
     siteName: site.name,
-    title,
-    description,
   },
-  twitter: { card: "summary_large_image", title, description },
+  twitter: { card: "summary_large_image" },
   robots: {
     index: true,
     follow: true,
     googleBot: { index: true, follow: true, "max-image-preview": "large" },
   },
   formatDetection: { telephone: false, address: false, email: false },
+  other: {
+    "geo.region": site.geo.regionCode,
+    "geo.placename": site.city,
+    "geo.position": `${site.geo.latitude};${site.geo.longitude}`,
+    ICBM: `${site.geo.latitude}, ${site.geo.longitude}`,
+  },
 };
 
 export const viewport: Viewport = {

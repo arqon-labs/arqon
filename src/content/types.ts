@@ -10,10 +10,15 @@ export type Fact = {
 
 export type Service = {
   id: string;
+  slug: string;
   title: string;
   description: string;
   outcome: string;
   tags: string[];
+  navLabel: string;
+  pageTitle: string;
+  pageDescription: string;
+  pageH1: string;
 };
 
 export type CaseDecision = {
@@ -38,6 +43,11 @@ export type Format = {
   duration: string;
 };
 
+export type ProcessStep = {
+  title: string;
+  detail: string;
+};
+
 export type FaqItem = {
   question: string;
   answer: string;
@@ -45,12 +55,19 @@ export type FaqItem = {
 
 export type Content = {
   nav: NavItem[];
+  seo: {
+    title: string;
+    description: string;
+    keywords: string[];
+    ogAlt: string;
+  };
   hero: {
     eyebrow: string;
     title: string;
     lead: string;
     primaryCta: string;
     secondaryCta: string;
+    trust: string;
     facts: Fact[];
   };
   about: {
@@ -66,6 +83,13 @@ export type Content = {
     eyebrow: string;
     title: string;
     lead: string;
+    path: string;
+    indexTitle: string;
+    indexDescription: string;
+    indexH1: string;
+    indexLead: string;
+    moreLabel: string;
+    breadcrumbHome: string;
     items: Service[];
   };
   cases: {
@@ -80,6 +104,8 @@ export type Content = {
     eyebrow: string;
     title: string;
     lead: string;
+    steps: ProcessStep[];
+    durationsLabel: string;
     items: Format[];
     note: string;
   };
@@ -117,6 +143,7 @@ export type Content = {
     description: string;
     rights: string;
     linksLabel: string;
+    servicesLabel: string;
   };
   errors: {
     notFoundTitle: string;

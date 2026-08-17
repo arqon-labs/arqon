@@ -7,10 +7,19 @@ import { Formats } from "@/components/sections/formats";
 import { Faq } from "@/components/sections/faq";
 import { Contact } from "@/components/sections/contact";
 import { ScrollDepth } from "@/components/shared/scroll-depth";
-import { faqSchema, personSchema, serviceSchema } from "@/lib/json-ld";
+import { JsonLd } from "@/components/shared/json-ld";
+import { homeJsonLd } from "@/lib/json-ld";
+import { ru } from "@/content/ru";
 
 export const metadata: Metadata = {
+  title: { absolute: ru.seo.title },
+  description: ru.seo.description,
   alternates: { canonical: "/" },
+  openGraph: {
+    url: "/",
+    title: ru.seo.title,
+    description: ru.seo.description,
+  },
 };
 
 export default function HomePage() {
@@ -25,13 +34,7 @@ export default function HomePage() {
       <Contact />
 
       <ScrollDepth />
-
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify([personSchema(), serviceSchema(), faqSchema()]),
-        }}
-      />
+      <JsonLd data={homeJsonLd()} />
     </>
   );
 }

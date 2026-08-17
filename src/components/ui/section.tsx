@@ -8,7 +8,7 @@ export function Section({
   className,
   bordered = true,
 }: {
-  id: string;
+  id?: string;
   children: ReactNode;
   className?: string;
   bordered?: boolean;

@@ -27,10 +27,10 @@ export function About() {
               alt={about.portraitAlt}
               placeholder="blur"
               sizes="(min-width: 1024px) 420px, 100vw"
-              className="aspect-4/5 w-full object-cover object-[50%_22%] grayscale contrast-[1.05] brightness-[0.82]"
+              className="aspect-4/5 w-full object-cover object-[50%_22%]"
             />
             <div
-              className="pointer-events-none absolute inset-0 bg-gradient-to-t from-bg via-bg/25 to-transparent"
+              className="pointer-events-none absolute inset-0 bg-gradient-to-t from-bg/90 via-bg/15 to-transparent"
               aria-hidden
             />
             <p className="absolute bottom-4 left-5 font-mono text-meta text-fg-muted">

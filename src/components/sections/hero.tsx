@@ -42,13 +42,17 @@ export function Hero() {
               {hero.primaryCta}
             </TrackedButtonLink>
 
-            <ButtonLink href="/#cases" variant="secondary" size="lg" className="w-full sm:w-auto">
+            <ButtonLink href="/#formats" variant="secondary" size="lg" className="w-full sm:w-auto">
               {hero.secondaryCta}
               <ArrowDown className="size-4" aria-hidden />
             </ButtonLink>
           </div>
 
-          <dl className="rise mt-20 grid gap-px overflow-hidden rounded-lg border border-line bg-line sm:grid-cols-3 [animation-delay:320ms]">
+          <p className="rise mt-6 max-w-2xl font-mono text-meta text-fg-subtle [animation-delay:280ms]">
+            {hero.trust}
+          </p>
+
+          <dl className="rise mt-16 grid gap-px overflow-hidden rounded-lg border border-line bg-line sm:grid-cols-3 [animation-delay:360ms]">
             {hero.facts.map((fact) => (
               <div key={fact.label} className="bg-bg p-6">
                 <dt className="font-mono text-meta uppercase text-fg-subtle">

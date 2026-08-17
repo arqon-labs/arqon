@@ -1,6 +1,6 @@
 export const site = {
   name: "ARQON",
-  tagline: "Product Engineering",
+  tagline: "Сайты и сервисы для бизнеса",
   domain: "arqon.by",
   url: "https://arqon.by",
   locale: "ru_BY",
@@ -10,9 +10,15 @@ export const site = {
   countryCode: "BY",
   person: {
     firstName: "Антон",
+    displayName: "Антон",
     fullName: "Антон Иванов",
     role: "Разработчик сайтов и сервисов",
     since: 2017,
+  },
+  geo: {
+    latitude: 53.9023,
+    longitude: 27.5619,
+    regionCode: "BY-HM",
   },
   contacts: {
     telegram: "https://t.me/arqon_dev",

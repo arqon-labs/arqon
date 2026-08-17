@@ -16,6 +16,8 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       { userAgent: "*", allow: "/" },
+      { userAgent: "Googlebot", allow: "/" },
+      { userAgent: "Yandex", allow: "/" },
       { userAgent: aiCrawlers, allow: "/" },
     ],
     sitemap: `${site.url}/sitemap.xml`,
