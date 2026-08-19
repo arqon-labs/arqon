@@ -1,13 +1,13 @@
-import { ru } from "@/content/ru";
+import { blog } from "@/content/blog";
 import { ogImage, ogImageSize, ogImageType } from "@/lib/og";
 
-export const alt = ru.seo.ogAlt;
+export const alt = blog.indexTitle;
 export const size = ogImageSize;
 export const contentType = ogImageType;
 
 export default function OpengraphImage() {
   return ogImage({
-    title: ru.hero.title,
-    footer: ru.footer.description,
+    title: blog.indexH1,
+    footer: blog.indexLead,
   });
 }

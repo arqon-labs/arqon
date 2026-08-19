@@ -1,26 +1,30 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { ArrowDown, ArrowUpRight, Plus, Send } from "lucide-react";
-import { audit } from "@/content/audit";
+import type { AuditContent } from "@/content/audit";
+import type { AnalyticsEvent } from "@/lib/analytics";
 import { site } from "@/lib/site";
 import { Container } from "@/components/ui/container";
 import { Section, SectionHeader } from "@/components/ui/section";
 import { ButtonLink } from "@/components/ui/button";
 import { TrackedButtonLink } from "@/components/shared/tracked-link";
+import { Breadcrumbs } from "@/components/shared/breadcrumbs";
 import { Reveal } from "@/components/shared/reveal";
 
 function TelegramCta({
+  event,
   children,
   size = "lg",
   className,
 }: {
+  event: AnalyticsEvent;
   children: ReactNode;
   size?: "md" | "lg";
   className?: string;
 }) {
   return (
     <TrackedButtonLink
-      event="telegram_click"
+      event={event}
       href={site.contacts.telegram}
       target="_blank"
       rel="noopener noreferrer"
@@ -33,8 +37,14 @@ function TelegramCta({
   );
 }
 
-function AuditHero() {
-  const { hero } = audit;
+function AuditHero({
+  content,
+  telegramEvent,
+}: {
+  content: AuditContent;
+  telegramEvent: AnalyticsEvent;
+}) {
+  const { hero, how } = content;
 
   return (
     <section className="relative isolate overflow-hidden">
@@ -44,7 +54,8 @@ function AuditHero() {
       />
       <Container>
         <div className="pt-24 pb-20 sm:pt-32 sm:pb-28 lg:pt-40 lg:pb-36">
-          <p className="rise inline-flex items-center rounded-full border border-line bg-surface px-3.5 py-1.5 font-mono text-meta uppercase text-fg-muted">
+          <Breadcrumbs label={content.breadcrumbLabel} items={content.breadcrumbs} />
+          <p className="rise mt-8 inline-flex items-center rounded-full border border-line bg-surface px-3.5 py-1.5 font-mono text-meta uppercase text-fg-muted">
             {hero.eyebrow}
           </p>
           <h1 className="rise mt-8 max-w-4xl text-display font-medium [animation-delay:80ms]">
@@ -54,8 +65,10 @@ function AuditHero() {
             {hero.lead}
           </p>
           <div className="rise mt-10 flex flex-col gap-3 sm:flex-row sm:items-center [animation-delay:240ms]">
-            <TelegramCta className="w-full sm:w-auto">{hero.primaryCta}</TelegramCta>
-            <ButtonLink href={`#${audit.how.id}`} variant="secondary" size="lg" className="w-full sm:w-auto">
+            <TelegramCta event={telegramEvent} className="w-full sm:w-auto">
+              {hero.primaryCta}
+            </TelegramCta>
+            <ButtonLink href={`#${how.id}`} variant="secondary" size="lg" className="w-full sm:w-auto">
               {hero.secondaryCta}
               <ArrowDown className="size-4" aria-hidden />
             </ButtonLink>
@@ -69,13 +82,13 @@ function AuditHero() {
   );
 }
 
-function AuditFindings() {
-  const { findings } = audit;
+function AuditFindings({ content }: { content: AuditContent }) {
+  const { findings } = content;
 
   return (
     <Section>
-      <SectionHeader title={findings.title} eyebrow="What I usually find" />
-      <ul className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <SectionHeader title={findings.title} eyebrow={findings.eyebrow} />
+      <ul className="mt-14 grid list-none gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {findings.items.map((item, index) => (
           <li key={item.title}>
             <Reveal>
@@ -96,16 +109,16 @@ function AuditFindings() {
   );
 }
 
-function AuditDeliverables() {
-  const { deliverables } = audit;
+function AuditDeliverables({ content }: { content: AuditContent }) {
+  const { deliverables } = content;
 
   return (
     <Section>
       <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-5">
-          <SectionHeader title={deliverables.title} eyebrow="What you get" />
+          <SectionHeader title={deliverables.title} eyebrow={deliverables.eyebrow} />
         </div>
-        <ul className="lg:col-span-7 divide-y divide-line border-y border-line">
+        <ul className="list-none divide-y divide-line border-y border-line lg:col-span-7">
           {deliverables.items.map((item) => (
             <li key={item} className="flex items-start gap-3 py-5">
               <ArrowUpRight className="mt-1 size-4 shrink-0 text-accent" aria-hidden />
@@ -118,13 +131,13 @@ function AuditDeliverables() {
   );
 }
 
-function AuditHow() {
-  const { how } = audit;
+function AuditHow({ content }: { content: AuditContent }) {
+  const { how } = content;
 
   return (
     <Section id={how.id}>
-      <SectionHeader title={how.title} eyebrow="Process" />
-      <ol className="mt-14 grid gap-8 sm:grid-cols-3">
+      <SectionHeader title={how.title} eyebrow={how.eyebrow} />
+      <ol className="mt-14 grid list-none gap-8 sm:grid-cols-3">
         {how.steps.map((step, index) => (
           <li key={step.title}>
             <p className="font-mono text-meta text-accent tabular-nums">
@@ -141,17 +154,23 @@ function AuditHow() {
   );
 }
 
-function AuditPricing() {
-  const { pricing } = audit;
+function AuditPricing({
+  content,
+  telegramEvent,
+}: {
+  content: AuditContent;
+  telegramEvent: AnalyticsEvent;
+}) {
+  const { pricing } = content;
 
   return (
     <Section>
-      <SectionHeader title={pricing.title} eyebrow="Price" />
+      <SectionHeader title={pricing.title} eyebrow={pricing.eyebrow} />
       <Reveal className="mt-14 max-w-lg">
         <article className="rounded-lg border border-line bg-surface p-6 sm:p-8">
           <p className="font-mono text-meta uppercase text-fg-subtle">{pricing.cadence}</p>
           <p className="mt-3 text-display font-medium tabular-nums">{pricing.amount}</p>
-          <ul className="mt-8 space-y-3">
+          <ul className="mt-8 list-none space-y-3">
             {pricing.items.map((item) => (
               <li key={item} className="flex items-start gap-3 text-[0.9375rem] text-fg">
                 <ArrowUpRight className="mt-1 size-4 shrink-0 text-accent" aria-hidden />
@@ -164,38 +183,39 @@ function AuditPricing() {
       <p className="mt-6 max-w-lg text-[0.9375rem] leading-relaxed text-fg-subtle">
         {pricing.note}
       </p>
-      <TelegramCta className="mt-6 w-full sm:w-auto">{pricing.cta}</TelegramCta>
+      <TelegramCta event={telegramEvent} className="mt-6 w-full sm:w-auto">
+        {pricing.cta}
+      </TelegramCta>
     </Section>
   );
 }
 
-function AuditFix() {
-  const { fix } = audit;
+function AuditFix({ content }: { content: AuditContent }) {
+  const { fix } = content;
 
   return (
     <Section>
-      <SectionHeader title={fix.title} eyebrow="Then I fix it" />
+      <SectionHeader title={fix.title} eyebrow={fix.eyebrow} />
       <p className="mt-8 max-w-2xl text-lead text-fg-muted">{fix.body}</p>
     </Section>
   );
 }
 
-function AuditFaq() {
-  const { faq } = audit;
+function AuditFaq({ content }: { content: AuditContent }) {
+  const { faq } = content;
 
   return (
     <Section>
       <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-4">
-          <SectionHeader eyebrow="FAQ" title={faq.title} />
+          <SectionHeader eyebrow={faq.eyebrow} title={faq.title} />
         </div>
         <div className="lg:col-span-8">
-          <ul className="divide-y divide-line border-y border-line">
+          <ul className="list-none divide-y divide-line border-y border-line">
             {faq.items.map((item) => {
-              const link = "link" in item ? item.link : undefined;
               const answer =
-                link && item.answer.endsWith(link.label)
-                  ? item.answer.slice(0, -link.label.length).trim()
+                item.link && item.answer.endsWith(item.link.label)
+                  ? item.answer.slice(0, -item.link.label.length).trim()
                   : item.answer;
 
               return (
@@ -209,14 +229,14 @@ function AuditFaq() {
                       />
                     </summary>
                     <p className="max-w-2xl pb-6 text-[0.9375rem] leading-relaxed text-fg-muted">
-                      {link ? (
+                      {item.link ? (
                         <>
                           {answer}{" "}
                           <Link
-                            href={link.href}
+                            href={item.link.href}
                             className="text-fg transition-colors duration-150 hover:text-accent"
                           >
-                            {link.label}
+                            {item.link.label}
                           </Link>
                         </>
                       ) : (
@@ -234,30 +254,44 @@ function AuditFaq() {
   );
 }
 
-function AuditCta() {
-  const { cta } = audit;
+function AuditCta({
+  content,
+  telegramEvent,
+}: {
+  content: AuditContent;
+  telegramEvent: AnalyticsEvent;
+}) {
+  const { cta } = content;
 
   return (
     <Section>
       <div className="rounded-lg border border-line bg-surface px-6 py-10 sm:px-10 sm:py-14">
         <h2 className="max-w-3xl text-h2 font-medium">{cta.title}</h2>
-        <TelegramCta className="mt-8 w-full sm:w-auto">{cta.button}</TelegramCta>
+        <TelegramCta event={telegramEvent} className="mt-8 w-full sm:w-auto">
+          {cta.button}
+        </TelegramCta>
       </div>
     </Section>
   );
 }
 
-export function AuditLanding() {
+export function AuditLanding({
+  content,
+  telegramEvent,
+}: {
+  content: AuditContent;
+  telegramEvent: AnalyticsEvent;
+}) {
   return (
-    <div lang="en">
-      <AuditHero />
-      <AuditFindings />
-      <AuditDeliverables />
-      <AuditHow />
-      <AuditPricing />
-      <AuditFix />
-      <AuditFaq />
-      <AuditCta />
+    <div lang={content.lang}>
+      <AuditHero content={content} telegramEvent={telegramEvent} />
+      <AuditFindings content={content} />
+      <AuditDeliverables content={content} />
+      <AuditHow content={content} />
+      <AuditPricing content={content} telegramEvent={telegramEvent} />
+      <AuditFix content={content} />
+      <AuditFaq content={content} />
+      <AuditCta content={content} telegramEvent={telegramEvent} />
     </div>
   );
 }

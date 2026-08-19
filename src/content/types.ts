@@ -51,6 +51,7 @@ export type ProcessStep = {
 export type FaqItem = {
   question: string;
   answer: string;
+  link?: { href: string; label: string };
 };
 
 export type Content = {

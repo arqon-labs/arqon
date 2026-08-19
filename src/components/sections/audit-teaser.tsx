@@ -1,8 +1,8 @@
-import Link from "next/link";
-import { Section } from "@/components/ui/section";
+import { TrackedButtonLink, TrackedLink } from "@/components/shared/tracked-link";
 import { buttonClass } from "@/components/ui/button";
-import { servicePath } from "@/lib/services";
+import { Section } from "@/components/ui/section";
 import { audit } from "@/content/audit";
+import { auditRu } from "@/content/audit-ru";
 
 export function AuditTeaser() {
   return (
@@ -11,22 +11,24 @@ export function AuditTeaser() {
         <div className="max-w-2xl">
           <h2 className="text-h3 font-medium">Собрали приложение с помощью ИИ?</h2>
           <p className="mt-3 text-[0.9375rem] leading-relaxed text-fg-muted">
-            Проверю ключи, оплату и доступ к данным за 2 дня — отчёт простым языком.
+            Проверю ключи, оплату и доступ к данным за 2 дня — отчёт простым языком, фикс $500.
           </p>
         </div>
         <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center">
-          <Link
-            href={servicePath("audit-ai")}
-            className={buttonClass("primary", "md", "w-full sm:w-auto")}
+          <TrackedButtonLink
+            event="audit_teaser_ru_click"
+            href={auditRu.path}
+            className="w-full sm:w-auto"
           >
             Аудит на русском
-          </Link>
-          <Link
+          </TrackedButtonLink>
+          <TrackedLink
+            event="audit_teaser_en_click"
             href={audit.path}
             className={buttonClass("secondary", "md", "w-full sm:w-auto")}
           >
             English audit page
-          </Link>
+          </TrackedLink>
         </div>
       </div>
     </Section>

@@ -1,4 +1,4 @@
-import { audit } from "@/content/audit";
+import type { AuditContent } from "@/content/audit";
 import { blog, type BlogPost } from "@/content/blog";
 import { ru } from "@/content/ru";
 import type { Service } from "@/content/types";
@@ -60,6 +60,8 @@ export function personSchema() {
       "Go",
       "Next.js",
       "PostgreSQL",
+      "Аудит ИИ-кода",
+      "Vibe code security audit",
     ],
     worksFor: { "@id": organizationId },
   };
@@ -219,8 +221,10 @@ export function servicePageJsonLd(service: Service) {
   ];
 }
 
-export function auditPageJsonLd() {
-  const url = `${site.url}${audit.path}`;
+export function auditPageJsonLd(content: AuditContent) {
+  const url = `${site.url}${content.path}`;
+  const inLanguage = content.lang === "en" ? "en" : "ru-BY";
+  const price = content.pricing.amount.replace(/[^0-9.]/g, "") || "500";
 
   return [
     personSchema(),
@@ -229,23 +233,38 @@ export function auditPageJsonLd() {
       "@context": "https://schema.org",
       "@type": "Service",
       "@id": `${url}#service`,
-      name: audit.serviceName,
-      description: audit.description,
+      name: content.serviceName,
+      description: content.description,
       url,
       provider: { "@id": personId },
-      serviceType: audit.serviceName,
+      serviceType: content.serviceName,
       offers: {
         "@type": "Offer",
-        price: "500",
+        price,
         priceCurrency: "USD",
         availability: "https://schema.org/InStock",
         url,
       },
     },
     {
-      ...webPageSchema(audit.path, audit.title, audit.description),
-      inLanguage: "en",
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: content.faq.items.map((item) => ({
+        "@type": "Question",
+        name: item.question,
+        acceptedAnswer: { "@type": "Answer", text: item.answer },
+      })),
     },
+    {
+      ...webPageSchema(content.path, content.title, content.description),
+      inLanguage,
+    },
+    breadcrumbSchema(
+      content.breadcrumbs.map((item) => ({
+        name: item.label,
+        path: item.href ?? content.path,
+      })),
+    ),
   ];
 }
 

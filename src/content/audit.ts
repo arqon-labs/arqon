@@ -1,9 +1,80 @@
-export const audit = {
+export type AuditFaqItem = {
+  question: string;
+  answer: string;
+  link?: { href: string; label: string };
+};
+
+export type AuditContent = {
+  lang: "en" | "ru";
+  path: string;
+  title: string;
+  description: string;
+  serviceName: string;
+  ogAlt: string;
+  breadcrumbLabel: string;
+  breadcrumbs: { label: string; href?: string }[];
+  hero: {
+    eyebrow: string;
+    h1: string;
+    lead: string;
+    primaryCta: string;
+    secondaryCta: string;
+    trust: string;
+  };
+  findings: {
+    eyebrow: string;
+    title: string;
+    items: { title: string; body: string }[];
+  };
+  deliverables: {
+    eyebrow: string;
+    title: string;
+    items: string[];
+  };
+  how: {
+    id: string;
+    eyebrow: string;
+    title: string;
+    steps: { title: string; body: string }[];
+  };
+  pricing: {
+    eyebrow: string;
+    title: string;
+    amount: string;
+    cadence: string;
+    items: string[];
+    note: string;
+    cta: string;
+  };
+  fix: {
+    eyebrow: string;
+    title: string;
+    body: string;
+  };
+  faq: {
+    eyebrow: string;
+    title: string;
+    items: AuditFaqItem[];
+  };
+  cta: {
+    title: string;
+    button: string;
+  };
+};
+
+export const audit: AuditContent = {
+  lang: "en",
   path: "/audit",
   title: "Vibe Code Security Audit — $500, 48-hour report",
   description:
     "I audit apps built with Cursor, Lovable, Bolt and Replit. Leaked keys, broken auth, payment holes, cloud bill traps. Fixed price, plain-English PDF report in 48 hours.",
   serviceName: "Vibe Code Security Audit",
+  ogAlt: "Vibe Code Security Audit — $500, 48-hour report. ARQON.",
+  breadcrumbLabel: "Breadcrumb",
+  breadcrumbs: [
+    { label: "Home", href: "/" },
+    { label: "Audit" },
+  ],
   hero: {
     eyebrow: "Security audit for AI-built apps",
     h1: "Your vibe-coded app works. But is it safe?",
@@ -14,6 +85,7 @@ export const audit = {
     trust: "Fixed price · 48-hour report · no calls required · read-only access",
   },
   findings: {
+    eyebrow: "What I usually find",
     title: "The same holes, in almost every AI-built app",
     items: [
       {
@@ -43,6 +115,7 @@ export const audit = {
     ],
   },
   deliverables: {
+    eyebrow: "What you get",
     title: "A report you can act on, not a scanner dump",
     items: [
       "A 10–15 page PDF in plain English — no security jargon, written for founders",
@@ -53,6 +126,7 @@ export const audit = {
   },
   how: {
     id: "how",
+    eyebrow: "Process",
     title: "How it works",
     steps: [
       {
@@ -70,6 +144,7 @@ export const audit = {
     ],
   },
   pricing: {
+    eyebrow: "Price",
     title: "One price. No surprises.",
     amount: "$500",
     cadence: "fixed",
@@ -84,10 +159,12 @@ export const audit = {
     cta: "Start the audit",
   },
   fix: {
+    eyebrow: "Then I fix it",
     title: "Found holes? I close them.",
     body: "Most clients ask me to fix what the audit finds. Critical issues closed in 3–5 days, $2,000–$5,000 depending on scope — quoted from the report, no hourly billing. Same person who found the problems fixes them.",
   },
   faq: {
+    eyebrow: "FAQ",
     title: "Questions",
     items: [
       {
@@ -121,4 +198,4 @@ export const audit = {
     title: "Your app is one leaked key away from a bad week.",
     button: "Get the audit",
   },
-} as const;
+};

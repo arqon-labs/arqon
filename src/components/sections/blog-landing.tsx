@@ -1,30 +1,14 @@
 import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import type { BlogBlock, BlogPost } from "@/content/blog";
 import { blog } from "@/content/blog";
+import { audit } from "@/content/audit";
+import { auditRu } from "@/content/audit-ru";
 import { blogPath } from "@/lib/blog";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
-
-function Breadcrumbs({ items }: { items: { label: string; href?: string }[] }) {
-  return (
-    <nav aria-label="Breadcrumb">
-      <ol className="flex flex-wrap items-center gap-2 font-mono text-meta text-fg-subtle">
-        {items.map((item, index) => (
-          <li key={item.label} className="flex items-center gap-2">
-            {index > 0 ? <span aria-hidden>/</span> : null}
-            {item.href ? (
-              <Link href={item.href} className="transition-colors duration-150 hover:text-fg">
-                {item.label}
-              </Link>
-            ) : (
-              <span className="text-fg-muted">{item.label}</span>
-            )}
-          </li>
-        ))}
-      </ol>
-    </nav>
-  );
-}
+import { Breadcrumbs } from "@/components/shared/breadcrumbs";
+import { TrackedButtonLink } from "@/components/shared/tracked-link";
 
 function formatDate(date: string, lang: BlogPost["lang"]) {
   return new Intl.DateTimeFormat(lang === "en" ? "en-GB" : "ru-BY", {
@@ -37,7 +21,7 @@ function formatDate(date: string, lang: BlogPost["lang"]) {
 export function BlogIndexPage() {
   return (
     <>
-      <section className="relative isolate overflow-hidden">
+      <section lang="en" className="relative isolate overflow-hidden">
         <div
           className="hero-glow pointer-events-none absolute inset-x-0 top-0 h-[420px]"
           aria-hidden
@@ -45,6 +29,7 @@ export function BlogIndexPage() {
         <Container>
           <div className="pt-24 pb-20 sm:pt-32 sm:pb-28">
             <Breadcrumbs
+              label={blog.breadcrumbLabel}
               items={[
                 { label: blog.breadcrumbHome, href: "/" },
                 { label: blog.eyebrow },
@@ -134,6 +119,53 @@ function BlogBlocks({ blocks }: { blocks: BlogBlock[] }) {
   );
 }
 
+function BlogAuditCta({ lang }: { lang: BlogPost["lang"] }) {
+  const copy = blog.cta[lang];
+  const href = lang === "en" ? audit.path : auditRu.path;
+
+  return (
+    <div className="mt-14 max-w-2xl rounded-lg border border-line bg-surface p-6 sm:p-8">
+      <h2 className="text-h3 font-medium">{copy.title}</h2>
+      <p className="mt-3 text-[0.9375rem] leading-relaxed text-fg-muted">{copy.body}</p>
+      <TrackedButtonLink
+        event="blog_audit_cta_click"
+        href={href}
+        className="mt-6 w-full sm:w-auto"
+      >
+        <ArrowUpRight className="size-4" aria-hidden />
+        {copy.button}
+      </TrackedButtonLink>
+    </div>
+  );
+}
+
+function MorePosts({ current }: { current: BlogPost }) {
+  const others = blog.items.filter((item) => item.slug !== current.slug);
+
+  if (others.length === 0) return null;
+
+  return (
+    <div className="mt-16 max-w-2xl border-t border-line pt-10">
+      <p className="font-mono text-meta uppercase text-fg-subtle">
+        {current.lang === "ru" ? "Ещё заметки" : "More notes"}
+      </p>
+      <ul className="mt-5 space-y-4">
+        {others.map((post) => (
+          <li key={post.slug}>
+            <Link
+              href={blogPath(post.slug)}
+              className="text-[1.0625rem] font-medium transition-colors duration-150 hover:text-accent"
+            >
+              {post.title}
+            </Link>
+            <p className="mt-1 text-[0.9375rem] text-fg-muted">{post.description}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 export function BlogArticlePage({ post }: { post: BlogPost }) {
   return (
     <article lang={post.lang}>
@@ -145,6 +177,7 @@ export function BlogArticlePage({ post }: { post: BlogPost }) {
         <Container>
           <div className="pt-24 pb-16 sm:pt-32 sm:pb-20">
             <Breadcrumbs
+              label={blog.breadcrumbLabel}
               items={[
                 { label: blog.breadcrumbHome, href: "/" },
                 { label: blog.eyebrow, href: blog.path },
@@ -164,6 +197,8 @@ export function BlogArticlePage({ post }: { post: BlogPost }) {
 
       <Section bordered>
         <BlogBlocks blocks={post.body} />
+        <BlogAuditCta lang={post.lang} />
+        <MorePosts current={post} />
       </Section>
     </article>
   );

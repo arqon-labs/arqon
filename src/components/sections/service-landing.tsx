@@ -1,34 +1,15 @@
 import Link from "next/link";
 import { ArrowDown, ArrowUpRight, Send } from "lucide-react";
 import type { Service } from "@/content/types";
+import { auditRu } from "@/content/audit-ru";
 import { ru } from "@/content/ru";
 import { site } from "@/lib/site";
 import { servicePath } from "@/lib/services";
 import { Container } from "@/components/ui/container";
 import { ButtonLink } from "@/components/ui/button";
-import { TrackedButtonLink } from "@/components/shared/tracked-link";
+import { Breadcrumbs } from "@/components/shared/breadcrumbs";
+import { TrackedButtonLink, TrackedLink } from "@/components/shared/tracked-link";
 import { Contact } from "@/components/sections/contact";
-
-function Breadcrumbs({ items }: { items: { label: string; href?: string }[] }) {
-  return (
-    <nav aria-label="Навигация по разделам">
-      <ol className="flex flex-wrap items-center gap-2 font-mono text-meta text-fg-subtle">
-        {items.map((item, index) => (
-          <li key={item.label} className="flex items-center gap-2">
-            {index > 0 ? <span aria-hidden>/</span> : null}
-            {item.href ? (
-              <Link href={item.href} className="transition-colors duration-150 hover:text-fg">
-                {item.label}
-              </Link>
-            ) : (
-              <span className="text-fg-muted">{item.label}</span>
-            )}
-          </li>
-        ))}
-      </ol>
-    </nav>
-  );
-}
 
 export function ServicesIndexPage() {
   return (
@@ -41,6 +22,7 @@ export function ServicesIndexPage() {
         <Container>
           <div className="pt-24 pb-20 sm:pt-32 sm:pb-28">
             <Breadcrumbs
+              label="Навигация по разделам"
               items={[
                 { label: ru.services.breadcrumbHome, href: "/" },
                 { label: ru.services.eyebrow },
@@ -108,6 +90,7 @@ export function ServiceLandingPage({ service }: { service: Service }) {
         <Container>
           <div className="pt-24 pb-20 sm:pt-32 sm:pb-28">
             <Breadcrumbs
+              label="Навигация по разделам"
               items={[
                 { label: ru.services.breadcrumbHome, href: "/" },
                 { label: ru.services.eyebrow, href: ru.services.path },
@@ -159,15 +142,16 @@ export function ServiceLandingPage({ service }: { service: Service }) {
       {service.slug === "dorabotka" ? (
         <section className="border-t border-line py-10 sm:py-12">
           <Container>
-            <Link
-              href={servicePath("audit-ai")}
+            <TrackedLink
+              event="audit_dorabotka_link_click"
+              href={auditRu.path}
               className="group flex items-start justify-between gap-4 rounded-lg border border-line bg-surface p-6 transition-colors duration-150 hover:border-line-strong sm:items-center"
             >
               <span className="text-[1.0625rem] font-medium text-fg transition-colors duration-150 group-hover:text-accent">
                 Приложение написано нейросетью? Для этого есть отдельный аудит →
               </span>
               <ArrowUpRight className="mt-1 size-4 shrink-0 text-accent sm:mt-0" aria-hidden />
-            </Link>
+            </TrackedLink>
           </Container>
         </section>
       ) : null}

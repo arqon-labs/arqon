@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { AuditLanding } from "@/components/sections/audit/audit-landing";
+import { Contact } from "@/components/sections/contact";
 import { ServiceLandingPage } from "@/components/sections/service-landing";
 import { JsonLd } from "@/components/shared/json-ld";
+import { audit } from "@/content/audit";
+import { auditRu } from "@/content/audit-ru";
 import { ru } from "@/content/ru";
-import { servicePageJsonLd } from "@/lib/json-ld";
+import { auditPageJsonLd, servicePageJsonLd } from "@/lib/json-ld";
 import { serviceBySlug, servicePath } from "@/lib/services";
 import { site } from "@/lib/site";
 
@@ -22,6 +26,27 @@ export async function generateMetadata({
   const service = serviceBySlug(slug);
 
   if (!service) return {};
+
+  if (slug === "audit-ai") {
+    return {
+      title: auditRu.title,
+      description: auditRu.description,
+      alternates: {
+        canonical: auditRu.path,
+        languages: {
+          ru: auditRu.path,
+          en: audit.path,
+        },
+      },
+      openGraph: {
+        url: auditRu.path,
+        title: `${auditRu.title} | ${site.name}`,
+        description: auditRu.description,
+        locale: site.locale,
+        siteName: site.name,
+      },
+    };
+  }
 
   const path = servicePath(service.slug);
 
@@ -46,6 +71,16 @@ export default async function ServicePage({
   const service = serviceBySlug(slug);
 
   if (!service) notFound();
+
+  if (service.slug === "audit-ai") {
+    return (
+      <>
+        <AuditLanding content={auditRu} telegramEvent="audit_ru_cta_click" />
+        <Contact />
+        <JsonLd data={auditPageJsonLd(auditRu)} />
+      </>
+    );
+  }
 
   return (
     <>

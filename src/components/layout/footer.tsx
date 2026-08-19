@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { TrackedLink } from "@/components/shared/tracked-link";
+import { blog } from "@/content/blog";
 import { ru } from "@/content/ru";
 import { site } from "@/lib/site";
 import { servicePath } from "@/lib/services";
@@ -84,6 +85,11 @@ export function Footer() {
                 >
                   LinkedIn
                 </a>
+              </li>
+              <li>
+                <Link href={blog.path} className={linkClass}>
+                  Блог
+                </Link>
               </li>
             </ul>
           </div>
