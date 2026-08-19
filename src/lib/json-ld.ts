@@ -1,5 +1,8 @@
+import { audit } from "@/content/audit";
+import { blog, type BlogPost } from "@/content/blog";
 import { ru } from "@/content/ru";
 import type { Service } from "@/content/types";
+import { blogPath } from "./blog";
 import { site } from "./site";
 import { servicePath } from "./services";
 
@@ -212,6 +215,85 @@ export function servicePageJsonLd(service: Service) {
       { name: ru.services.breadcrumbHome, path: "/" },
       { name: ru.services.eyebrow, path: ru.services.path },
       { name: service.navLabel, path },
+    ]),
+  ];
+}
+
+export function auditPageJsonLd() {
+  const url = `${site.url}${audit.path}`;
+
+  return [
+    personSchema(),
+    websiteSchema(),
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "@id": `${url}#service`,
+      name: audit.serviceName,
+      description: audit.description,
+      url,
+      provider: { "@id": personId },
+      serviceType: audit.serviceName,
+      offers: {
+        "@type": "Offer",
+        price: "500",
+        priceCurrency: "USD",
+        availability: "https://schema.org/InStock",
+        url,
+      },
+    },
+    {
+      ...webPageSchema(audit.path, audit.title, audit.description),
+      inLanguage: "en",
+    },
+  ];
+}
+
+export function blogIndexJsonLd() {
+  return [
+    personSchema(),
+    websiteSchema(),
+    {
+      ...webPageSchema(blog.path, blog.indexTitle, blog.indexDescription),
+      inLanguage: "en",
+    },
+    breadcrumbSchema([
+      { name: blog.breadcrumbHome, path: "/" },
+      { name: blog.eyebrow, path: blog.path },
+    ]),
+  ];
+}
+
+export function blogArticleJsonLd(post: BlogPost) {
+  const path = blogPath(post.slug);
+  const url = `${site.url}${path}`;
+  const inLanguage = post.lang === "en" ? "en" : "ru-BY";
+
+  return [
+    personSchema(),
+    websiteSchema(),
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "@id": `${url}#article`,
+      headline: post.title,
+      description: post.description,
+      datePublished: post.date,
+      dateModified: post.date,
+      inLanguage,
+      url,
+      author: { "@id": personId },
+      publisher: { "@id": organizationId },
+      mainEntityOfPage: { "@id": `${url}#webpage` },
+    },
+    {
+      ...webPageSchema(path, post.title, post.description),
+      inLanguage,
+    },
+    breadcrumbSchema([
+      { name: blog.breadcrumbHome, path: "/" },
+      { name: blog.eyebrow, path: blog.path },
+      { name: post.title, path },
     ]),
   ];
 }

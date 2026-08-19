@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Hero } from "@/components/sections/hero";
 import { About } from "@/components/sections/about";
 import { Services } from "@/components/sections/services";
+import { AuditTeaser } from "@/components/sections/audit-teaser";
 import { Cases } from "@/components/sections/cases";
 import { Formats } from "@/components/sections/formats";
 import { Faq } from "@/components/sections/faq";
@@ -28,6 +29,7 @@ export default function HomePage() {
       <Hero />
       <About />
       <Services />
+      <AuditTeaser />
       <Cases />
       <Formats />
       <Faq />

@@ -156,6 +156,22 @@ export function ServiceLandingPage({ service }: { service: Service }) {
         </Container>
       </section>
 
+      {service.slug === "dorabotka" ? (
+        <section className="border-t border-line py-10 sm:py-12">
+          <Container>
+            <Link
+              href={servicePath("audit-ai")}
+              className="group flex items-start justify-between gap-4 rounded-lg border border-line bg-surface p-6 transition-colors duration-150 hover:border-line-strong sm:items-center"
+            >
+              <span className="text-[1.0625rem] font-medium text-fg transition-colors duration-150 group-hover:text-accent">
+                Приложение написано нейросетью? Для этого есть отдельный аудит →
+              </span>
+              <ArrowUpRight className="mt-1 size-4 shrink-0 text-accent sm:mt-0" aria-hidden />
+            </Link>
+          </Container>
+        </section>
+      ) : null}
+
       <section className="border-t border-line py-16 sm:py-20">
         <Container>
           <p className="font-mono text-meta uppercase text-fg-subtle">

@@ -20,7 +20,11 @@ export function Services() {
         {services.items.map((service, index) => (
           <Reveal
             key={service.id}
-            className={index < 3 ? "lg:col-span-2" : "lg:col-span-3"}
+            className={
+              services.items.length % 3 === 0 || index < 3
+                ? "lg:col-span-2"
+                : "lg:col-span-3"
+            }
           >
             <article className="flex h-full flex-col rounded-lg border border-line bg-surface p-6 transition-colors duration-150 hover:border-line-strong">
               <p className="font-mono text-meta text-fg-subtle tabular-nums">
