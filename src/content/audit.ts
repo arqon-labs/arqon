@@ -179,7 +179,7 @@ export const audit: AuditContent = {
       {
         question: "What stacks do you cover?",
         answer:
-          "The vibe-code stack: Next.js, React, Node, Supabase, Firebase, Stripe, Vercel. TypeScript/JavaScript.",
+          "The vibe-code stack: Next.js, React, Node, Go, Supabase, Firebase, Stripe, Vercel. TypeScript/JavaScript.",
       },
       {
         question: "Who are you?",

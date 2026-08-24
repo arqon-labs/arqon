@@ -118,7 +118,7 @@ export const auditRu: AuditContent = {
       {
         question: "Какой стек смотрите?",
         answer:
-          "Типичный ИИ-стек: Next.js, React, Node, Supabase, Firebase, Stripe, Vercel. TypeScript и JavaScript.",
+          "Типичный ИИ-стек: Next.js, React, Node, Go, Supabase, Firebase, Stripe, Vercel. TypeScript и JavaScript.",
       },
       {
         question: "Кто вы?",

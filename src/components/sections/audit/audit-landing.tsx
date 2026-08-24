@@ -86,16 +86,16 @@ function AuditFindings({ content }: { content: AuditContent }) {
   return (
     <Section>
       <SectionHeader title={findings.title} eyebrow={findings.eyebrow} />
-      <ul className="mt-14 grid list-none gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <ul className="mt-14 grid list-none gap-4 sm:grid-cols-2 sm:auto-rows-fr lg:grid-cols-3">
         {findings.items.map((item, index) => (
-          <li key={item.title}>
-            <Reveal>
+          <li key={item.title} className="min-h-0">
+            <Reveal className="h-full">
               <article className="card flex h-full flex-col p-6">
                 <p className="font-mono text-meta text-fg-subtle tabular-nums">
                   {String(index + 1).padStart(2, "0")}
                 </p>
-                <h3 className="mt-3 text-h3 font-medium">{item.title}</h3>
-                <p className="mt-3.5 text-[0.9375rem] leading-relaxed text-fg-muted">
+                <h3 className="mt-3 min-h-[2.6em] text-h3 font-medium">{item.title}</h3>
+                <p className="mt-3.5 flex-1 text-[0.9375rem] leading-relaxed text-fg-muted">
                   {item.body}
                 </p>
               </article>
@@ -135,16 +135,18 @@ function AuditHow({ content }: { content: AuditContent }) {
   return (
     <Section id={how.id}>
       <SectionHeader title={how.title} eyebrow={how.eyebrow} />
-      <ol className="mt-14 grid list-none gap-8 sm:grid-cols-3">
+      <ol className="mt-14 grid list-none gap-4 sm:grid-cols-3 sm:auto-rows-fr">
         {how.steps.map((step, index) => (
-          <li key={step.title}>
-            <p className="font-mono text-meta text-accent tabular-nums">
-              {String(index + 1).padStart(2, "0")}
-            </p>
-            <h3 className="mt-3 text-h3 font-medium">{step.title}</h3>
-            <p className="mt-2 text-[0.9375rem] leading-relaxed text-fg-muted">
-              {step.body}
-            </p>
+          <li key={step.title} className="min-h-0">
+            <article className="card flex h-full flex-col p-6">
+              <p className="font-mono text-meta text-accent tabular-nums">
+                {String(index + 1).padStart(2, "0")}
+              </p>
+              <h3 className="mt-3 min-h-[2.6em] text-h3 font-medium">{step.title}</h3>
+              <p className="mt-2 flex-1 text-[0.9375rem] leading-relaxed text-fg-muted">
+                {step.body}
+              </p>
+            </article>
           </li>
         ))}
       </ol>
