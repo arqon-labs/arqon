@@ -1,23 +1,32 @@
 import { ArrowDown, Send } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { ButtonLink } from "@/components/ui/button";
+import { Atmosphere } from "@/components/ui/atmosphere";
 import { TrackedButtonLink } from "@/components/shared/tracked-link";
 import { ru } from "@/content/ru";
 import { site } from "@/lib/site";
 
 const { hero } = ru;
+const trustItems = hero.trust.split(" · ");
 
 export function Hero() {
   return (
     <section id="top" className="relative isolate overflow-hidden">
-      <div
-        className="hero-glow pointer-events-none absolute inset-x-0 top-0 h-[560px]"
+      <Atmosphere />
+      <p
+        className="pointer-events-none absolute top-[8%] -right-2 select-none font-medium leading-none tracking-[-0.07em] text-fg/[0.035] text-[clamp(5.5rem,22vw,16rem)] sm:top-[4%]"
         aria-hidden
-      />
+      >
+        {site.name}
+      </p>
 
       <Container>
         <div className="pt-24 pb-20 sm:pt-32 sm:pb-28 lg:pt-40 lg:pb-36">
-          <p className="rise inline-flex items-center rounded-full border border-line bg-surface px-3.5 py-1.5 font-mono text-meta uppercase text-fg-muted">
+          <p className="rise inline-flex items-center gap-2.5 rounded-full border border-line bg-surface/80 px-3.5 py-1.5 font-mono text-meta uppercase text-fg-muted">
+            <span className="relative flex size-1.5" aria-hidden>
+              <span className="absolute inset-0 animate-ping rounded-full bg-accent opacity-60" />
+              <span className="relative size-1.5 rounded-full bg-accent" />
+            </span>
             {hero.eyebrow}
           </p>
 
@@ -48,16 +57,21 @@ export function Hero() {
             </ButtonLink>
           </div>
 
-          <p className="rise mt-6 max-w-2xl font-mono text-meta text-fg-subtle [animation-delay:280ms]">
-            {hero.trust}
-          </p>
+          <ul className="rise mt-8 flex flex-wrap gap-2 [animation-delay:280ms]">
+            {trustItems.map((item) => (
+              <li
+                key={item}
+                className="rounded-full border border-line bg-surface/70 px-3 py-1 font-mono text-meta text-fg-muted"
+              >
+                {item}
+              </li>
+            ))}
+          </ul>
 
           <dl className="rise mt-16 grid gap-px overflow-hidden rounded-lg border border-line bg-line sm:grid-cols-3 [animation-delay:360ms]">
             {hero.facts.map((fact) => (
               <div key={fact.label} className="bg-bg p-6">
-                <dt className="font-mono text-meta uppercase text-fg-subtle">
-                  {fact.label}
-                </dt>
+                <dt className="font-mono text-meta uppercase text-fg-subtle">{fact.label}</dt>
                 <dd className="mt-2.5 text-[1.0625rem] text-fg">{fact.value}</dd>
               </div>
             ))}

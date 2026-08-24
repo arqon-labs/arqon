@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { TrackedLink } from "@/components/shared/tracked-link";
+import { BrandMark } from "@/components/layout/brand-mark";
 import { blog } from "@/content/blog";
 import { ru } from "@/content/ru";
 import { site } from "@/lib/site";
@@ -17,7 +18,7 @@ export function Footer() {
       <Container>
         <div className="flex flex-col gap-10 sm:flex-row sm:justify-between">
           <div className="max-w-sm">
-            <p className="text-base font-semibold tracking-[0.14em]">{site.name}</p>
+            <BrandMark />
             <p className="mt-3 text-[0.9375rem] text-fg-muted">
               {ru.footer.description}
             </p>
@@ -103,6 +104,13 @@ export function Footer() {
             {site.city}, {site.region}
           </p>
         </div>
+
+        <p
+          className="mt-10 select-none overflow-hidden font-medium leading-none tracking-[-0.07em] text-fg/[0.04] text-[clamp(4.5rem,16vw,11rem)]"
+          aria-hidden
+        >
+          {site.name}
+        </p>
       </Container>
     </footer>
   );

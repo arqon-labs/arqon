@@ -1,8 +1,8 @@
-import Link from "next/link";
 import { Send } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { TrackedButtonLink } from "@/components/shared/tracked-link";
 import { HeaderNav } from "@/components/layout/header-nav";
+import { BrandMark } from "@/components/layout/brand-mark";
 import { site } from "@/lib/site";
 
 export function Header() {
@@ -12,13 +12,7 @@ export function Header() {
     >
       <Container>
         <div className="grid grid-cols-[1fr_auto] items-center gap-x-3 md:flex md:h-16 md:gap-6">
-          <Link
-            href="/"
-            className="shrink-0 text-base font-semibold tracking-[0.14em] text-fg"
-            aria-label={`${site.name} — на главную`}
-          >
-            {site.name}
-          </Link>
+          <BrandMark className="shrink-0" />
 
           <TrackedButtonLink
             event="telegram_click"

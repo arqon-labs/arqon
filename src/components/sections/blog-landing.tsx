@@ -7,6 +7,7 @@ import { auditRu } from "@/content/audit-ru";
 import { blogPath } from "@/lib/blog";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
+import { Atmosphere } from "@/components/ui/atmosphere";
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
 import { TrackedButtonLink } from "@/components/shared/tracked-link";
 
@@ -22,10 +23,7 @@ export function BlogIndexPage() {
   return (
     <>
       <section lang="en" className="relative isolate overflow-hidden">
-        <div
-          className="hero-glow pointer-events-none absolute inset-x-0 top-0 h-[420px]"
-          aria-hidden
-        />
+        <Atmosphere glowClassName="h-[420px]" />
         <Container>
           <div className="pt-24 pb-20 sm:pt-32 sm:pb-28">
             <Breadcrumbs
@@ -48,7 +46,7 @@ export function BlogIndexPage() {
               <li key={post.slug}>
                 <article
                   lang={post.lang}
-                  className="flex h-full flex-col rounded-lg border border-line bg-surface p-6 transition-colors duration-150 hover:border-line-strong"
+                  className="card card-hover flex h-full flex-col p-6"
                 >
                   <p className="font-mono text-meta uppercase text-fg-subtle">
                     {formatDate(post.date, post.lang)}
@@ -124,7 +122,7 @@ function BlogAuditCta({ lang }: { lang: BlogPost["lang"] }) {
   const href = lang === "en" ? audit.path : auditRu.path;
 
   return (
-    <div className="mt-14 max-w-2xl rounded-lg border border-line bg-surface p-6 sm:p-8">
+    <div className="card mt-14 max-w-2xl p-6 sm:p-8">
       <h2 className="text-h3 font-medium">{copy.title}</h2>
       <p className="mt-3 text-[0.9375rem] leading-relaxed text-fg-muted">{copy.body}</p>
       <TrackedButtonLink
@@ -170,10 +168,7 @@ export function BlogArticlePage({ post }: { post: BlogPost }) {
   return (
     <article lang={post.lang}>
       <section className="relative isolate overflow-hidden">
-        <div
-          className="hero-glow pointer-events-none absolute inset-x-0 top-0 h-[420px]"
-          aria-hidden
-        />
+        <Atmosphere glowClassName="h-[420px]" />
         <Container>
           <div className="pt-24 pb-16 sm:pt-32 sm:pb-20">
             <Breadcrumbs

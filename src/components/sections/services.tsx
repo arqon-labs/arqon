@@ -26,17 +26,15 @@ export function Services() {
                 : "lg:col-span-3"
             }
           >
-            <article className="flex h-full flex-col rounded-lg border border-line bg-surface p-6 transition-colors duration-150 hover:border-line-strong">
+            <Link
+              href={servicePath(service.slug)}
+              className="card card-hover group flex h-full flex-col p-6"
+            >
               <p className="font-mono text-meta text-fg-subtle tabular-nums">
                 {String(index + 1).padStart(2, "0")}
               </p>
-              <h3 className="mt-3 text-h3 font-medium">
-                <Link
-                  href={servicePath(service.slug)}
-                  className="transition-colors duration-150 hover:text-accent"
-                >
-                  {service.title}
-                </Link>
+              <h3 className="mt-3 text-h3 font-medium transition-colors duration-150 group-hover:text-accent">
+                {service.title}
               </h3>
 
               <p className="mt-3.5 flex-1 text-[0.9375rem] leading-relaxed text-fg-muted">
@@ -44,19 +42,24 @@ export function Services() {
               </p>
 
               <p className="mt-5 flex items-start gap-2 text-[0.9375rem] text-fg">
-                <ArrowUpRight className="mt-1 size-4 shrink-0 text-accent" aria-hidden />
+                <ArrowUpRight
+                  className="mt-1 size-4 shrink-0 text-accent transition-transform duration-150 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  aria-hidden
+                />
                 {service.outcome}
               </p>
 
-              <p className="mt-5 border-t border-line pt-5">
-                <Link
-                  href={servicePath(service.slug)}
-                  className="font-mono text-meta text-fg-subtle uppercase transition-colors duration-150 hover:text-fg"
-                >
-                  {services.moreLabel}
-                </Link>
-              </p>
-            </article>
+              <ul className="mt-5 flex flex-wrap gap-1.5 border-t border-line pt-5">
+                {service.tags.map((tag) => (
+                  <li
+                    key={tag}
+                    className="rounded-sm border border-line bg-bg/60 px-2 py-0.5 font-mono text-[0.6875rem] uppercase tracking-wider text-fg-subtle"
+                  >
+                    {tag}
+                  </li>
+                ))}
+              </ul>
+            </Link>
           </Reveal>
         ))}
       </div>

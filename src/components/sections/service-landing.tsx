@@ -7,6 +7,7 @@ import { site } from "@/lib/site";
 import { servicePath } from "@/lib/services";
 import { Container } from "@/components/ui/container";
 import { ButtonLink } from "@/components/ui/button";
+import { Atmosphere } from "@/components/ui/atmosphere";
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
 import { TrackedButtonLink, TrackedLink } from "@/components/shared/tracked-link";
 import { Contact } from "@/components/sections/contact";
@@ -15,10 +16,7 @@ export function ServicesIndexPage() {
   return (
     <>
       <section className="relative isolate overflow-hidden">
-        <div
-          className="hero-glow pointer-events-none absolute inset-x-0 top-0 h-[420px]"
-          aria-hidden
-        />
+        <Atmosphere glowClassName="h-[420px]" />
         <Container>
           <div className="pt-24 pb-20 sm:pt-32 sm:pb-28">
             <Breadcrumbs
@@ -41,7 +39,7 @@ export function ServicesIndexPage() {
           <ul className="grid gap-4 md:grid-cols-2">
             {ru.services.items.map((service) => (
               <li key={service.slug}>
-                <article className="flex h-full flex-col rounded-lg border border-line bg-surface p-6 transition-colors duration-150 hover:border-line-strong">
+                <article className="card card-hover flex h-full flex-col p-6">
                   <h2 className="text-h3 font-medium">
                     <Link
                       href={servicePath(service.slug)}
@@ -83,10 +81,7 @@ export function ServiceLandingPage({ service }: { service: Service }) {
   return (
     <>
       <section className="relative isolate overflow-hidden">
-        <div
-          className="hero-glow pointer-events-none absolute inset-x-0 top-0 h-[420px]"
-          aria-hidden
-        />
+        <Atmosphere glowClassName="h-[420px]" />
         <Container>
           <div className="pt-24 pb-20 sm:pt-32 sm:pb-28">
             <Breadcrumbs
@@ -145,7 +140,7 @@ export function ServiceLandingPage({ service }: { service: Service }) {
             <TrackedLink
               event="audit_dorabotka_link_click"
               href={auditRu.path}
-              className="group flex items-start justify-between gap-4 rounded-lg border border-line bg-surface p-6 transition-colors duration-150 hover:border-line-strong sm:items-center"
+              className="card card-hover group flex items-start justify-between gap-4 p-6 sm:items-center"
             >
               <span className="text-[1.0625rem] font-medium text-fg transition-colors duration-150 group-hover:text-accent">
                 Приложение написано нейросетью? Для этого есть отдельный аудит →

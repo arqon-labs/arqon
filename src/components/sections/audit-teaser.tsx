@@ -7,7 +7,7 @@ import { auditRu } from "@/content/audit-ru";
 export function AuditTeaser() {
   return (
     <Section>
-      <div className="flex flex-col gap-8 rounded-lg border border-line bg-surface p-6 sm:p-8 lg:flex-row lg:items-center lg:justify-between lg:gap-12">
+      <div className="flex flex-col gap-8 rounded-lg border border-accent/25 bg-accent/[0.04] p-6 sm:p-8 lg:flex-row lg:items-center lg:justify-between lg:gap-12">
         <div className="max-w-2xl">
           <h2 className="text-h3 font-medium">Собрали приложение с помощью ИИ?</h2>
           <p className="mt-3 text-[0.9375rem] leading-relaxed text-fg-muted">

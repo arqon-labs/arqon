@@ -7,6 +7,7 @@ import { site } from "@/lib/site";
 import { Container } from "@/components/ui/container";
 import { Section, SectionHeader } from "@/components/ui/section";
 import { ButtonLink } from "@/components/ui/button";
+import { Atmosphere } from "@/components/ui/atmosphere";
 import { TrackedButtonLink } from "@/components/shared/tracked-link";
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
 import { Reveal } from "@/components/shared/reveal";
@@ -48,10 +49,7 @@ function AuditHero({
 
   return (
     <section className="relative isolate overflow-hidden">
-      <div
-        className="hero-glow pointer-events-none absolute inset-x-0 top-0 h-[560px]"
-        aria-hidden
-      />
+      <Atmosphere />
       <Container>
         <div className="pt-24 pb-20 sm:pt-32 sm:pb-28 lg:pt-40 lg:pb-36">
           <Breadcrumbs label={content.breadcrumbLabel} items={content.breadcrumbs} />
@@ -92,7 +90,7 @@ function AuditFindings({ content }: { content: AuditContent }) {
         {findings.items.map((item, index) => (
           <li key={item.title}>
             <Reveal>
-              <article className="flex h-full flex-col rounded-lg border border-line bg-surface p-6">
+              <article className="card flex h-full flex-col p-6">
                 <p className="font-mono text-meta text-fg-subtle tabular-nums">
                   {String(index + 1).padStart(2, "0")}
                 </p>
@@ -167,7 +165,7 @@ function AuditPricing({
     <Section>
       <SectionHeader title={pricing.title} eyebrow={pricing.eyebrow} />
       <Reveal className="mt-14 max-w-lg">
-        <article className="rounded-lg border border-line bg-surface p-6 sm:p-8">
+        <article className="card border-accent/20 p-6 sm:p-8">
           <p className="font-mono text-meta uppercase text-fg-subtle">{pricing.cadence}</p>
           <p className="mt-3 text-display font-medium tabular-nums">{pricing.amount}</p>
           <ul className="mt-8 list-none space-y-3">
@@ -265,7 +263,7 @@ function AuditCta({
 
   return (
     <Section>
-      <div className="rounded-lg border border-line bg-surface px-6 py-10 sm:px-10 sm:py-14">
+      <div className="card px-6 py-10 sm:px-10 sm:py-14">
         <h2 className="max-w-3xl text-h2 font-medium">{cta.title}</h2>
         <TelegramCta event={telegramEvent} className="mt-8 w-full sm:w-auto">
           {cta.button}

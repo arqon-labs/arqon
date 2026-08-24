@@ -8,7 +8,8 @@ const base =
   "inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium transition-colors duration-150 disabled:cursor-not-allowed disabled:opacity-60";
 
 const variants: Record<ButtonVariant, string> = {
-  primary: "bg-accent text-white hover:bg-accent-hover",
+  primary:
+    "shine bg-accent text-white shadow-[0_0_32px_-12px_color-mix(in_oklab,var(--color-accent)_80%,transparent)] hover:bg-accent-hover",
   secondary:
     "border border-line-strong bg-surface text-fg hover:border-fg-subtle hover:bg-surface-2",
   ghost: "text-fg-muted hover:text-fg",

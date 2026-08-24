@@ -19,16 +19,12 @@ export function Contact() {
           />
 
           <div className="mt-10 space-y-4">
-            <div className="rounded-lg border border-line bg-surface p-6">
+            <div className="rounded-lg border border-accent/30 bg-accent/5 p-6">
               <div className="flex items-center gap-3">
                 <Send className="size-4 text-accent" aria-hidden />
-                <h3 className="text-[1.0625rem] font-medium">
-                  {contact.telegramTitle}
-                </h3>
+                <h3 className="text-[1.0625rem] font-medium">{contact.telegramTitle}</h3>
               </div>
-              <p className="mt-3 text-[0.9375rem] text-fg-muted">
-                {contact.telegramText}
-              </p>
+              <p className="mt-3 text-[0.9375rem] text-fg-muted">{contact.telegramText}</p>
               <TrackedButtonLink
                 event="telegram_click"
                 href={site.contacts.telegram}
@@ -40,12 +36,10 @@ export function Contact() {
               </TrackedButtonLink>
             </div>
 
-            <div className="rounded-lg border border-line bg-surface p-6">
+            <div className="card p-6">
               <div className="flex items-center gap-3">
                 <Mail className="size-4 text-fg-subtle" aria-hidden />
-                <h3 className="text-[1.0625rem] font-medium">
-                  {contact.emailTitle}
-                </h3>
+                <h3 className="text-[1.0625rem] font-medium">{contact.emailTitle}</h3>
               </div>
               <TrackedLink
                 event="email_click"

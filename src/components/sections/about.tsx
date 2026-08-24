@@ -22,6 +22,22 @@ export function About() {
 
         <Reveal className="lg:col-span-5">
           <div className="relative overflow-hidden rounded-lg border border-line bg-surface">
+            <span
+              className="pointer-events-none absolute top-3 left-3 z-10 size-3 border-t border-l border-accent/50"
+              aria-hidden
+            />
+            <span
+              className="pointer-events-none absolute top-3 right-3 z-10 size-3 border-t border-r border-accent/50"
+              aria-hidden
+            />
+            <span
+              className="pointer-events-none absolute bottom-3 left-3 z-10 size-3 border-b border-l border-accent/50"
+              aria-hidden
+            />
+            <span
+              className="pointer-events-none absolute right-3 bottom-3 z-10 size-3 border-r border-b border-accent/50"
+              aria-hidden
+            />
             <Image
               src={portrait}
               alt={about.portraitAlt}
@@ -38,10 +54,8 @@ export function About() {
             </p>
           </div>
 
-          <div className="mt-8 rounded-lg border border-line bg-surface p-6">
-            <p className="font-mono text-meta uppercase text-fg-subtle">
-              {about.domainsLabel}
-            </p>
+          <div className="card mt-8 p-6">
+            <p className="font-mono text-meta uppercase text-fg-subtle">{about.domainsLabel}</p>
             <ul className="mt-4 space-y-2.5">
               {about.domains.map((domain) => (
                 <li key={domain} className="flex gap-3 text-[0.9375rem] text-fg-muted">
