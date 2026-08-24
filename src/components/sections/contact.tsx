@@ -19,7 +19,7 @@ export function Contact() {
           />
 
           <div className="mt-10 space-y-4">
-            <div className="glow-edge rounded-lg border border-accent/25 bg-accent/5 p-6">
+            <div className="rounded-lg border border-accent/25 bg-accent/5 p-6">
               <div className="flex items-center gap-3">
                 <Send className="size-4 text-accent" aria-hidden />
                 <h3 className="text-[1.0625rem] font-medium">{contact.telegramTitle}</h3>

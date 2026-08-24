@@ -49,12 +49,6 @@
   --scroll-gap: 0.5rem;
 }
 
-@property --glow-angle {
-  syntax: "<angle>";
-  inherits: false;
-  initial-value: 210deg;
-}
-
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -265,12 +259,6 @@
   }
 }
 
-@keyframes arqon-glow-spin {
-  to {
-    --glow-angle: 570deg;
-  }
-}
-
 @keyframes arqon-scroll-progress {
   from {
     transform: scaleX(0);
@@ -291,38 +279,6 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-}
-
-@utility glow-edge {
-  position: relative;
-  isolation: isolate;
-
-  &::before {
-    content: "";
-    pointer-events: none;
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    padding: 1px;
-    border-radius: inherit;
-    background: conic-gradient(
-      from var(--glow-angle),
-      transparent 0%,
-      transparent 58%,
-      color-mix(in oklab, var(--color-accent) 90%, white) 64%,
-      #8b7dff 70%,
-      transparent 78%
-    );
-    mask:
-      linear-gradient(#000 0 0) content-box,
-      linear-gradient(#000 0 0);
-    mask-composite: exclude;
-    -webkit-mask:
-      linear-gradient(#000 0 0) content-box,
-      linear-gradient(#000 0 0);
-    -webkit-mask-composite: xor;
-    animation: arqon-glow-spin 12s linear infinite;
-  }
 }
 
 @utility header-progress {
@@ -442,7 +398,6 @@
   }
 
   .hero-glow,
-  .glow-edge::before,
   .header-progress,
   .hero-mark {
     animation: none !important;

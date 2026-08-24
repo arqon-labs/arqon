@@ -1,7 +1,6 @@
 import { Section, SectionHeader } from "@/components/ui/section";
 import { Reveal } from "@/components/shared/reveal";
 import { ru } from "@/content/ru";
-import { cn } from "@/lib/cn";
 
 const { formats } = ru;
 
@@ -42,12 +41,7 @@ export function Formats() {
       <div className="mt-6 grid gap-4 md:grid-cols-3">
         {formats.items.map((format) => (
           <Reveal key={format.id} className="h-full">
-            <article
-              className={cn(
-                "card flex h-full flex-col p-6",
-                format.id === "product" && "glow-edge border-accent/20",
-              )}
-            >
+            <article className="card flex h-full flex-col p-6">
               <p className="font-mono text-[1.375rem] font-medium tracking-tight text-accent tabular-nums">
                 {format.duration}
               </p>

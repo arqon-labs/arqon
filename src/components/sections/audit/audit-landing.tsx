@@ -265,7 +265,7 @@ function AuditCta({
 
   return (
     <Section>
-      <div className="glow-edge card px-6 py-10 sm:px-10 sm:py-14">
+      <div className="card px-6 py-10 sm:px-10 sm:py-14">
         <h2 className="max-w-3xl text-h2 font-medium">{cta.title}</h2>
         <TelegramCta event={telegramEvent} className="mt-8 w-full sm:w-auto">
           {cta.button}
