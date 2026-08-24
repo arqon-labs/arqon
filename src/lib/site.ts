@@ -40,5 +40,4 @@ export const pendingRealData = [
   "site.contacts.github / linkedin — real profiles",
   "content.cases[0].result — payment contour numbers",
   "content.formats.note — minimum project budget",
-  "public/portrait.png — permanent portrait instead of placeholder",
 ] as const;

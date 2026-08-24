@@ -2,7 +2,7 @@ import Image from "next/image";
 import { Section, SectionHeader } from "@/components/ui/section";
 import { Reveal } from "@/components/shared/reveal";
 import { ru } from "@/content/ru";
-import portrait from "@/assets/portrait.jpg";
+import portrait from "@/assets/portrait.png";
 
 const { about } = ru;
 
@@ -43,7 +43,7 @@ export function About() {
               alt={about.portraitAlt}
               placeholder="blur"
               sizes="(min-width: 1024px) 420px, 100vw"
-              className="aspect-4/5 w-full object-cover object-[50%_22%]"
+              className="aspect-4/5 w-full object-cover object-top"
             />
             <div
               className="pointer-events-none absolute inset-0 bg-gradient-to-t from-bg/90 via-bg/15 to-transparent"

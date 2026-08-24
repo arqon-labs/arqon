@@ -70,7 +70,6 @@ The list is duplicated in code: `pendingRealData` in `src/lib/site.ts`.
 - `site.contacts.github` / `linkedin` — real profiles
 - `content.cases[0].result` — payment contour numbers
 - `content.formats.note` — minimum project budget, if you choose to show it
-- `src/assets/portrait.jpg` — permanent portrait instead of the current placeholder
 
 `Caddyfile` and `.env.example` contain `arqon.by` and `admin@arqon.by` — no need to change them if the domain stays the same.
 
