@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { ArrowDown, Send } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { ButtonLink } from "@/components/ui/button";
@@ -33,15 +34,17 @@ export function Hero() {
 
           <h1 className="mt-8 max-w-4xl text-display font-medium">
             {titleWords.map((word, index) => (
-              <span key={`${word}-${index}`} className="hero-word-clip">
-                <span
-                  className="hero-word"
-                  style={{ animationDelay: `${70 + index * 48}ms` }}
-                >
-                  {word}
+              <Fragment key={`${word}-${index}`}>
+                {index > 0 ? " " : null}
+                <span className="hero-word-clip">
+                  <span
+                    className="hero-word"
+                    style={{ animationDelay: `${70 + index * 48}ms` }}
+                  >
+                    {word}
+                  </span>
                 </span>
-                {index < titleWords.length - 1 ? " " : null}
-              </span>
+              </Fragment>
             ))}
           </h1>
 
