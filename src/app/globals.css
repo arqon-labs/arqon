@@ -49,6 +49,12 @@
   --scroll-gap: 0.5rem;
 }
 
+@property --glow-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 210deg;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -133,30 +139,32 @@
 @utility hero-glow {
   background-image:
     radial-gradient(
-      ellipse 70% 55% at 50% 0%,
-      color-mix(in oklab, var(--color-accent) 18%, transparent) 0%,
+      ellipse 55% 45% at 18% 8%,
+      color-mix(in oklab, var(--color-accent) 22%, transparent) 0%,
       transparent 70%
     ),
     radial-gradient(
-      ellipse 40% 40% at 92% 8%,
-      color-mix(in oklab, #7c6bff 12%, transparent) 0%,
+      ellipse 45% 40% at 86% 4%,
+      color-mix(in oklab, #7c6bff 16%, transparent) 0%,
       transparent 70%
+    ),
+    radial-gradient(
+      ellipse 40% 30% at 52% 22%,
+      color-mix(in oklab, #60a5fa 10%, transparent) 0%,
+      transparent 72%
     );
+  background-size: 140% 140%, 130% 130%, 110% 110%;
+  background-position: 0% 0%, 100% 0%, 50% 20%;
+  animation: arqon-aurora 28s ease-in-out infinite alternate;
 }
 
 @utility hero-grid {
-  background-image:
-    linear-gradient(
-      to right,
-      color-mix(in oklab, var(--color-line) 85%, transparent) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      to bottom,
-      color-mix(in oklab, var(--color-line) 85%, transparent) 1px,
-      transparent 1px
-    );
-  background-size: 4.5rem 4.5rem;
+  background-image: radial-gradient(
+    circle,
+    color-mix(in oklab, var(--color-fg) 16%, transparent) 1px,
+    transparent 1px
+  );
+  background-size: 1.75rem 1.75rem;
   mask-image: radial-gradient(ellipse 85% 70% at 50% -8%, black 18%, transparent 72%);
 }
 
@@ -164,27 +172,33 @@
   border-radius: var(--radius-lg);
   border: 1px solid var(--color-line);
   background-color: var(--color-surface);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.045);
 }
 
 @utility card-hover {
   transition:
     border-color 200ms ease,
     box-shadow 200ms ease,
-    background-color 200ms ease;
+    background-color 200ms ease,
+    transform 200ms ease;
 
-  &:hover {
-    border-color: color-mix(in oklab, var(--color-accent) 38%, var(--color-line-strong));
-    background-color: color-mix(in oklab, var(--color-accent) 4.5%, var(--color-surface));
-    box-shadow:
-      0 0 0 1px color-mix(in oklab, var(--color-accent) 12%, transparent),
-      0 28px 56px -32px color-mix(in oklab, var(--color-accent) 45%, transparent);
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      border-color: color-mix(in oklab, var(--color-accent) 38%, var(--color-line-strong));
+      background-color: color-mix(in oklab, var(--color-accent) 4.5%, var(--color-surface));
+      transform: translateY(-3px);
+      box-shadow:
+        inset 0 1px 0 rgb(255 255 255 / 0.06),
+        0 0 0 1px color-mix(in oklab, var(--color-accent) 12%, transparent),
+        0 32px 64px -28px color-mix(in oklab, var(--color-accent) 50%, transparent);
+    }
   }
 }
 
 @utility spotlight {
   position: relative;
   isolation: isolate;
-  overflow: hidden;
+  overflow: visible;
 }
 
 @utility spotlight-beam {
@@ -233,6 +247,121 @@
 @utility hero-word {
   display: inline-block;
   animation: arqon-word 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes arqon-mark {
+  to {
+    transform: translate3d(-2.5%, 3%, 0);
+  }
+}
+
+@utility hero-mark {
+  animation: arqon-mark 34s ease-in-out infinite alternate;
+}
+
+@keyframes arqon-aurora {
+  to {
+    background-position: 28% 18%, 72% 12%, 42% 38%;
+  }
+}
+
+@keyframes arqon-glow-spin {
+  to {
+    --glow-angle: 570deg;
+  }
+}
+
+@keyframes arqon-scroll-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@utility text-accent-gradient {
+  background-image: linear-gradient(
+    118deg,
+    #9bb6ff 0%,
+    var(--color-accent) 45%,
+    #c4b5fd 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+@utility glow-edge {
+  position: relative;
+  isolation: isolate;
+
+  &::before {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    padding: 1px;
+    border-radius: inherit;
+    background: conic-gradient(
+      from var(--glow-angle),
+      transparent 0%,
+      transparent 58%,
+      color-mix(in oklab, var(--color-accent) 90%, white) 64%,
+      #8b7dff 70%,
+      transparent 78%
+    );
+    mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    animation: arqon-glow-spin 12s linear infinite;
+  }
+}
+
+@utility header-progress {
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: 1px;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  opacity: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-accent) 18%,
+    #a78bfa 82%,
+    transparent
+  );
+
+  @supports (animation-timeline: scroll()) {
+    opacity: 1;
+    animation: arqon-scroll-progress linear;
+    animation-timeline: scroll(root);
+  }
+}
+
+@utility section-rule {
+  border-top-color: transparent;
+  background-image: linear-gradient(
+    to right,
+    transparent,
+    var(--color-line) 18%,
+    var(--color-line) 82%,
+    transparent
+  );
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+  background-position: top;
 }
 
 @utility shine {
@@ -310,6 +439,19 @@
   .rise,
   .hero-word {
     animation: none !important;
+  }
+
+  .hero-glow,
+  .glow-edge::before,
+  .header-progress,
+  .hero-mark {
+    animation: none !important;
+  }
+
+  .text-accent-gradient {
+    color: var(--color-accent);
+    background-image: none;
+    -webkit-text-fill-color: unset;
   }
 
   .spotlight-beam {

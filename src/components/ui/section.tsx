@@ -18,7 +18,7 @@ export function Section({
       id={id}
       className={cn(
         "py-24 sm:py-32 lg:py-40",
-        bordered && "border-t border-line",
+        bordered && "section-rule",
         className,
       )}
     >
@@ -40,7 +40,13 @@ export function SectionHeader({
 }) {
   return (
     <div className={cn("max-w-2xl", className)}>
-      <p className="font-mono text-meta uppercase text-fg-subtle">{eyebrow}</p>
+      <p className="flex items-center gap-2.5 font-mono text-meta uppercase text-fg-subtle">
+        <span
+          className="h-px w-5 bg-gradient-to-r from-accent to-transparent"
+          aria-hidden
+        />
+        {eyebrow}
+      </p>
       <h2 className="mt-5 text-h2 font-medium text-fg">{title}</h2>
       {lead ? <p className="mt-5 text-lead text-fg-muted">{lead}</p> : null}
     </div>

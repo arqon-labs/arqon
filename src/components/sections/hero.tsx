@@ -10,13 +10,14 @@ import { site } from "@/lib/site";
 const { hero } = ru;
 const trustItems = hero.trust.split(" · ");
 const titleWords = hero.title.split(" ");
+const accentFrom = titleWords.indexOf("—");
 
 export function Hero() {
   return (
     <section id="top" className="relative isolate overflow-hidden">
       <Atmosphere />
       <p
-        className="pointer-events-none absolute top-[8%] -right-2 select-none font-medium leading-none tracking-[-0.07em] text-fg/[0.035] text-[clamp(5.5rem,22vw,16rem)] sm:top-[4%]"
+        className="hero-mark pointer-events-none absolute top-[8%] -right-2 select-none font-medium leading-none tracking-[-0.07em] text-fg/[0.04] text-[clamp(5.5rem,22vw,16rem)] sm:top-[4%]"
         aria-hidden
       >
         {site.name}
@@ -24,7 +25,7 @@ export function Hero() {
 
       <Container>
         <div className="pt-24 pb-20 sm:pt-32 sm:pb-28 lg:pt-40 lg:pb-36">
-          <p className="rise inline-flex items-center gap-2.5 rounded-full border border-line bg-surface/80 px-3.5 py-1.5 font-mono text-meta uppercase text-fg-muted">
+          <p className="rise inline-flex items-center gap-2.5 rounded-full border border-line bg-surface/55 px-3.5 py-1.5 font-mono text-meta uppercase text-fg-muted shadow-[inset_0_1px_0_rgb(255_255_255/0.06)] backdrop-blur-md">
             <span className="relative flex size-1.5" aria-hidden>
               <span className="absolute inset-0 animate-ping rounded-full bg-accent opacity-60" />
               <span className="relative size-1.5 rounded-full bg-accent" />
@@ -35,10 +36,14 @@ export function Hero() {
           <h1 className="mt-8 max-w-4xl text-display font-medium">
             {titleWords.map((word, index) => (
               <Fragment key={`${word}-${index}`}>
-                {index > 0 ? " " : null}
+                {index > 0 ? (titleWords[index - 1] === "—" ? <br /> : " ") : null}
                 <span className="hero-word-clip">
                   <span
-                    className="hero-word"
+                    className={
+                      accentFrom >= 0 && index > accentFrom
+                        ? "hero-word text-accent-gradient"
+                        : "hero-word"
+                    }
                     style={{ animationDelay: `${70 + index * 48}ms` }}
                   >
                     {word}
@@ -82,11 +87,13 @@ export function Hero() {
             ))}
           </ul>
 
-          <dl className="rise mt-16 grid gap-px overflow-hidden rounded-lg border border-line bg-line sm:grid-cols-3 [animation-delay:500ms]">
+          <dl className="rise mt-16 grid gap-3 sm:grid-cols-3 [animation-delay:500ms]">
             {hero.facts.map((fact) => (
-              <div key={fact.label} className="bg-bg p-6">
-                <dt className="font-mono text-meta uppercase text-fg-subtle">{fact.label}</dt>
-                <dd className="mt-2.5 text-[1.0625rem] text-fg">{fact.value}</dd>
+              <div key={fact.label} className="card flex flex-col-reverse px-5 py-5 sm:px-6">
+                <dt className="mt-2 font-mono text-meta uppercase text-fg-subtle">{fact.label}</dt>
+                <dd className="text-[1.1875rem] font-medium tracking-tight text-fg">
+                  {fact.value}
+                </dd>
               </div>
             ))}
           </dl>

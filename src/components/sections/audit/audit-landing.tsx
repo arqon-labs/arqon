@@ -220,7 +220,7 @@ function AuditFaq({ content }: { content: AuditContent }) {
 
               return (
                 <li key={item.question}>
-                  <details className="group">
+                  <details className="group border-l-2 border-transparent pl-4 transition-[border-color] duration-200 open:border-accent">
                     <summary className="flex cursor-pointer list-none items-start justify-between gap-6 py-5 text-[1.0625rem] font-medium transition-colors duration-150 hover:text-accent">
                       {item.question}
                       <Plus
@@ -265,7 +265,7 @@ function AuditCta({
 
   return (
     <Section>
-      <div className="card px-6 py-10 sm:px-10 sm:py-14">
+      <div className="glow-edge card px-6 py-10 sm:px-10 sm:py-14">
         <h2 className="max-w-3xl text-h2 font-medium">{cta.title}</h2>
         <TelegramCta event={telegramEvent} className="mt-8 w-full sm:w-auto">
           {cta.button}

@@ -18,16 +18,17 @@ export function Cases() {
         {cases.items.map((item, index) => (
           <Reveal key={item.id}>
             <Spotlight className="card">
-            <article>
-              <header className="border-b border-line p-6 sm:p-8">
-                <div className="flex items-center justify-between gap-4">
-                  <p className="font-mono text-meta uppercase text-accent">{item.label}</p>
-                  <span className="font-mono text-meta text-fg-subtle tabular-nums" aria-hidden>
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                </div>
-                <h3 className="mt-4 max-w-3xl text-h2 font-medium">{item.title}</h3>
-                <p className="mt-5 max-w-3xl text-lead text-fg-muted">{item.context}</p>
+            <article className="overflow-hidden rounded-[inherit]">
+              <header className="relative border-b border-line p-6 sm:p-8">
+                <span
+                  className="pointer-events-none absolute -right-1 -bottom-6 select-none font-medium leading-none tracking-[-0.08em] text-fg/[0.045] text-[clamp(5rem,12vw,9rem)] tabular-nums"
+                  aria-hidden
+                >
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <p className="relative font-mono text-meta uppercase text-accent">{item.label}</p>
+                <h3 className="relative mt-4 max-w-3xl text-h2 font-medium">{item.title}</h3>
+                <p className="relative mt-5 max-w-3xl text-lead text-fg-muted">{item.context}</p>
               </header>
 
               <div className="grid gap-10 p-6 sm:p-8 lg:grid-cols-12 lg:gap-12">

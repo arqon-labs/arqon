@@ -14,8 +14,14 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-line py-14">
-      <Container>
+    <footer className="relative overflow-hidden section-rule pt-14 pb-20">
+      <p
+        className="pointer-events-none absolute right-0 -bottom-6 left-0 select-none overflow-hidden px-5 text-center font-medium leading-none tracking-[-0.08em] text-fg/[0.035] text-[clamp(5rem,18vw,14rem)] sm:px-8"
+        aria-hidden
+      >
+        {site.name}
+      </p>
+      <Container className="relative z-10">
         <div className="flex flex-col gap-10 sm:flex-row sm:justify-between">
           <div className="max-w-sm">
             <BrandMark />
@@ -104,13 +110,6 @@ export function Footer() {
             {site.city}, {site.region}
           </p>
         </div>
-
-        <p
-          className="mt-10 select-none overflow-hidden font-medium leading-none tracking-[-0.07em] text-fg/[0.04] text-[clamp(4.5rem,16vw,11rem)]"
-          aria-hidden
-        >
-          {site.name}
-        </p>
       </Container>
     </footer>
   );

@@ -34,7 +34,7 @@ const resolver: Resolver<FormValues> = async (values) => {
 };
 
 const fieldClass =
-  "w-full rounded-md border border-line bg-surface px-3.5 py-2.5 text-[0.9375rem] text-fg placeholder:text-fg-subtle transition-colors duration-150 hover:border-line-strong focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent/30 aria-[invalid=true]:border-danger";
+  "w-full rounded-md border border-line bg-bg/70 px-3.5 py-2.5 text-[0.9375rem] text-fg placeholder:text-fg-subtle transition-[border-color,box-shadow] duration-150 hover:border-line-strong focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent/35 aria-[invalid=true]:border-danger";
 
 const copy = ru.contact.form;
 
@@ -114,6 +114,10 @@ export function ContactForm() {
       noValidate
       className="card p-6 sm:p-8"
     >
+      <p className="mb-6 flex items-center gap-2.5 border-b border-line pb-4 font-mono text-meta uppercase text-fg-subtle">
+        <span className="size-1.5 rounded-full bg-accent" aria-hidden />
+        Новая задача
+      </p>
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label htmlFor="lead-name" className="block text-[0.9375rem] font-medium">
