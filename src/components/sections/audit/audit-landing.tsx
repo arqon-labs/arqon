@@ -53,7 +53,11 @@ function AuditHero({
       <Container>
         <div className="pt-24 pb-20 sm:pt-32 sm:pb-28 lg:pt-40 lg:pb-36">
           <Breadcrumbs label={content.breadcrumbLabel} items={content.breadcrumbs} />
-          <p className="rise mt-8 inline-flex items-center rounded-full border border-line bg-surface px-3.5 py-1.5 font-mono text-meta uppercase text-fg-muted">
+          <p className="rise mt-8 flex items-center gap-2.5 font-mono text-meta uppercase text-fg-muted">
+            <span
+              className="h-px w-5 bg-gradient-to-r from-accent to-transparent"
+              aria-hidden
+            />
             {hero.eyebrow}
           </p>
           <h1 className="rise mt-8 max-w-4xl text-display font-medium [animation-delay:80ms]">
@@ -265,7 +269,7 @@ function AuditCta({
 
   return (
     <Section>
-      <div className="card px-6 py-10 sm:px-10 sm:py-14">
+      <div className="border-y border-line py-12 sm:py-16">
         <h2 className="max-w-3xl text-h2 font-medium">{cta.title}</h2>
         <TelegramCta event={telegramEvent} className="mt-8 w-full sm:w-auto">
           {cta.button}

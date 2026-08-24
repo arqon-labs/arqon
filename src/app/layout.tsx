@@ -1,12 +1,11 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
-import { GeistSans } from "geist/font/sans";
-import { GeistMono } from "geist/font/mono";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Analytics } from "@/components/shared/analytics";
 import { HashScroll } from "@/components/shared/hash-scroll";
 import { ru } from "@/content/ru";
+import { fontClassName } from "@/lib/fonts";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -46,7 +45,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang={site.lang} className={`${GeistSans.variable} ${GeistMono.variable}`}>
+    <html lang={site.lang} className={fontClassName}>
       <body className="min-h-dvh antialiased">
         <a
           href="#main"

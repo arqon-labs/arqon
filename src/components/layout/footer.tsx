@@ -16,7 +16,7 @@ export function Footer() {
   return (
     <footer className="relative overflow-hidden section-rule pt-14 pb-20">
       <p
-        className="pointer-events-none absolute right-0 -bottom-6 left-0 select-none overflow-hidden px-5 text-center font-medium leading-none tracking-[-0.08em] text-fg/[0.035] text-[clamp(5rem,18vw,14rem)] sm:px-8"
+        className="pointer-events-none absolute right-0 -bottom-6 left-0 select-none overflow-hidden px-5 text-center font-serif font-normal italic leading-none tracking-[-0.06em] text-fg/[0.035] text-[clamp(5rem,18vw,14rem)] sm:px-8"
         aria-hidden
       >
         {site.name}

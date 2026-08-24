@@ -1,5 +1,4 @@
 import { Section, SectionHeader } from "@/components/ui/section";
-import { Reveal } from "@/components/shared/reveal";
 import { ru } from "@/content/ru";
 
 const { formats } = ru;
@@ -21,7 +20,7 @@ export function Formats() {
         <ol className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {formats.steps.map((step, index) => (
             <li key={step.title}>
-              <p className="relative z-10 flex size-8 items-center justify-center rounded-full border border-accent/30 bg-bg font-mono text-meta text-accent tabular-nums shadow-[0_0_24px_-6px_color-mix(in_oklab,var(--color-accent)_75%,transparent)]">
+              <p className="relative z-10 flex size-8 items-center justify-center rounded-full border border-accent/30 bg-bg font-mono text-meta text-accent tabular-nums">
                 {String(index + 1).padStart(2, "0")}
               </p>
               <h3 className="mt-4 text-h3 font-medium">{step.title}</h3>
@@ -38,19 +37,22 @@ export function Formats() {
         {formats.durationsLabel}
       </p>
 
-      <div className="mt-6 grid gap-4 md:grid-cols-3">
+      <div className="mt-4 divide-y divide-line border-y border-line">
         {formats.items.map((format) => (
-          <Reveal key={format.id} className="h-full">
-            <article className="card flex h-full flex-col p-6">
-              <p className="font-mono text-[1.375rem] font-medium tracking-tight text-accent tabular-nums">
-                {format.duration}
-              </p>
-              <h3 className="mt-4 text-h3 font-medium">{format.title}</h3>
-              <p className="mt-3 text-[0.9375rem] leading-relaxed text-fg-muted">
+          <article
+            key={format.id}
+            className="grid gap-3 py-8 md:grid-cols-12 md:items-baseline md:gap-8"
+          >
+            <p className="font-serif text-[clamp(1.75rem,3.5vw,2.75rem)] leading-none font-medium tracking-tight text-accent tabular-nums md:col-span-4">
+              {format.duration}
+            </p>
+            <div className="md:col-span-8">
+              <h3 className="text-h3 font-medium">{format.title}</h3>
+              <p className="mt-2 max-w-xl text-[0.9375rem] leading-relaxed text-fg-muted">
                 {format.description}
               </p>
-            </article>
-          </Reveal>
+            </div>
+          </article>
         ))}
       </div>
 

@@ -1,11 +1,10 @@
 "use client";
 
 import { useEffect } from "react";
-import { GeistSans } from "geist/font/sans";
-import { GeistMono } from "geist/font/mono";
 import { Container } from "@/components/ui/container";
 import { Button, ButtonLink } from "@/components/ui/button";
 import { ru } from "@/content/ru";
+import { fontClassName } from "@/lib/fonts";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -21,7 +20,7 @@ export default function GlobalError({
   }, [error]);
 
   return (
-    <html lang={site.lang} className={`${GeistSans.variable} ${GeistMono.variable}`}>
+    <html lang={site.lang} className={fontClassName}>
       <body className="min-h-dvh antialiased">
         <Container>
           <div className="flex min-h-dvh flex-col justify-center py-24">

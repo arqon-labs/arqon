@@ -65,6 +65,8 @@ export type Content = {
   hero: {
     eyebrow: string;
     title: string;
+    display: string;
+    punch: string;
     lead: string;
     primaryCta: string;
     secondaryCta: string;

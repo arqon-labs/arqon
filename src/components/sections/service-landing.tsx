@@ -9,7 +9,6 @@ import { Container } from "@/components/ui/container";
 import { ButtonLink } from "@/components/ui/button";
 import { Atmosphere } from "@/components/ui/atmosphere";
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
-import { Spotlight } from "@/components/shared/spotlight";
 import { TrackedButtonLink, TrackedLink } from "@/components/shared/tracked-link";
 import { Contact } from "@/components/sections/contact";
 
@@ -19,7 +18,7 @@ export function ServicesIndexPage() {
       <section className="relative isolate overflow-hidden">
         <Atmosphere glowClassName="h-[420px]" />
         <Container>
-          <div className="pt-24 pb-20 sm:pt-32 sm:pb-28">
+          <div className="pt-24 pb-16 sm:pt-32 sm:pb-20">
             <Breadcrumbs
               label="Навигация по разделам"
               items={[
@@ -27,7 +26,7 @@ export function ServicesIndexPage() {
                 { label: ru.services.eyebrow },
               ]}
             />
-            <h1 className="mt-8 max-w-4xl text-h2 font-medium">{ru.services.indexH1}</h1>
+            <h1 className="mt-8 max-w-4xl text-display font-medium">{ru.services.indexH1}</h1>
             <p className="mt-6 max-w-2xl text-lead text-fg-muted">
               {ru.services.indexLead}
             </p>
@@ -37,36 +36,32 @@ export function ServicesIndexPage() {
 
       <section className="border-t border-line pb-24 sm:pb-32">
         <Container>
-          <ul className="grid gap-4 md:grid-cols-2">
-            {ru.services.items.map((service) => (
+          <ul className="divide-y divide-line border-b border-line">
+            {ru.services.items.map((service, index) => (
               <li key={service.slug}>
-                <Spotlight className="card card-hover h-full">
-                <article className="flex h-full flex-col p-6">
-                  <h2 className="text-h3 font-medium">
-                    <Link
-                      href={servicePath(service.slug)}
-                      className="transition-colors duration-150 hover:text-accent"
-                    >
-                      {service.pageH1}
-                    </Link>
-                  </h2>
-                  <p className="mt-3.5 flex-1 text-[0.9375rem] leading-relaxed text-fg-muted">
-                    {service.description}
+                <Link
+                  href={servicePath(service.slug)}
+                  className="group grid gap-4 py-10 sm:py-12 lg:grid-cols-12 lg:items-baseline lg:gap-8"
+                >
+                  <span className="font-mono text-meta text-fg-subtle tabular-nums lg:col-span-1">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <div className="lg:col-span-7">
+                    <h2 className="text-h2 font-medium transition-colors duration-150 group-hover:text-accent">
+                      {service.title}
+                    </h2>
+                    <p className="mt-4 max-w-xl text-[0.9375rem] leading-relaxed text-fg-muted">
+                      {service.description}
+                    </p>
+                  </div>
+                  <p className="flex items-start gap-2 text-[0.9375rem] text-fg lg:col-span-4 lg:justify-end">
+                    <ArrowUpRight
+                      className="mt-0.5 size-4 shrink-0 text-accent transition-transform duration-150 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                      aria-hidden
+                    />
+                    <span>{service.outcome}</span>
                   </p>
-                  <p className="mt-5 flex items-start gap-2 text-[0.9375rem] text-fg">
-                    <ArrowUpRight className="mt-1 size-4 shrink-0 text-accent" aria-hidden />
-                    {service.outcome}
-                  </p>
-                  <p className="mt-5 border-t border-line pt-5">
-                    <Link
-                      href={servicePath(service.slug)}
-                      className="font-mono text-meta uppercase text-fg-subtle transition-colors duration-150 hover:text-fg"
-                    >
-                      {ru.services.moreLabel}
-                    </Link>
-                  </p>
-                </article>
-                </Spotlight>
+                </Link>
               </li>
             ))}
           </ul>
@@ -95,26 +90,22 @@ export function ServiceLandingPage({ service }: { service: Service }) {
                 { label: service.navLabel },
               ]}
             />
-            <p className="mt-8 font-mono text-meta uppercase text-fg-subtle">
+            <p className="mt-8 flex items-center gap-2.5 font-mono text-meta uppercase text-fg-subtle">
+              <span
+                className="h-px w-5 bg-gradient-to-r from-accent to-transparent"
+                aria-hidden
+              />
               {site.city} · {site.person.displayName}
             </p>
-            <h1 className="mt-5 max-w-4xl text-h2 font-medium">{service.pageH1}</h1>
+            <h1 className="mt-5 max-w-4xl text-display font-medium">{service.pageH1}</h1>
             <p className="mt-6 max-w-2xl text-lead text-fg-muted">{service.description}</p>
-            <p className="mt-5 flex max-w-2xl items-start gap-2 text-[1.0625rem] text-fg">
-              <ArrowUpRight className="mt-1 size-4 shrink-0 text-accent" aria-hidden />
-              {service.outcome}
-            </p>
+            <blockquote className="mt-8 max-w-2xl border-l-2 border-accent pl-5">
+              <p className="text-[1.0625rem] leading-relaxed text-fg">{service.outcome}</p>
+            </blockquote>
 
-            <ul className="mt-8 flex flex-wrap gap-1.5">
-              {service.tags.map((tag) => (
-                <li
-                  key={tag}
-                  className="rounded-sm border border-line bg-surface px-2 py-1 font-mono text-[0.75rem] text-fg-subtle"
-                >
-                  {tag}
-                </li>
-              ))}
-            </ul>
+            <p className="mt-8 font-mono text-meta uppercase text-fg-subtle">
+              {service.tags.join(" · ")}
+            </p>
 
             <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
               <TrackedButtonLink
@@ -143,7 +134,7 @@ export function ServiceLandingPage({ service }: { service: Service }) {
             <TrackedLink
               event="audit_dorabotka_link_click"
               href={auditRu.path}
-              className="card card-hover group flex items-start justify-between gap-4 p-6 sm:items-center"
+              className="group flex items-start justify-between gap-4 py-2 sm:items-center"
             >
               <span className="text-[1.0625rem] font-medium text-fg transition-colors duration-150 group-hover:text-accent">
                 Приложение написано нейросетью? Для этого есть отдельный аудит →
@@ -159,14 +150,23 @@ export function ServiceLandingPage({ service }: { service: Service }) {
           <p className="font-mono text-meta uppercase text-fg-subtle">
             {ru.footer.servicesLabel}
           </p>
-          <ul className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-x-8">
-            {others.map((item) => (
+          <ul className="mt-4 divide-y divide-line border-b border-line">
+            {others.map((item, index) => (
               <li key={item.slug}>
                 <Link
                   href={servicePath(item.slug)}
-                  className="text-[0.9375rem] text-fg-muted transition-colors duration-150 hover:text-fg"
+                  className="group flex items-baseline gap-4 py-5 text-fg-muted transition-colors duration-150 hover:text-fg"
                 >
-                  {item.navLabel}
+                  <span className="font-mono text-meta text-fg-subtle tabular-nums">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span className="flex-1 font-serif text-[1.25rem] font-medium tracking-tight text-fg">
+                    {item.navLabel}
+                  </span>
+                  <ArrowUpRight
+                    className="size-4 shrink-0 text-accent opacity-0 transition-opacity duration-150 group-hover:opacity-100"
+                    aria-hidden
+                  />
                 </Link>
               </li>
             ))}

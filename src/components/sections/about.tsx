@@ -21,45 +21,26 @@ export function About() {
         </div>
 
         <Reveal className="lg:col-span-5">
-          <div className="relative overflow-hidden rounded-lg border border-line bg-surface">
-            <span
-              className="pointer-events-none absolute top-3 left-3 z-10 size-3 border-t border-l border-accent/50"
-              aria-hidden
-            />
-            <span
-              className="pointer-events-none absolute top-3 right-3 z-10 size-3 border-t border-r border-accent/50"
-              aria-hidden
-            />
-            <span
-              className="pointer-events-none absolute bottom-3 left-3 z-10 size-3 border-b border-l border-accent/50"
-              aria-hidden
-            />
-            <span
-              className="pointer-events-none absolute right-3 bottom-3 z-10 size-3 border-r border-b border-accent/50"
-              aria-hidden
-            />
-            <Image
-              src={portrait}
-              alt={about.portraitAlt}
-              placeholder="blur"
-              sizes="(min-width: 1024px) 420px, 100vw"
-              className="aspect-4/5 w-full object-cover object-top"
-            />
-            <div
-              className="pointer-events-none absolute inset-0 bg-gradient-to-t from-bg/90 via-bg/15 to-transparent"
-              aria-hidden
-            />
-            <p className="absolute bottom-4 left-5 font-mono text-meta text-fg-muted">
+          <figure>
+            <div className="relative overflow-hidden rounded-lg border border-line bg-surface">
+              <Image
+                src={portrait}
+                alt={about.portraitAlt}
+                placeholder="blur"
+                sizes="(min-width: 1024px) 420px, 100vw"
+                className="aspect-4/5 w-full object-cover object-top"
+              />
+            </div>
+            <figcaption className="mt-3 font-mono text-meta text-fg-subtle">
               {about.portraitCaption}
-            </p>
-          </div>
+            </figcaption>
+          </figure>
 
-          <div className="card mt-8 p-6">
+          <div className="mt-8">
             <p className="font-mono text-meta uppercase text-fg-subtle">{about.domainsLabel}</p>
-            <ul className="mt-4 space-y-2.5">
+            <ul className="mt-4 divide-y divide-line border-y border-line">
               {about.domains.map((domain) => (
-                <li key={domain} className="flex gap-3 text-[0.9375rem] text-fg-muted">
-                  <span className="mt-2 size-1 shrink-0 rounded-full bg-accent" aria-hidden />
+                <li key={domain} className="py-3 text-[0.9375rem] text-fg-muted">
                   {domain}
                 </li>
               ))}

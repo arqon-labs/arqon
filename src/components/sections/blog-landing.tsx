@@ -5,11 +5,11 @@ import { blog } from "@/content/blog";
 import { audit } from "@/content/audit";
 import { auditRu } from "@/content/audit-ru";
 import { blogPath } from "@/lib/blog";
+import { cn } from "@/lib/cn";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { Atmosphere } from "@/components/ui/atmosphere";
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
-import { Spotlight } from "@/components/shared/spotlight";
 import { TrackedButtonLink } from "@/components/shared/tracked-link";
 
 function formatDate(date: string, lang: BlogPost["lang"]) {
@@ -26,7 +26,7 @@ export function BlogIndexPage() {
       <section lang="en" className="relative isolate overflow-hidden">
         <Atmosphere glowClassName="h-[420px]" />
         <Container>
-          <div className="pt-24 pb-20 sm:pt-32 sm:pb-28">
+          <div className="pt-24 pb-16 sm:pt-32 sm:pb-20">
             <Breadcrumbs
               label={blog.breadcrumbLabel}
               items={[
@@ -34,7 +34,7 @@ export function BlogIndexPage() {
                 { label: blog.eyebrow },
               ]}
             />
-            <h1 className="mt-8 max-w-4xl text-h2 font-medium">{blog.indexH1}</h1>
+            <h1 className="mt-8 max-w-4xl text-display font-medium">{blog.indexH1}</h1>
             <p className="mt-6 max-w-2xl text-lead text-fg-muted">{blog.indexLead}</p>
           </div>
         </Container>
@@ -42,20 +42,24 @@ export function BlogIndexPage() {
 
       <section className="border-t border-line pb-24 sm:pb-32">
         <Container>
-          <ul className="grid gap-4">
-            {blog.items.map((post) => (
+          <ul className="divide-y divide-line border-b border-line">
+            {blog.items.map((post, index) => (
               <li key={post.slug}>
-                <Spotlight className="card card-hover h-full">
                 <article
                   lang={post.lang}
-                  className="flex h-full flex-col p-6"
+                  className={index === 0 ? "py-12 sm:py-16" : "py-8 sm:py-10"}
                 >
                   <p className="font-mono text-meta uppercase text-fg-subtle">
                     {formatDate(post.date, post.lang)}
                     <span aria-hidden> · </span>
                     {post.lang.toUpperCase()}
                   </p>
-                  <h2 className="mt-3 text-h3 font-medium">
+                  <h2
+                    className={cn(
+                      "mt-4 font-medium",
+                      index === 0 ? "max-w-3xl text-h2" : "text-[1.25rem] leading-snug",
+                    )}
+                  >
                     <Link
                       href={blogPath(post.slug)}
                       className="transition-colors duration-150 hover:text-accent"
@@ -63,10 +67,17 @@ export function BlogIndexPage() {
                       {post.title}
                     </Link>
                   </h2>
-                  <p className="mt-3.5 flex-1 text-[0.9375rem] leading-relaxed text-fg-muted">
+                  <p
+                    className={cn(
+                      "mt-4 max-w-2xl text-fg-muted",
+                      index === 0
+                        ? "text-lead"
+                        : "text-[0.9375rem] leading-relaxed",
+                    )}
+                  >
                     {post.description}
                   </p>
-                  <p className="mt-5 border-t border-line pt-5">
+                  <p className="mt-5">
                     <Link
                       href={blogPath(post.slug)}
                       className="font-mono text-meta uppercase text-fg-subtle transition-colors duration-150 hover:text-fg"
@@ -75,7 +86,6 @@ export function BlogIndexPage() {
                     </Link>
                   </p>
                 </article>
-                </Spotlight>
               </li>
             ))}
           </ul>
@@ -91,7 +101,7 @@ function BlogBlocks({ blocks }: { blocks: BlogBlock[] }) {
       {blocks.map((block, index) => {
         if (block.type === "heading") {
           return (
-            <h2 key={index} className="pt-4 text-h3 font-medium">
+            <h2 key={index} className="pt-4 text-h3 font-medium font-sans tracking-tight">
               {block.text}
             </h2>
           );
@@ -125,9 +135,9 @@ function BlogAuditCta({ lang }: { lang: BlogPost["lang"] }) {
   const href = lang === "en" ? audit.path : auditRu.path;
 
   return (
-    <div className="card mt-14 max-w-2xl p-6 sm:p-8">
-      <h2 className="text-h3 font-medium">{copy.title}</h2>
-      <p className="mt-3 text-[0.9375rem] leading-relaxed text-fg-muted">{copy.body}</p>
+    <div className="mt-14 max-w-2xl border-t border-line pt-10">
+      <h2 className="text-h2 font-medium">{copy.title}</h2>
+      <p className="mt-4 text-[0.9375rem] leading-relaxed text-fg-muted">{copy.body}</p>
       <TrackedButtonLink
         event="blog_audit_cta_click"
         href={href}
@@ -150,16 +160,16 @@ function MorePosts({ current }: { current: BlogPost }) {
       <p className="font-mono text-meta uppercase text-fg-subtle">
         {current.lang === "ru" ? "Ещё заметки" : "More notes"}
       </p>
-      <ul className="mt-5 space-y-4">
+      <ul className="mt-2 divide-y divide-line border-b border-line">
         {others.map((post) => (
-          <li key={post.slug}>
+          <li key={post.slug} className="py-5">
             <Link
               href={blogPath(post.slug)}
-              className="text-[1.0625rem] font-medium transition-colors duration-150 hover:text-accent"
+              className="text-[1.125rem] font-medium transition-colors duration-150 hover:text-accent"
             >
               {post.title}
             </Link>
-            <p className="mt-1 text-[0.9375rem] text-fg-muted">{post.description}</p>
+            <p className="mt-1.5 text-[0.9375rem] text-fg-muted">{post.description}</p>
           </li>
         ))}
       </ul>
@@ -187,7 +197,7 @@ export function BlogArticlePage({ post }: { post: BlogPost }) {
               <span aria-hidden> · </span>
               {post.lang.toUpperCase()}
             </p>
-            <h1 className="mt-5 max-w-4xl text-h2 font-medium">{post.title}</h1>
+            <h1 className="mt-5 max-w-4xl text-display font-medium">{post.title}</h1>
             <p className="mt-6 max-w-2xl text-lead text-fg-muted">{post.description}</p>
           </div>
         </Container>

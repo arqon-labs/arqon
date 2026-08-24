@@ -1,5 +1,4 @@
 import { TrackedButtonLink, TrackedLink } from "@/components/shared/tracked-link";
-import { Spotlight } from "@/components/shared/spotlight";
 import { buttonClass } from "@/components/ui/button";
 import { Section } from "@/components/ui/section";
 import { audit } from "@/content/audit";
@@ -8,11 +7,10 @@ import { auditRu } from "@/content/audit-ru";
 export function AuditTeaser() {
   return (
     <Section>
-      <Spotlight className="rounded-lg border border-accent/20 bg-accent/[0.04]">
-      <div className="flex flex-col gap-8 p-6 sm:p-8 lg:flex-row lg:items-center lg:justify-between lg:gap-12">
+      <div className="flex flex-col gap-8 border-y border-line py-10 sm:py-12 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
         <div className="max-w-2xl">
-          <h2 className="text-h3 font-medium">Собрали приложение с помощью ИИ?</h2>
-          <p className="mt-3 text-[0.9375rem] leading-relaxed text-fg-muted">
+          <h2 className="text-h2 font-medium">Собрали приложение с помощью ИИ?</h2>
+          <p className="mt-4 text-[0.9375rem] leading-relaxed text-fg-muted">
             Проверю ключи, оплату и доступ к данным за 2 дня — отчёт простым языком, фикс $500.
           </p>
         </div>
@@ -33,7 +31,6 @@ export function AuditTeaser() {
           </TrackedLink>
         </div>
       </div>
-      </Spotlight>
     </Section>
   );
 }
