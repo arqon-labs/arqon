@@ -9,6 +9,7 @@ import { Container } from "@/components/ui/container";
 import { ButtonLink } from "@/components/ui/button";
 import { Atmosphere } from "@/components/ui/atmosphere";
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
+import { Spotlight } from "@/components/shared/spotlight";
 import { TrackedButtonLink, TrackedLink } from "@/components/shared/tracked-link";
 import { Contact } from "@/components/sections/contact";
 
@@ -39,7 +40,8 @@ export function ServicesIndexPage() {
           <ul className="grid gap-4 md:grid-cols-2">
             {ru.services.items.map((service) => (
               <li key={service.slug}>
-                <article className="card card-hover flex h-full flex-col p-6">
+                <Spotlight className="card card-hover h-full">
+                <article className="flex h-full flex-col p-6">
                   <h2 className="text-h3 font-medium">
                     <Link
                       href={servicePath(service.slug)}
@@ -64,6 +66,7 @@ export function ServicesIndexPage() {
                     </Link>
                   </p>
                 </article>
+                </Spotlight>
               </li>
             ))}
           </ul>

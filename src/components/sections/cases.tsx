@@ -1,5 +1,6 @@
 import { Section, SectionHeader } from "@/components/ui/section";
 import { Reveal } from "@/components/shared/reveal";
+import { Spotlight } from "@/components/shared/spotlight";
 import { ru } from "@/content/ru";
 
 const { cases } = ru;
@@ -16,7 +17,8 @@ export function Cases() {
       <div className="mt-16 space-y-16">
         {cases.items.map((item, index) => (
           <Reveal key={item.id}>
-            <article className="card overflow-hidden">
+            <Spotlight className="card">
+            <article>
               <header className="border-b border-line p-6 sm:p-8">
                 <div className="flex items-center justify-between gap-4">
                   <p className="font-mono text-meta uppercase text-accent">{item.label}</p>
@@ -72,6 +74,7 @@ export function Cases() {
                 </div>
               </div>
             </article>
+            </Spotlight>
           </Reveal>
         ))}
       </div>

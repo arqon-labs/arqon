@@ -8,6 +8,7 @@ import { site } from "@/lib/site";
 
 const { hero } = ru;
 const trustItems = hero.trust.split(" · ");
+const titleWords = hero.title.split(" ");
 
 export function Hero() {
   return (
@@ -30,15 +31,25 @@ export function Hero() {
             {hero.eyebrow}
           </p>
 
-          <h1 className="rise mt-8 max-w-4xl text-display font-medium [animation-delay:80ms]">
-            {hero.title}
+          <h1 className="mt-8 max-w-4xl text-display font-medium">
+            {titleWords.map((word, index) => (
+              <span key={`${word}-${index}`} className="hero-word-clip">
+                <span
+                  className="hero-word"
+                  style={{ animationDelay: `${70 + index * 48}ms` }}
+                >
+                  {word}
+                </span>
+                {index < titleWords.length - 1 ? " " : null}
+              </span>
+            ))}
           </h1>
 
-          <p className="rise mt-7 max-w-2xl text-lead text-fg-muted [animation-delay:160ms]">
+          <p className="rise mt-7 max-w-2xl text-lead text-fg-muted [animation-delay:320ms]">
             {hero.lead}
           </p>
 
-          <div className="rise mt-10 flex flex-col gap-3 sm:flex-row sm:items-center [animation-delay:240ms]">
+          <div className="rise mt-10 flex flex-col gap-3 sm:flex-row sm:items-center [animation-delay:400ms]">
             <TrackedButtonLink
               event="telegram_click"
               href={site.contacts.telegram}
@@ -57,7 +68,7 @@ export function Hero() {
             </ButtonLink>
           </div>
 
-          <ul className="rise mt-8 flex flex-wrap gap-2 [animation-delay:280ms]">
+          <ul className="rise mt-8 flex flex-wrap gap-2 [animation-delay:440ms]">
             {trustItems.map((item) => (
               <li
                 key={item}
@@ -68,7 +79,7 @@ export function Hero() {
             ))}
           </ul>
 
-          <dl className="rise mt-16 grid gap-px overflow-hidden rounded-lg border border-line bg-line sm:grid-cols-3 [animation-delay:360ms]">
+          <dl className="rise mt-16 grid gap-px overflow-hidden rounded-lg border border-line bg-line sm:grid-cols-3 [animation-delay:500ms]">
             {hero.facts.map((fact) => (
               <div key={fact.label} className="bg-bg p-6">
                 <dt className="font-mono text-meta uppercase text-fg-subtle">{fact.label}</dt>

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Section, SectionHeader } from "@/components/ui/section";
 import { Reveal } from "@/components/shared/reveal";
+import { Spotlight } from "@/components/shared/spotlight";
 import { ru } from "@/content/ru";
 import { servicePath } from "@/lib/services";
 
@@ -22,13 +23,14 @@ export function Services() {
             key={service.id}
             className={
               services.items.length % 3 === 0 || index < 3
-                ? "lg:col-span-2"
-                : "lg:col-span-3"
+                ? "h-full lg:col-span-2"
+                : "h-full lg:col-span-3"
             }
           >
+            <Spotlight className="card card-hover h-full">
             <Link
               href={servicePath(service.slug)}
-              className="card card-hover group flex h-full flex-col p-6"
+              className="group flex h-full flex-col p-6"
             >
               <p className="font-mono text-meta text-fg-subtle tabular-nums">
                 {String(index + 1).padStart(2, "0")}
@@ -60,6 +62,7 @@ export function Services() {
                 ))}
               </ul>
             </Link>
+            </Spotlight>
           </Reveal>
         ))}
       </div>

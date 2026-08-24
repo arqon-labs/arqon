@@ -3,13 +3,12 @@ import { Container } from "@/components/ui/container";
 import { TrackedButtonLink } from "@/components/shared/tracked-link";
 import { HeaderNav } from "@/components/layout/header-nav";
 import { BrandMark } from "@/components/layout/brand-mark";
+import { HeaderChrome } from "@/components/layout/header-chrome";
 import { site } from "@/lib/site";
 
 export function Header() {
   return (
-    <header
-      className="sticky top-0 z-50 border-b border-line/80 bg-bg/80 pt-[env(safe-area-inset-top)] backdrop-blur-md"
-    >
+    <HeaderChrome>
       <Container>
         <div className="grid grid-cols-[1fr_auto] items-center gap-x-3 md:flex md:h-16 md:gap-6">
           <BrandMark className="shrink-0" />
@@ -35,6 +34,6 @@ export function Header() {
           </div>
         </div>
       </Container>
-    </header>
+    </HeaderChrome>
   );
 }

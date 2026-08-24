@@ -181,6 +181,60 @@
   }
 }
 
+@utility spotlight {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+@utility spotlight-beam {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  opacity: 0;
+  background: radial-gradient(
+    420px circle at var(--spot-x, 50%) var(--spot-y, 50%),
+    color-mix(in oklab, var(--color-accent) 18%, transparent),
+    transparent 55%
+  );
+  transition: opacity 220ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .spotlight:hover > .spotlight-beam {
+    opacity: 1;
+  }
+}
+
+.spotlight > :not(.spotlight-beam) {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes arqon-word {
+  from {
+    transform: translateY(110%);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@utility hero-word-clip {
+  display: inline-block;
+  overflow: hidden;
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
+  vertical-align: bottom;
+}
+
+@utility hero-word {
+  display: inline-block;
+  animation: arqon-word 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
 @utility shine {
   position: relative;
   overflow: hidden;
@@ -253,20 +307,30 @@
   /* Animation is removed entirely, not sped up: without it the element
      stays in its natural visible state. */
   .reveal,
-  .rise {
+  .rise,
+  .hero-word {
     animation: none !important;
+  }
+
+  .spotlight-beam {
+    display: none !important;
   }
 }
 
 @media print {
   .reveal,
-  .rise {
+  .rise,
+  .hero-word {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
   }
 
   body::after {
+    display: none;
+  }
+
+  .spotlight-beam {
     display: none;
   }
 }

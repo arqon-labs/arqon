@@ -9,6 +9,7 @@ import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { Atmosphere } from "@/components/ui/atmosphere";
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
+import { Spotlight } from "@/components/shared/spotlight";
 import { TrackedButtonLink } from "@/components/shared/tracked-link";
 
 function formatDate(date: string, lang: BlogPost["lang"]) {
@@ -44,9 +45,10 @@ export function BlogIndexPage() {
           <ul className="grid gap-4">
             {blog.items.map((post) => (
               <li key={post.slug}>
+                <Spotlight className="card card-hover h-full">
                 <article
                   lang={post.lang}
-                  className="card card-hover flex h-full flex-col p-6"
+                  className="flex h-full flex-col p-6"
                 >
                   <p className="font-mono text-meta uppercase text-fg-subtle">
                     {formatDate(post.date, post.lang)}
@@ -73,6 +75,7 @@ export function BlogIndexPage() {
                     </Link>
                   </p>
                 </article>
+                </Spotlight>
               </li>
             ))}
           </ul>
