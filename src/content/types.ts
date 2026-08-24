@@ -19,6 +19,8 @@ export type Service = {
   pageTitle: string;
   pageDescription: string;
   pageH1: string;
+  formatId?: Format["id"];
+  faq?: FaqItem[];
 };
 
 export type CaseDecision = {

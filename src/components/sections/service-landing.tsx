@@ -6,9 +6,12 @@ import { ru } from "@/content/ru";
 import { site } from "@/lib/site";
 import { servicePath } from "@/lib/services";
 import { Container } from "@/components/ui/container";
+import { Section, SectionHeader } from "@/components/ui/section";
 import { ButtonLink } from "@/components/ui/button";
 import { Atmosphere } from "@/components/ui/atmosphere";
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
+import { FaqList } from "@/components/shared/faq-list";
+import { ProcessSteps } from "@/components/shared/process-steps";
 import { TrackedButtonLink, TrackedLink } from "@/components/shared/tracked-link";
 import { Contact } from "@/components/sections/contact";
 
@@ -145,6 +148,23 @@ export function ServiceLandingPage({ service }: { service: Service }) {
         </section>
       ) : null}
 
+      {service.formatId ? (
+        <ServiceProcess formatId={service.formatId} />
+      ) : null}
+
+      {service.faq && service.faq.length > 0 ? (
+        <Section>
+          <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+            <div className="lg:col-span-4">
+              <SectionHeader eyebrow={ru.faq.eyebrow} title={ru.faq.title} />
+            </div>
+            <div className="lg:col-span-8">
+              <FaqList items={service.faq} />
+            </div>
+          </div>
+        </Section>
+      ) : null}
+
       <section className="border-t border-line py-16 sm:py-20">
         <Container>
           <p className="font-mono text-meta uppercase text-fg-subtle">
@@ -176,5 +196,42 @@ export function ServiceLandingPage({ service }: { service: Service }) {
 
       <Contact />
     </>
+  );
+}
+
+function ServiceProcess({ formatId }: { formatId: NonNullable<Service["formatId"]> }) {
+  const format = ru.formats.items.find((item) => item.id === formatId);
+
+  return (
+    <Section>
+      <SectionHeader
+        eyebrow={ru.formats.eyebrow}
+        title={ru.formats.title}
+        lead={ru.formats.lead}
+      />
+      <ProcessSteps steps={ru.formats.steps} />
+      {format ? (
+        <>
+          <p className="mt-16 flex items-center gap-2.5 font-mono text-meta uppercase text-fg-subtle">
+            <span className="h-px w-5 bg-gradient-to-r from-accent to-transparent" aria-hidden />
+            {ru.formats.durationsLabel}
+          </p>
+          <article className="mt-4 grid gap-3 border-y border-line py-8 md:grid-cols-12 md:items-baseline md:gap-8">
+            <p className="font-serif text-[clamp(1.75rem,3.5vw,2.75rem)] leading-none font-medium tracking-tight text-accent tabular-nums md:col-span-4">
+              {format.duration}
+            </p>
+            <div className="md:col-span-8">
+              <h3 className="text-h3 font-medium">{format.title}</h3>
+              <p className="mt-2 max-w-xl text-[0.9375rem] leading-relaxed text-fg-muted">
+                {format.description}
+              </p>
+            </div>
+          </article>
+          <p className="mt-8 max-w-2xl text-[0.9375rem] leading-relaxed text-fg-subtle">
+            {ru.formats.note}
+          </p>
+        </>
+      ) : null}
+    </Section>
   );
 }

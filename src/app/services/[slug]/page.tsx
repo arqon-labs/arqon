@@ -36,6 +36,7 @@ export async function generateMetadata({
         languages: {
           ru: auditRu.path,
           en: audit.path,
+          "x-default": auditRu.path,
         },
       },
       openGraph: {
@@ -43,6 +44,7 @@ export async function generateMetadata({
         title: `${auditRu.title} | ${site.name}`,
         description: auditRu.description,
         locale: site.locale,
+        alternateLocale: ["en_US"],
         siteName: site.name,
       },
     };

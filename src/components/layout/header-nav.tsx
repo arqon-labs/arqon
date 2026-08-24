@@ -7,14 +7,32 @@ import { ru } from "@/content/ru";
 import { cn } from "@/lib/cn";
 import { scrollOffsetPx } from "@/lib/scroll-offset";
 
+function sectionId(href: string): string {
+  if (href.includes("#")) return href.split("#")[1] ?? "";
+  if (href === ru.services.path) return "services";
+  return "";
+}
+
 const items = ru.nav.map((item) => ({
   ...item,
-  id: item.href.split("#")[1] ?? "",
+  id: sectionId(item.href),
 }));
 
 function isServicesPath(pathname: string): boolean {
   const base = ru.services.path;
   return pathname === base || pathname.startsWith(`${base}/`);
+}
+
+function pageHasContact(pathname: string): boolean {
+  return pathname === "/" || isServicesPath(pathname);
+}
+
+function hrefFor(item: (typeof items)[number], pathname: string): string {
+  if (item.id === "contact") {
+    return pageHasContact(pathname) ? "#contact" : "/#contact";
+  }
+
+  return item.href;
 }
 
 function sectionFromPath(pathname: string): string | null {
@@ -77,7 +95,7 @@ export function HeaderNav({
   }, [pathname]);
 
   return (
-    <nav aria-label="Разделы страницы" className={className}>
+    <nav aria-label="Разделы сайта" className={className}>
       <ul
         className={cn(
           "flex min-w-max items-center gap-5 md:min-w-0 md:justify-center md:gap-7",
@@ -85,16 +103,17 @@ export function HeaderNav({
         )}
       >
         {items.map((item) => {
+          const href = hrefFor(item, pathname);
           const isActive = Boolean(item.id) && item.id === activeId;
 
           return (
             <li key={item.href}>
               <Link
-                href={item.href}
+                href={href}
                 className={cn(linkClass, isActive && "text-fg after:scale-x-100")}
                 aria-current={
                   isActive
-                    ? item.id === "services" && isServicesPath(pathname)
+                    ? item.id === "services" && pathname === ru.services.path
                       ? "page"
                       : true
                     : undefined

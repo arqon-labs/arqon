@@ -72,7 +72,7 @@ export const audit: AuditContent = {
   ogAlt: "Vibe Code Security Audit — $500, 48-hour report. ARQON.",
   breadcrumbLabel: "Breadcrumb",
   breadcrumbs: [
-    { label: "Home", href: "/" },
+    { label: "ARQON", href: "/" },
     { label: "Audit" },
   ],
   hero: {

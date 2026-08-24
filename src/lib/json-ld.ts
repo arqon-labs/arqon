@@ -1,7 +1,7 @@
 import type { AuditContent } from "@/content/audit";
 import { blog, type BlogPost } from "@/content/blog";
 import { ru } from "@/content/ru";
-import type { Service } from "@/content/types";
+import type { FaqItem, Service } from "@/content/types";
 import { blogPath } from "./blog";
 import { site } from "./site";
 import { servicePath } from "./services";
@@ -138,11 +138,11 @@ export function webPageSchema(path: string, name: string, description: string) {
   };
 }
 
-export function faqSchema() {
+export function faqSchema(items: FaqItem[] = ru.faq.items) {
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: ru.faq.items.map((item) => ({
+    mainEntity: items.map((item) => ({
       "@type": "Question",
       name: item.question,
       acceptedAnswer: { "@type": "Answer", text: item.answer },
@@ -218,6 +218,7 @@ export function servicePageJsonLd(service: Service) {
       { name: ru.services.eyebrow, path: ru.services.path },
       { name: service.navLabel, path },
     ]),
+    ...(service.faq && service.faq.length > 0 ? [faqSchema(service.faq)] : []),
   ];
 }
 
@@ -274,11 +275,11 @@ export function blogIndexJsonLd() {
     websiteSchema(),
     {
       ...webPageSchema(blog.path, blog.indexTitle, blog.indexDescription),
-      inLanguage: "en",
+      inLanguage: "ru-BY",
     },
     breadcrumbSchema([
-      { name: blog.breadcrumbHome, path: "/" },
-      { name: blog.eyebrow, path: blog.path },
+      { name: blog.ui.ru.home, path: "/" },
+      { name: blog.ui.ru.blog, path: blog.path },
     ]),
   ];
 }
@@ -310,8 +311,8 @@ export function blogArticleJsonLd(post: BlogPost) {
       inLanguage,
     },
     breadcrumbSchema([
-      { name: blog.breadcrumbHome, path: "/" },
-      { name: blog.eyebrow, path: blog.path },
+      { name: blog.ui[post.lang].home, path: "/" },
+      { name: blog.ui[post.lang].blog, path: blog.path },
       { name: post.title, path },
     ]),
   ];

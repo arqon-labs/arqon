@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     languages: {
       en: audit.path,
       ru: auditRu.path,
+      "x-default": auditRu.path,
     },
   },
   openGraph: {
@@ -21,6 +22,7 @@ export const metadata: Metadata = {
     title: audit.title,
     description: audit.description,
     locale: "en_US",
+    alternateLocale: [site.locale],
     siteName: site.name,
   },
 };

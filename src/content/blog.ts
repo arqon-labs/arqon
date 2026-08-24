@@ -9,21 +9,34 @@ export type BlogPost = {
   description: string;
   date: string;
   lang: "en" | "ru";
+  alternate?: { slug: string; lang: "en" | "ru" };
   body: BlogBlock[];
 };
 
 export const blog = {
   path: "/blog",
-  eyebrow: "Blog",
-  indexTitle: "Security notes for AI-built apps",
+  indexTitle: "Блог: заметки про приложения, собранные ИИ",
   indexDescription:
-    "Checklists and notes on shipping apps built with Cursor, Lovable, Bolt and Replit — without leaking keys or burning the cloud bill.",
-  indexH1: "Notes on AI-built apps",
+    "Чеклисты запуска и утечки ключей в приложениях на Cursor, Lovable, Bolt и Replit. Тексты на русском и английском.",
+  indexH1: "Заметки про приложения, собранные ИИ",
   indexLead:
-    "What to check before users or an investor does. Notes in English and Russian.",
-  moreLabel: "Read",
-  breadcrumbHome: "Home",
-  breadcrumbLabel: "Breadcrumb",
+    "Что проверить до пользователей и инвестора. Есть тексты на русском и английском.",
+  ui: {
+    ru: {
+      home: "Главная",
+      blog: "Блог",
+      crumbs: "Навигация по разделам",
+      more: "Читать",
+      moreNotes: "Ещё заметки",
+    },
+    en: {
+      home: "ARQON",
+      blog: "Blog",
+      crumbs: "Breadcrumb",
+      more: "Read",
+      moreNotes: "More notes",
+    },
+  },
   cta: {
     en: {
       title: "Want me to run this on your repo?",
@@ -44,6 +57,7 @@ export const blog = {
         "RLS, webhook signatures, env keys, rate limits and error handling — the ten checks that catch most holes in Cursor, Lovable, Bolt and Replit apps.",
       date: "2026-08-19",
       lang: "en" as const,
+      alternate: { slug: "ai-app-launch-checklist", lang: "ru" as const },
       body: [
         {
           type: "heading" as const,
@@ -141,6 +155,7 @@ export const blog = {
         "RLS, подписи вебхуков, ключи в .env, лимиты запросов и ошибки — десять пунктов, которые закрывают большинство дыр в Cursor, Lovable, Bolt и Replit.",
       date: "2026-08-19",
       lang: "ru" as const,
+      alternate: { slug: "vibe-code-audit-checklist", lang: "en" as const },
       body: [
         {
           type: "heading" as const,

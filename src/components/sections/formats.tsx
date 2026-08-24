@@ -1,4 +1,5 @@
 import { Section, SectionHeader } from "@/components/ui/section";
+import { ProcessSteps } from "@/components/shared/process-steps";
 import { ru } from "@/content/ru";
 
 const { formats } = ru;
@@ -12,25 +13,7 @@ export function Formats() {
         lead={formats.lead}
       />
 
-      <div className="relative mt-14">
-        <div
-          className="pointer-events-none absolute top-[15px] right-[8%] left-[8%] hidden h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent lg:block"
-          aria-hidden
-        />
-        <ol className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {formats.steps.map((step, index) => (
-            <li key={step.title}>
-              <p className="relative z-10 flex size-8 items-center justify-center rounded-full border border-accent/30 bg-bg font-mono text-meta text-accent tabular-nums">
-                {String(index + 1).padStart(2, "0")}
-              </p>
-              <h3 className="mt-4 text-h3 font-medium">{step.title}</h3>
-              <p className="mt-2 text-[0.9375rem] leading-relaxed text-fg-muted">
-                {step.detail}
-              </p>
-            </li>
-          ))}
-        </ol>
-      </div>
+      <ProcessSteps steps={formats.steps} />
 
       <p className="mt-16 flex items-center gap-2.5 font-mono text-meta uppercase text-fg-subtle">
         <span className="h-px w-5 bg-gradient-to-r from-accent to-transparent" aria-hidden />

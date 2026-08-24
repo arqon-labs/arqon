@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     url: blog.path,
     title: `${blog.indexTitle} | ${site.name}`,
     description: blog.indexDescription,
-    locale: "en_US",
+    locale: site.locale,
     siteName: site.name,
   },
 };

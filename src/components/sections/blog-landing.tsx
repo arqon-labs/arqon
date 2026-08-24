@@ -4,12 +4,13 @@ import type { BlogBlock, BlogPost } from "@/content/blog";
 import { blog } from "@/content/blog";
 import { audit } from "@/content/audit";
 import { auditRu } from "@/content/audit-ru";
-import { blogPath } from "@/lib/blog";
+import { blogPath, postLanguageHrefs } from "@/lib/blog";
 import { cn } from "@/lib/cn";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { Atmosphere } from "@/components/ui/atmosphere";
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
+import { LanguageSwitch } from "@/components/shared/language-switch";
 import { TrackedButtonLink } from "@/components/shared/tracked-link";
 
 function formatDate(date: string, lang: BlogPost["lang"]) {
@@ -21,17 +22,19 @@ function formatDate(date: string, lang: BlogPost["lang"]) {
 }
 
 export function BlogIndexPage() {
+  const ui = blog.ui.ru;
+
   return (
     <>
-      <section lang="en" className="relative isolate overflow-hidden">
+      <section lang="ru" className="relative isolate overflow-hidden">
         <Atmosphere glowClassName="h-[420px]" />
         <Container>
           <div className="pt-24 pb-16 sm:pt-32 sm:pb-20">
             <Breadcrumbs
-              label={blog.breadcrumbLabel}
+              label={ui.crumbs}
               items={[
-                { label: blog.breadcrumbHome, href: "/" },
-                { label: blog.eyebrow },
+                { label: ui.home, href: "/" },
+                { label: ui.blog },
               ]}
             />
             <h1 className="mt-8 max-w-4xl text-display font-medium">{blog.indexH1}</h1>
@@ -82,7 +85,7 @@ export function BlogIndexPage() {
                       href={blogPath(post.slug)}
                       className="font-mono text-meta uppercase text-fg-subtle transition-colors duration-150 hover:text-fg"
                     >
-                      {blog.moreLabel}
+                      {blog.ui[post.lang].more}
                     </Link>
                   </p>
                 </article>
@@ -158,7 +161,7 @@ function MorePosts({ current }: { current: BlogPost }) {
   return (
     <div className="mt-16 max-w-2xl border-t border-line pt-10">
       <p className="font-mono text-meta uppercase text-fg-subtle">
-        {current.lang === "ru" ? "Ещё заметки" : "More notes"}
+        {blog.ui[current.lang].moreNotes}
       </p>
       <ul className="mt-2 divide-y divide-line border-b border-line">
         {others.map((post) => (
@@ -178,20 +181,26 @@ function MorePosts({ current }: { current: BlogPost }) {
 }
 
 export function BlogArticlePage({ post }: { post: BlogPost }) {
+  const ui = blog.ui[post.lang];
+  const hrefs = postLanguageHrefs(post);
+
   return (
     <article lang={post.lang}>
       <section className="relative isolate overflow-hidden">
         <Atmosphere glowClassName="h-[420px]" />
         <Container>
           <div className="pt-24 pb-16 sm:pt-32 sm:pb-20">
-            <Breadcrumbs
-              label={blog.breadcrumbLabel}
-              items={[
-                { label: blog.breadcrumbHome, href: "/" },
-                { label: blog.eyebrow, href: blog.path },
-                { label: post.title },
-              ]}
-            />
+            <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-3">
+              <Breadcrumbs
+                label={ui.crumbs}
+                items={[
+                  { label: ui.home, href: "/" },
+                  { label: ui.blog, href: blog.path },
+                  { label: post.title },
+                ]}
+              />
+              {hrefs ? <LanguageSwitch current={post.lang} hrefs={hrefs} /> : null}
+            </div>
             <p className="mt-8 font-mono text-meta uppercase text-fg-subtle">
               {formatDate(post.date, post.lang)}
               <span aria-hidden> · </span>
