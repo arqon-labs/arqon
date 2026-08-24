@@ -13,7 +13,8 @@ const items = ru.nav.map((item) => ({
 }));
 
 function isServicesPath(pathname: string): boolean {
-  return pathname === "/uslugi" || pathname.startsWith("/uslugi/");
+  const base = ru.services.path;
+  return pathname === base || pathname.startsWith(`${base}/`);
 }
 
 function sectionFromPath(pathname: string): string | null {

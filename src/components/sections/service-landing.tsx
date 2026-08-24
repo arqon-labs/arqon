@@ -128,11 +128,11 @@ export function ServiceLandingPage({ service }: { service: Service }) {
         </Container>
       </section>
 
-      {service.slug === "dorabotka" ? (
+      {service.id === "existing" ? (
         <section className="border-t border-line py-10 sm:py-12">
           <Container>
             <TrackedLink
-              event="audit_dorabotka_link_click"
+              event="audit_repair_link_click"
               href={auditRu.path}
               className="group flex items-start justify-between gap-4 py-2 sm:items-center"
             >

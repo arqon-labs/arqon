@@ -135,7 +135,7 @@ export const blog = {
       ],
     },
     {
-      slug: "proverka-prilozheniya-na-ii",
+      slug: "ai-app-launch-checklist",
       title: "Чеклист: 10 проверок перед запуском приложения, собранного ИИ",
       description:
         "RLS, подписи вебхуков, ключи в .env, лимиты запросов и ошибки — десять пунктов, которые закрывают большинство дыр в Cursor, Lovable, Bolt и Replit.",

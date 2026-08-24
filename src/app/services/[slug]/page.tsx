@@ -27,7 +27,7 @@ export async function generateMetadata({
 
   if (!service) return {};
 
-  if (slug === "audit-ai") {
+  if (service.id === "ai-audit") {
     return {
       title: auditRu.title,
       description: auditRu.description,
@@ -72,7 +72,7 @@ export default async function ServicePage({
 
   if (!service) notFound();
 
-  if (service.slug === "audit-ai") {
+  if (service.id === "ai-audit") {
     return (
       <>
         <AuditLanding content={auditRu} telegramEvent="audit_ru_cta_click" />

@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function UslugiPage() {
+export default function ServicesPage() {
   return (
     <>
       <ServicesIndexPage />

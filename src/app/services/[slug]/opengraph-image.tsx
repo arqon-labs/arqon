@@ -18,7 +18,7 @@ export default async function OpengraphImage({
 }) {
   const { slug } = await params;
 
-  if (slug === "audit-ai") {
+  if (slug === "ai-audit") {
     return ogImage({
       title: auditRu.hero.h1,
       footer: auditRu.hero.trust,

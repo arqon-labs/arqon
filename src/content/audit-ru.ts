@@ -2,7 +2,7 @@ import type { AuditContent } from "./audit";
 
 export const auditRu: AuditContent = {
   lang: "ru",
-  path: "/uslugi/audit-ai",
+  path: "/services/ai-audit",
   title: "Аудит приложения, собранного ИИ — $500, отчёт за 2 дня",
   description:
     "Проверка приложения на Cursor, Lovable, Bolt или Replit: утёкшие ключи, дыры в оплате, доступ к чужим данным, запросы, которые сожгут облако. Фикс $500, отчёт простым языком за 2 дня.",
@@ -11,7 +11,7 @@ export const auditRu: AuditContent = {
   breadcrumbLabel: "Навигация по разделам",
   breadcrumbs: [
     { label: "Главная", href: "/" },
-    { label: "Услуги", href: "/uslugi" },
+    { label: "Услуги", href: "/services" },
     { label: "Аудит ИИ-кода" },
   ],
   hero: {
