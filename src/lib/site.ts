@@ -23,8 +23,8 @@ export const site = {
     regionCode: "BY-HM",
   },
   contacts: {
-    telegram: "https://t.me/arqon_dev",
-    telegramHandle: "@arqon_dev",
+    telegram: "https://t.me/antonGoncharik",
+    telegramHandle: "@antonGoncharik",
     email: "ant.goncharik@gmail.com",
     github: "https://github.com/antonGoncharik",
     linkedin: "https://www.linkedin.com/in/anton-golang",
@@ -36,7 +36,6 @@ export const site = {
  * Each item is a key from `site` or content, not an abstract reminder.
  */
 export const pendingRealData = [
-  "site.contacts.telegram / telegramHandle — real username",
   "content.cases — publishable numbers; a third case if it exists",
   "content.formats.note — minimum project budget, if you choose to show it",
 ] as const;

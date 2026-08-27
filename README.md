@@ -64,7 +64,6 @@ Adding an English locale is a second dictionary file plus `next-intl`; component
 
 The list is duplicated in code: `pendingRealData` in `src/lib/site.ts`.
 
-- `site.contacts.telegram` / `telegramHandle` — real username
 - `content.cases` — publishable numbers; a third case if it exists
 - `content.formats.note` — minimum project budget, if you choose to show it
 
