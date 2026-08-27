@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import Image from "next/image";
 import { ArrowDown, Send } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { ButtonLink } from "@/components/ui/button";
@@ -6,6 +7,7 @@ import { Atmosphere } from "@/components/ui/atmosphere";
 import { TrackedButtonLink } from "@/components/shared/tracked-link";
 import { ru } from "@/content/ru";
 import { site } from "@/lib/site";
+import portrait from "@/assets/portrait.png";
 
 const { hero } = ru;
 const titleWords = hero.display.split(" ");
@@ -23,13 +25,29 @@ export function Hero() {
 
       <Container>
         <div className="pt-24 pb-20 sm:pt-32 sm:pb-28 lg:pt-40 lg:pb-36">
-          <p className="rise flex items-center gap-2.5 font-mono text-meta uppercase text-fg-muted">
-            <span
-              className="h-px w-5 bg-gradient-to-r from-accent to-transparent"
-              aria-hidden
+          <div className="rise flex items-center gap-3.5">
+            <Image
+              src={portrait}
+              alt=""
+              width={72}
+              height={72}
+              priority
+              sizes="72px"
+              className="size-14 rounded-full object-cover object-top ring-1 ring-accent/35 sm:size-[4.5rem]"
             />
-            {hero.eyebrow}
-          </p>
+            <div>
+              <p className="text-[1.0625rem] font-medium tracking-tight">
+                {site.person.fullName}
+              </p>
+              <p className="mt-1.5 flex items-center gap-2.5 font-mono text-meta uppercase text-fg-muted">
+                <span
+                  className="h-px w-5 bg-gradient-to-r from-accent to-transparent"
+                  aria-hidden
+                />
+                {hero.eyebrow}
+              </p>
+            </div>
+          </div>
 
           <h1 className="mt-8 max-w-4xl text-display font-medium">
             {titleWords.map((word, index) => (

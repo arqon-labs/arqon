@@ -184,7 +184,7 @@ export const audit: AuditContent = {
       {
         question: "Who are you?",
         answer:
-          "Anton — developer since 2017. I build and repair web services for a living. See my main site for cases.",
+          "Anton Goncharik — developer since 2017. I build and repair web services for a living. See my main site for cases.",
         link: { href: "/", label: "See my main site for cases." },
       },
       {

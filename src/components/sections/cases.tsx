@@ -40,6 +40,21 @@ export function Cases() {
                   <p className="mt-5 max-w-3xl text-lead text-fg-muted">{item.context}</p>
                 </header>
 
+                {item.metrics && item.metrics.length > 0 ? (
+                  <dl className="mt-8 grid grid-cols-2 gap-6 sm:max-w-xl">
+                    {item.metrics.map((metric) => (
+                      <div key={metric.label}>
+                        <dd className="font-serif text-[clamp(1.5rem,3vw,2.25rem)] font-medium tracking-tight text-accent tabular-nums">
+                          {metric.value}
+                        </dd>
+                        <dt className="mt-1 font-mono text-meta uppercase text-fg-subtle">
+                          {metric.label}
+                        </dt>
+                      </div>
+                    ))}
+                  </dl>
+                ) : null}
+
                 <div className="mt-10 grid gap-10 lg:mt-14 lg:grid-cols-12 lg:gap-16">
                   <div className="lg:col-span-5">
                     <p className="text-[0.9375rem] leading-relaxed text-fg-muted">

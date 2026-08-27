@@ -10,8 +10,10 @@ export const site = {
   countryCode: "BY",
   person: {
     firstName: "Антон",
-    displayName: "Антон",
-    fullName: "Антон Иванов",
+    lastName: "Гончарик",
+    displayName: "Антон Гончарик",
+    fullName: "Антон Гончарик",
+    fullNameEn: "Anton Goncharik",
     role: "Разработчик сайтов и сервисов",
     since: 2017,
   },
@@ -23,9 +25,9 @@ export const site = {
   contacts: {
     telegram: "https://t.me/arqon_dev",
     telegramHandle: "@arqon_dev",
-    email: "hello@arqon.by",
-    github: "https://github.com/arqon-labs",
-    linkedin: "https://www.linkedin.com/in/arqon",
+    email: "ant.goncharik@gmail.com",
+    github: "https://github.com/antonGoncharik",
+    linkedin: "https://www.linkedin.com/in/anton-golang",
   },
 } as const;
 
@@ -34,10 +36,7 @@ export const site = {
  * Each item is a key from `site` or content, not an abstract reminder.
  */
 export const pendingRealData = [
-  "site.person.fullName — surname",
   "site.contacts.telegram / telegramHandle — real username",
-  "site.contacts.email — working address on the domain",
-  "site.contacts.github / linkedin — real profiles",
-  "content.cases[0].result — payment contour numbers",
-  "content.formats.note — minimum project budget",
+  "content.cases — publishable numbers; a third case if it exists",
+  "content.formats.note — minimum project budget, if you choose to show it",
 ] as const;

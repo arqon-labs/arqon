@@ -98,7 +98,7 @@ export function ServiceLandingPage({ service }: { service: Service }) {
                 className="h-px w-5 bg-gradient-to-r from-accent to-transparent"
                 aria-hidden
               />
-              {site.city} · {site.person.displayName}
+              {site.city} · {site.person.fullName}
             </p>
             <h1 className="mt-5 max-w-4xl text-display font-medium">{service.pageH1}</h1>
             <p className="mt-6 max-w-2xl text-lead text-fg-muted">{service.description}</p>

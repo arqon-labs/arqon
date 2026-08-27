@@ -14,8 +14,8 @@ export const metadata: Metadata = {
   title: { default: ru.seo.title, template: `%s | ${site.name}` },
   description: ru.seo.description,
   applicationName: site.name,
-  authors: [{ name: site.person.displayName, url: site.url }],
-  creator: site.person.displayName,
+  authors: [{ name: site.person.fullName, url: site.url }],
+  creator: site.person.fullName,
   publisher: site.name,
   keywords: ru.seo.keywords,
   openGraph: {

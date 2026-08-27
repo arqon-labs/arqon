@@ -29,7 +29,10 @@ export function Footer() {
               {ru.footer.description}
             </p>
             <p className="mt-3 text-[0.9375rem] text-fg-muted">
-              {site.person.displayName} · {site.city}, {site.region}
+              {site.person.fullName} · {site.city}, {site.region}
+            </p>
+            <p className="mt-3 max-w-sm text-[0.9375rem] leading-relaxed text-fg-subtle">
+              {ru.footer.terms}
             </p>
           </div>
 

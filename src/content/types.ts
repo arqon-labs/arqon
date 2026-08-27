@@ -28,6 +28,11 @@ export type CaseDecision = {
   detail: string;
 };
 
+export type CaseMetric = {
+  value: string;
+  label: string;
+};
+
 export type CaseStudy = {
   id: string;
   label: string;
@@ -36,6 +41,7 @@ export type CaseStudy = {
   challenge: string;
   decisions: CaseDecision[];
   result: string;
+  metrics?: CaseMetric[];
 };
 
 export type Format = {
@@ -147,6 +153,7 @@ export type Content = {
   footer: {
     description: string;
     rights: string;
+    terms: string;
     linksLabel: string;
     servicesLabel: string;
   };

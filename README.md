@@ -1,6 +1,6 @@
 # ARQON
 
-Single-page funnel site for ARQON — a product engineering practice (payments, integrations, analytics, products).
+Personal site of Anton Goncharik — websites, cabinets, payments, Telegram bots and 1C integrations for businesses without an in-house IT team.
 
 Russian locale, dark theme, static generation, self-hosted in Docker behind Caddy.
 
@@ -64,14 +64,11 @@ Adding an English locale is a second dictionary file plus `next-intl`; component
 
 The list is duplicated in code: `pendingRealData` in `src/lib/site.ts`.
 
-- `site.person.fullName` — surname
 - `site.contacts.telegram` / `telegramHandle` — real username
-- `site.contacts.email` — working address on the domain
-- `site.contacts.github` / `linkedin` — real profiles
-- `content.cases[0].result` — payment contour numbers
+- `content.cases` — publishable numbers; a third case if it exists
 - `content.formats.note` — minimum project budget, if you choose to show it
 
-`Caddyfile` and `.env.example` contain `arqon.by` and `admin@arqon.by` — no need to change them if the domain stays the same.
+`Caddyfile` and `.env.example` contain `arqon.by`. `CONTACT_EMAIL_TO` in `.env.example` is the personal inbox for lead copies.
 
 ## Contact form
 
