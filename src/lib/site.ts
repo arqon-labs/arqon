@@ -32,10 +32,7 @@ export const site = {
 } as const;
 
 /**
- * Values that must be replaced with real data before publication.
- * Each item is a key from `site` or content, not an abstract reminder.
+ * Launch leftovers. Empty means identity, contacts and cases are filled.
+ * Keep the export so a future placeholder cannot hide in copy unnoticed.
  */
-export const pendingRealData = [
-  "content.cases — publishable numbers; a third case if it exists",
-  "content.formats.note — minimum project budget, if you choose to show it",
-] as const;
+export const pendingRealData = [] as const;

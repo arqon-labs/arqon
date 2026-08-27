@@ -62,10 +62,7 @@ Adding an English locale is a second dictionary file plus `next-intl`; component
 
 ## Replace before launch
 
-The list is duplicated in code: `pendingRealData` in `src/lib/site.ts`.
-
-- `content.cases` — publishable numbers; a third case if it exists
-- `content.formats.note` — minimum project budget, if you choose to show it
+Identity, contacts and cases are filled. `pendingRealData` in `src/lib/site.ts` is empty.
 
 `Caddyfile` and `.env.example` contain `arqon.by`. `CONTACT_EMAIL_TO` in `.env.example` is the personal inbox for lead copies.
 

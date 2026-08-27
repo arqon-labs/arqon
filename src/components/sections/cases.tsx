@@ -41,7 +41,7 @@ export function Cases() {
                 </header>
 
                 {item.metrics && item.metrics.length > 0 ? (
-                  <dl className="mt-8 grid grid-cols-2 gap-6 sm:max-w-xl">
+                  <dl className="mt-8 grid grid-cols-2 gap-6 sm:grid-cols-3 sm:max-w-3xl">
                     {item.metrics.map((metric) => (
                       <div key={metric.label}>
                         <dd className="font-serif text-[clamp(1.5rem,3vw,2.25rem)] font-medium tracking-tight text-accent tabular-nums">
