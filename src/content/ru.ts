@@ -5,7 +5,6 @@ export const ru: Content = {
     { label: "Услуги", href: "/services" },
     { label: "Кейсы", href: "/#cases" },
     { label: "Как работаю", href: "/#formats" },
-    { label: "Написать", href: "/#contact" },
   ],
 
   seo: {
@@ -34,7 +33,7 @@ export const ru: Content = {
     lead:
       "Один человек вместо студии. Сначала — что делаем и сколько займёт. Потом сам пишу, запускаю и отдаю доступы.",
     primaryCta: "Написать в Telegram",
-    secondaryCta: "Как устроена работа",
+    secondaryCta: "Как работаю",
     trust: "Чек после оплаты · По этапам · Код ваш с первого дня",
     facts: [
       { label: "Опыт", value: "С 2017 года" },
@@ -76,7 +75,8 @@ export const ru: Content = {
     indexLead: "Один разработчик. От разговора до запуска.",
     moreLabel: "Подробнее",
     breadcrumbHome: "Главная",
-    aiCue: "Собрали на ИИ? Для этого отдельный аудит",
+    crumbs: "Навигация",
+    aiCue: "Собрали на ИИ? Проверить приложение",
     items: [
       {
         id: "mvp",
@@ -365,6 +365,14 @@ export const ru: Content = {
     note: "Самозанятый (НПД), после оплаты — чек. Короткая задача — 50/50. Проект — по этапам: следующий после приёмки предыдущего. Нужен ИП — оформлю. Цену назову после разговора.",
   },
 
+  auditTeaser: {
+    eyebrow: "Аудит",
+    title: "Собрали на Cursor или Lovable?",
+    lead: "Проверю ключи и оплату за 2 дня. $500.",
+    cta: "Проверить приложение",
+    langAlt: "English",
+  },
+
   faq: {
     eyebrow: "Вопросы",
     title: "Что обычно спрашивают",
@@ -393,29 +401,30 @@ export const ru: Content = {
         question: "Собрали на нейросети — можно проверить?",
         answer:
           "Да. Ключи, оплата, доступ к данным. $500, отчёт за 2 дня.",
-        link: { href: "/services/ai-audit", label: "Страница аудита" },
+        link: { href: "/services/ai-audit", label: "Проверить приложение" },
       },
     ],
   },
 
   contact: {
-    eyebrow: "Связь",
+    eyebrow: "Написать",
     title: "Расскажите о задаче",
     lead: "Что нужно, что уже есть, какие сроки. Отвечу в рабочий день.",
     telegramTitle: "Telegram",
     telegramText: "Если срочно — лучше сразу сюда.",
     telegramCta: "Написать в Telegram",
     emailTitle: "Почта",
+    scrollCta: "Оставить задачу",
     form: {
       badge: "Новая задача",
       nameLabel: "Имя",
       namePlaceholder: "Как к вам обращаться",
-      contactLabel: "Связь",
+      contactLabel: "Как связаться",
       contactHint: "Telegram, почта или телефон",
       contactPlaceholder: "@username или email",
       messageLabel: "Задача",
       messagePlaceholder: "Что сделать, что уже есть, сроки — как удобно.",
-      submit: "Отправить",
+      submit: "Отправить задачу",
       submitting: "Отправляю",
       successTitle: "Заявка получена",
       successText: "Отвечу в рабочий день. Срочно — лучше Telegram.",

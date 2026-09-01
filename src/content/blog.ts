@@ -24,14 +24,14 @@ export const blog = {
     ru: {
       home: "Главная",
       blog: "Блог",
-      crumbs: "Навигация по разделам",
+      crumbs: "Навигация",
       more: "Читать",
       moreNotes: "Ещё заметки",
     },
     en: {
       home: "ARQON",
       blog: "Blog",
-      crumbs: "Breadcrumb",
+      crumbs: "Navigation",
       more: "Read",
       moreNotes: "More notes",
     },

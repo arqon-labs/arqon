@@ -35,17 +35,6 @@ export function About() {
               {about.portraitCaption}
             </figcaption>
           </figure>
-
-          <div className="mt-8">
-            <p className="font-mono text-meta uppercase text-fg-subtle">{about.domainsLabel}</p>
-            <ul className="mt-4 divide-y divide-line border-y border-line">
-              {about.domains.map((domain) => (
-                <li key={domain} className="py-3 text-[0.9375rem] text-fg-muted">
-                  {domain}
-                </li>
-              ))}
-            </ul>
-          </div>
         </Reveal>
       </div>
     </Section>

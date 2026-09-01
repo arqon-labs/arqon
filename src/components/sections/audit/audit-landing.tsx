@@ -12,7 +12,7 @@ import { TrackedButtonLink } from "@/components/shared/tracked-link";
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
 import { LanguageSwitch } from "@/components/shared/language-switch";
 import { FaqList } from "@/components/shared/faq-list";
-import { Reveal } from "@/components/shared/reveal";
+import { ProcessSteps } from "@/components/shared/process-steps";
 
 function TelegramCta({
   event,
@@ -98,20 +98,19 @@ function AuditFindings({ content }: { content: AuditContent }) {
   return (
     <Section>
       <SectionHeader title={findings.title} eyebrow={findings.eyebrow} />
-      <ul className="mt-14 grid list-none gap-4 sm:grid-cols-2 sm:auto-rows-fr lg:grid-cols-3">
+      <ul className="mt-14 divide-y divide-line border-y border-line">
         {findings.items.map((item, index) => (
-          <li key={item.title} className="min-h-0">
-            <Reveal className="h-full">
-              <article className="card flex h-full flex-col p-6">
-                <p className="font-mono text-meta text-fg-subtle tabular-nums">
-                  {String(index + 1).padStart(2, "0")}
-                </p>
-                <h3 className="mt-3 min-h-[2.6em] text-h3 font-medium">{item.title}</h3>
-                <p className="mt-3.5 flex-1 text-[0.9375rem] leading-relaxed text-fg-muted">
-                  {item.body}
-                </p>
-              </article>
-            </Reveal>
+          <li
+            key={item.title}
+            className="grid gap-3 py-8 md:grid-cols-12 md:items-baseline md:gap-8"
+          >
+            <p className="font-mono text-meta text-fg-subtle tabular-nums md:col-span-1">
+              {String(index + 1).padStart(2, "0")}
+            </p>
+            <h3 className="text-h3 font-medium md:col-span-4">{item.title}</h3>
+            <p className="text-[0.9375rem] leading-relaxed text-fg-muted md:col-span-7">
+              {item.body}
+            </p>
           </li>
         ))}
       </ul>
@@ -147,21 +146,9 @@ function AuditHow({ content }: { content: AuditContent }) {
   return (
     <Section id={how.id}>
       <SectionHeader title={how.title} eyebrow={how.eyebrow} />
-      <ol className="mt-14 grid list-none gap-4 sm:grid-cols-3 sm:auto-rows-fr">
-        {how.steps.map((step, index) => (
-          <li key={step.title} className="min-h-0">
-            <article className="card flex h-full flex-col p-6">
-              <p className="font-mono text-meta text-accent tabular-nums">
-                {String(index + 1).padStart(2, "0")}
-              </p>
-              <h3 className="mt-3 min-h-[2.6em] text-h3 font-medium">{step.title}</h3>
-              <p className="mt-2 flex-1 text-[0.9375rem] leading-relaxed text-fg-muted">
-                {step.body}
-              </p>
-            </article>
-          </li>
-        ))}
-      </ol>
+      <ProcessSteps
+        steps={how.steps.map((step) => ({ title: step.title, detail: step.body }))}
+      />
     </Section>
   );
 }
@@ -178,24 +165,28 @@ function AuditPricing({
   return (
     <Section>
       <SectionHeader title={pricing.title} eyebrow={pricing.eyebrow} />
-      <Reveal className="mt-14 max-w-lg">
-        <article className="card border-accent/20 p-6 sm:p-8">
-          <p className="font-mono text-meta uppercase text-fg-subtle">{pricing.cadence}</p>
-          <p className="mt-3 text-display font-medium tabular-nums">{pricing.amount}</p>
-          <ul className="mt-8 list-none space-y-3">
-            {pricing.items.map((item) => (
-              <li key={item} className="flex items-start gap-3 text-[0.9375rem] text-fg">
-                <ArrowUpRight className="mt-1 size-4 shrink-0 text-accent" aria-hidden />
-                {item}
-              </li>
-            ))}
-          </ul>
-        </article>
-      </Reveal>
-      <p className="mt-6 max-w-lg text-[0.9375rem] leading-relaxed text-fg-subtle">
+      <article className="mt-14 grid gap-3 border-y border-line py-8 md:grid-cols-12 md:items-start md:gap-8">
+        <div className="md:col-span-4">
+          <p className="font-serif text-[clamp(1.75rem,3.5vw,2.75rem)] leading-none font-medium tracking-tight text-accent tabular-nums">
+            {pricing.amount}
+          </p>
+          <p className="mt-3 font-mono text-meta uppercase text-fg-subtle">
+            {pricing.cadence}
+          </p>
+        </div>
+        <ul className="space-y-3 md:col-span-8">
+          {pricing.items.map((item) => (
+            <li key={item} className="flex items-start gap-3 text-[0.9375rem] text-fg">
+              <ArrowUpRight className="mt-1 size-4 shrink-0 text-accent" aria-hidden />
+              {item}
+            </li>
+          ))}
+        </ul>
+      </article>
+      <p className="mt-8 max-w-2xl text-[0.9375rem] leading-relaxed text-fg-subtle">
         {pricing.note}
       </p>
-      <TelegramCta event={telegramEvent} className="mt-6 w-full sm:w-auto">
+      <TelegramCta event={telegramEvent} className="mt-8 w-full sm:w-auto">
         {pricing.cta}
       </TelegramCta>
     </Section>

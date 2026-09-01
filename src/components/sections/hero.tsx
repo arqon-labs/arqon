@@ -90,7 +90,7 @@ export function Hero() {
               {hero.primaryCta}
             </TrackedButtonLink>
 
-            <ButtonLink href="/#formats" variant="secondary" size="lg" className="w-full sm:w-auto">
+            <ButtonLink href="#formats" variant="secondary" size="lg" className="w-full sm:w-auto">
               {hero.secondaryCta}
               <ArrowDown className="size-4" aria-hidden />
             </ButtonLink>

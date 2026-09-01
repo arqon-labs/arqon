@@ -70,7 +70,7 @@ export const audit: AuditContent = {
     "I audit Cursor, Lovable, Bolt and Replit apps. Leaked keys, payment holes, cloud-bill traps. Fixed price, plain-English report in 48 hours.",
   serviceName: "Vibe Code Security Audit",
   ogAlt: "Vibe Code Security Audit — $500, 48-hour report. ARQON.",
-  breadcrumbLabel: "Breadcrumb",
+  breadcrumbLabel: "Navigation",
   breadcrumbs: [
     { label: "ARQON", href: "/" },
     { label: "Audit" },

@@ -29,9 +29,9 @@ export default function HomePage() {
       <Hero />
       <About />
       <Services />
-      <AuditTeaser />
       <Cases />
       <Formats />
+      <AuditTeaser />
       <Faq />
       <Contact />
 

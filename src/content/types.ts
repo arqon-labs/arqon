@@ -101,8 +101,16 @@ export type Content = {
     indexLead: string;
     moreLabel: string;
     breadcrumbHome: string;
+    crumbs: string;
     aiCue: string;
     items: Service[];
+  };
+  auditTeaser: {
+    eyebrow: string;
+    title: string;
+    lead: string;
+    cta: string;
+    langAlt: string;
   };
   cases: {
     eyebrow: string;
@@ -134,6 +142,7 @@ export type Content = {
     telegramText: string;
     telegramCta: string;
     emailTitle: string;
+    scrollCta: string;
     form: {
       badge: string;
       nameLabel: string;

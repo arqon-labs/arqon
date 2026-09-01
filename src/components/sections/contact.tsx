@@ -18,38 +18,34 @@ export function Contact() {
             lead={contact.lead}
           />
 
-          <div className="mt-10 space-y-4">
-            <div className="rounded-lg border border-accent/25 bg-accent/5 p-6">
-              <div className="flex items-center gap-3">
-                <Send className="size-4 text-accent" aria-hidden />
-                <h3 className="text-[1.0625rem] font-medium">{contact.telegramTitle}</h3>
-              </div>
-              <p className="mt-3 text-[0.9375rem] text-fg-muted">{contact.telegramText}</p>
-              <TrackedButtonLink
-                event="telegram_click"
-                href={site.contacts.telegram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-5"
-              >
-                {contact.telegramCta}
-              </TrackedButtonLink>
+          <div className="mt-10 rounded-lg border border-accent/25 bg-accent/5 p-6">
+            <div className="flex items-center gap-3">
+              <Send className="size-4 text-accent" aria-hidden />
+              <h3 className="text-[1.0625rem] font-medium">{contact.telegramTitle}</h3>
             </div>
-
-            <div className="card p-6">
-              <div className="flex items-center gap-3">
-                <Mail className="size-4 text-fg-subtle" aria-hidden />
-                <h3 className="text-[1.0625rem] font-medium">{contact.emailTitle}</h3>
-              </div>
-              <TrackedLink
-                event="email_click"
-                href={`mailto:${site.contacts.email}`}
-                className="mt-3 inline-block text-[0.9375rem] text-fg-muted underline decoration-line-strong underline-offset-4 transition-colors duration-150 hover:text-fg"
-              >
-                {site.contacts.email}
-              </TrackedLink>
-            </div>
+            <p className="mt-3 text-[0.9375rem] text-fg-muted">{contact.telegramText}</p>
+            <TrackedButtonLink
+              event="telegram_click"
+              href={site.contacts.telegram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-5"
+            >
+              {contact.telegramCta}
+            </TrackedButtonLink>
           </div>
+
+          <p className="mt-6 flex items-center gap-3 text-[0.9375rem] text-fg-muted">
+            <Mail className="size-4 shrink-0 text-fg-subtle" aria-hidden />
+            <span className="sr-only">{contact.emailTitle}: </span>
+            <TrackedLink
+              event="email_click"
+              href={`mailto:${site.contacts.email}`}
+              className="underline decoration-line-strong underline-offset-4 transition-colors duration-150 hover:text-fg"
+            >
+              {site.contacts.email}
+            </TrackedLink>
+          </p>
         </div>
 
         <div className="lg:col-span-7">

@@ -178,58 +178,6 @@
   box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.045);
 }
 
-@utility card-hover {
-  transition:
-    border-color 200ms ease,
-    box-shadow 200ms ease,
-    background-color 200ms ease,
-    transform 200ms ease;
-
-  @media (hover: hover) and (pointer: fine) {
-    &:hover {
-      border-color: color-mix(in oklab, var(--color-accent) 38%, var(--color-line-strong));
-      background-color: color-mix(in oklab, var(--color-accent) 4.5%, var(--color-surface));
-      transform: translateY(-3px);
-      box-shadow:
-        inset 0 1px 0 rgb(255 255 255 / 0.06),
-        0 0 0 1px color-mix(in oklab, var(--color-accent) 12%, transparent),
-        0 32px 64px -28px color-mix(in oklab, var(--color-accent) 50%, transparent);
-    }
-  }
-}
-
-@utility spotlight {
-  position: relative;
-  isolation: isolate;
-  overflow: visible;
-}
-
-@utility spotlight-beam {
-  pointer-events: none;
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  border-radius: inherit;
-  opacity: 0;
-  background: radial-gradient(
-    420px circle at var(--spot-x, 50%) var(--spot-y, 50%),
-    color-mix(in oklab, var(--color-accent) 18%, transparent),
-    transparent 55%
-  );
-  transition: opacity 220ms ease;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .spotlight:hover > .spotlight-beam {
-    opacity: 1;
-  }
-}
-
-.spotlight > :not(.spotlight-beam) {
-  position: relative;
-  z-index: 1;
-}
-
 @keyframes arqon-word {
   from {
     transform: translateY(110%);
@@ -417,10 +365,6 @@
     background-image: none;
     -webkit-text-fill-color: unset;
   }
-
-  .spotlight-beam {
-    display: none !important;
-  }
 }
 
 @media print {
@@ -433,10 +377,6 @@
   }
 
   body::after {
-    display: none;
-  }
-
-  .spotlight-beam {
     display: none;
   }
 }

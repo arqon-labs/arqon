@@ -12,6 +12,7 @@ import { Atmosphere } from "@/components/ui/atmosphere";
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
 import { FaqList } from "@/components/shared/faq-list";
 import { ProcessSteps } from "@/components/shared/process-steps";
+import { ServiceList } from "@/components/shared/service-list";
 import { TrackedButtonLink, TrackedLink } from "@/components/shared/tracked-link";
 import { Contact } from "@/components/sections/contact";
 
@@ -23,7 +24,7 @@ export function ServicesIndexPage() {
         <Container>
           <div className="pt-24 pb-16 sm:pt-32 sm:pb-20">
             <Breadcrumbs
-              label="Навигация по разделам"
+              label={ru.services.crumbs}
               items={[
                 { label: ru.services.breadcrumbHome, href: "/" },
                 { label: ru.services.eyebrow },
@@ -39,35 +40,7 @@ export function ServicesIndexPage() {
 
       <section className="border-t border-line pb-24 sm:pb-32">
         <Container>
-          <ul className="divide-y divide-line border-b border-line">
-            {ru.services.items.map((service, index) => (
-              <li key={service.slug}>
-                <Link
-                  href={servicePath(service.slug)}
-                  className="group grid gap-4 py-10 sm:py-12 lg:grid-cols-12 lg:items-baseline lg:gap-8"
-                >
-                  <span className="font-mono text-meta text-fg-subtle tabular-nums lg:col-span-1">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <div className="lg:col-span-7">
-                    <h2 className="text-h2 font-medium transition-colors duration-150 group-hover:text-accent">
-                      {service.title}
-                    </h2>
-                    <p className="mt-4 max-w-xl text-[0.9375rem] leading-relaxed text-fg-muted">
-                      {service.description}
-                    </p>
-                  </div>
-                  <p className="flex items-start gap-2 text-[0.9375rem] text-fg lg:col-span-4 lg:justify-end">
-                    <ArrowUpRight
-                      className="mt-0.5 size-4 shrink-0 text-accent transition-transform duration-150 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                      aria-hidden
-                    />
-                    <span>{service.outcome}</span>
-                  </p>
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <ServiceList items={ru.services.items} heading="h2" className="border-t-0" />
         </Container>
       </section>
 
@@ -86,7 +59,7 @@ export function ServiceLandingPage({ service }: { service: Service }) {
         <Container>
           <div className="pt-24 pb-20 sm:pt-32 sm:pb-28">
             <Breadcrumbs
-              label="Навигация по разделам"
+              label={ru.services.crumbs}
               items={[
                 { label: ru.services.breadcrumbHome, href: "/" },
                 { label: ru.services.eyebrow, href: ru.services.path },
@@ -123,7 +96,7 @@ export function ServiceLandingPage({ service }: { service: Service }) {
                 {ru.hero.primaryCta}
               </TrackedButtonLink>
               <ButtonLink href="#contact" variant="secondary" size="lg" className="w-full sm:w-auto">
-                {ru.contact.title}
+                {ru.contact.scrollCta}
                 <ArrowDown className="size-4" aria-hidden />
               </ButtonLink>
             </div>

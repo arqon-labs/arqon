@@ -8,7 +8,7 @@ export const auditRu: AuditContent = {
     "Cursor, Lovable, Bolt, Replit: ключи, оплата, доступ к данным. $500, отчёт простым языком за 2 дня.",
   serviceName: "Аудит приложения, написанного ИИ",
   ogAlt: "Аудит ИИ-приложения — $500, отчёт за 2 дня. ARQON.",
-  breadcrumbLabel: "Навигация по разделам",
+  breadcrumbLabel: "Навигация",
   breadcrumbs: [
     { label: "Главная", href: "/" },
     { label: "Услуги", href: "/services" },

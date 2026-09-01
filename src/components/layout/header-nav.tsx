@@ -23,18 +23,6 @@ function isServicesPath(pathname: string): boolean {
   return pathname === base || pathname.startsWith(`${base}/`);
 }
 
-function pageHasContact(pathname: string): boolean {
-  return pathname === "/" || isServicesPath(pathname);
-}
-
-function hrefFor(item: (typeof items)[number], pathname: string): string {
-  if (item.id === "contact") {
-    return pageHasContact(pathname) ? "#contact" : "/#contact";
-  }
-
-  return item.href;
-}
-
 function sectionFromPath(pathname: string): string | null {
   return isServicesPath(pathname) ? "services" : null;
 }
@@ -103,13 +91,12 @@ export function HeaderNav({
         )}
       >
         {items.map((item) => {
-          const href = hrefFor(item, pathname);
           const isActive = Boolean(item.id) && item.id === activeId;
 
           return (
             <li key={item.href}>
               <Link
-                href={href}
+                href={item.href}
                 className={cn(linkClass, isActive && "text-fg after:scale-x-100")}
                 aria-current={
                   isActive
