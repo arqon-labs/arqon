@@ -18,22 +18,17 @@ export function Contact() {
             lead={contact.lead}
           />
 
-          <div className="mt-10 rounded-lg border border-accent/25 bg-accent/5 p-6">
-            <div className="flex items-center gap-3">
-              <Send className="size-4 text-accent" aria-hidden />
-              <h3 className="text-[1.0625rem] font-medium">{contact.telegramTitle}</h3>
-            </div>
-            <p className="mt-3 text-[0.9375rem] text-fg-muted">{contact.telegramText}</p>
-            <TrackedButtonLink
-              event="telegram_click"
-              href={site.contacts.telegram}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-5"
-            >
-              {contact.telegramCta}
-            </TrackedButtonLink>
-          </div>
+          <TrackedButtonLink
+            event="telegram_click"
+            href={site.contacts.telegram}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-10"
+          >
+            <Send className="size-4" aria-hidden />
+            {contact.telegramCta}
+          </TrackedButtonLink>
+          <p className="mt-3 text-[0.9375rem] text-fg-muted">{contact.telegramText}</p>
 
           <p className="mt-6 flex items-center gap-3 text-[0.9375rem] text-fg-muted">
             <Mail className="size-4 shrink-0 text-fg-subtle" aria-hidden />

@@ -87,7 +87,7 @@
     position: fixed;
     inset: 0;
     z-index: 80;
-    opacity: 0.035;
+    opacity: 0.02;
     mix-blend-mode: overlay;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
@@ -140,35 +140,93 @@
 }
 
 @utility hero-glow {
-  background-image:
-    radial-gradient(
-      ellipse 55% 45% at 18% 8%,
-      color-mix(in oklab, var(--color-accent) 22%, transparent) 0%,
-      transparent 70%
-    ),
-    radial-gradient(
-      ellipse 45% 40% at 86% 4%,
-      color-mix(in oklab, #7c6bff 16%, transparent) 0%,
-      transparent 70%
-    ),
-    radial-gradient(
-      ellipse 40% 30% at 52% 22%,
-      color-mix(in oklab, #60a5fa 10%, transparent) 0%,
-      transparent 72%
-    );
-  background-size: 140% 140%, 130% 130%, 110% 110%;
-  background-position: 0% 0%, 100% 0%, 50% 20%;
-  animation: arqon-aurora 28s ease-in-out infinite alternate;
+  background-image: radial-gradient(
+    ellipse 70% 55% at 12% 0%,
+    color-mix(in oklab, var(--color-accent) 16%, transparent) 0%,
+    transparent 72%
+  );
 }
 
-@utility hero-grid {
-  background-image: radial-gradient(
-    circle,
-    color-mix(in oklab, var(--color-fg) 16%, transparent) 1px,
-    transparent 1px
+@utility hero-caustic {
+  pointer-events: none;
+  position: absolute;
+  inset: -22% -18% auto;
+  height: 58%;
+  animation: arqon-caustic 38s ease-in-out infinite alternate;
+}
+
+@utility hero-caustic-bloom {
+  position: absolute;
+  inset: 0;
+  opacity: 0.32;
+  mix-blend-mode: screen;
+  background: linear-gradient(
+    122deg,
+    transparent 41%,
+    rgb(255 255 255 / 0.05) 47%,
+    color-mix(in oklab, var(--color-accent) 18%, white) 50%,
+    rgb(255 255 255 / 0.04) 53%,
+    transparent 59%
   );
-  background-size: 1.75rem 1.75rem;
-  mask-image: radial-gradient(ellipse 85% 70% at 50% -8%, black 18%, transparent 72%);
+  filter: blur(22px);
+}
+
+@utility hero-caustic-edge {
+  position: absolute;
+  inset: 22% 12%;
+  opacity: 0.2;
+  mix-blend-mode: screen;
+  background: linear-gradient(
+    122deg,
+    transparent 47.6%,
+    rgb(255 255 255 / 0.22) 50%,
+    transparent 52.4%
+  );
+  filter: blur(4px);
+}
+
+@utility glass-bar {
+  border-bottom: 1px solid rgb(255 255 255 / 0.06);
+  background-color: color-mix(in oklab, var(--color-bg) 58%, transparent);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.07);
+  -webkit-backdrop-filter: blur(20px) saturate(1.35);
+  backdrop-filter: blur(20px) saturate(1.35);
+}
+
+@utility glass-bar-scrolled {
+  border-bottom-color: rgb(255 255 255 / 0.08);
+  background-color: color-mix(in oklab, var(--color-bg) 84%, transparent);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.05);
+}
+
+@utility btn-glass {
+  background-color: color-mix(in oklab, var(--color-accent) 86%, transparent);
+  background-image: linear-gradient(
+    165deg,
+    rgb(255 255 255 / 0.2) 0%,
+    rgb(255 255 255 / 0.05) 38%,
+    transparent 62%
+  );
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.28),
+    inset 0 -1px 0 rgb(0 0 0 / 0.16),
+    0 0 0 1px rgb(255 255 255 / 0.14);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  backdrop-filter: blur(14px) saturate(1.4);
+}
+
+@utility btn-glass-chip {
+  border: 1px solid rgb(255 255 255 / 0.1);
+  background-color: rgb(255 255 255 / 0.055);
+  background-image: linear-gradient(
+    180deg,
+    rgb(255 255 255 / 0.1) 0%,
+    transparent 48%
+  );
+  color: var(--color-fg);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.14);
+  -webkit-backdrop-filter: blur(16px) saturate(1.35);
+  backdrop-filter: blur(16px) saturate(1.35);
 }
 
 @utility card {
@@ -176,6 +234,15 @@
   border: 1px solid var(--color-line);
   background-color: var(--color-surface);
   box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.045);
+}
+
+@keyframes arqon-caustic {
+  from {
+    transform: translate3d(-7%, -3%, 0) rotate(-3deg);
+  }
+  to {
+    transform: translate3d(9%, 5%, 0) rotate(4deg);
+  }
 }
 
 @keyframes arqon-word {
@@ -200,22 +267,6 @@
   animation: arqon-word 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-@keyframes arqon-mark {
-  to {
-    transform: translate3d(-2.5%, 3%, 0);
-  }
-}
-
-@utility hero-mark {
-  animation: arqon-mark 34s ease-in-out infinite alternate;
-}
-
-@keyframes arqon-aurora {
-  to {
-    background-position: 28% 18%, 72% 12%, 42% 38%;
-  }
-}
-
 @keyframes arqon-scroll-progress {
   from {
     transform: scaleX(0);
@@ -223,19 +274,6 @@
   to {
     transform: scaleX(1);
   }
-}
-
-@utility text-accent-gradient {
-  background-image: linear-gradient(
-    118deg,
-    #9bb6ff 0%,
-    var(--color-accent) 45%,
-    #c4b5fd 100%
-  );
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
 }
 
 @utility header-progress {
@@ -251,9 +289,7 @@
   background: linear-gradient(
     90deg,
     transparent,
-    var(--color-accent) 18%,
-    #a78bfa 82%,
-    transparent
+    var(--color-accent)
   );
 
   @supports (animation-timeline: scroll()) {
@@ -275,34 +311,6 @@
   background-size: 100% 1px;
   background-repeat: no-repeat;
   background-position: top;
-}
-
-@utility shine {
-  position: relative;
-  overflow: hidden;
-
-  &::after {
-    content: "";
-    pointer-events: none;
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      105deg,
-      transparent 40%,
-      rgb(255 255 255 / 0.16) 50%,
-      transparent 60%
-    );
-    transform: translateX(-130%);
-  }
-
-  &:hover::after {
-    transform: translateX(130%);
-    transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-}
-
-@utility edge-fade {
-  mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);
 }
 
 @keyframes arqon-rise {
@@ -333,6 +341,54 @@
   }
 }
 
+.btn-glass:hover {
+  background-color: color-mix(in oklab, var(--color-accent-hover) 90%, transparent);
+}
+
+.btn-glass-chip:hover {
+  border-color: rgb(255 255 255 / 0.16);
+  background-color: rgb(255 255 255 / 0.09);
+  color: var(--color-fg);
+}
+
+@supports not (
+  (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))
+) {
+  .glass-bar,
+  .glass-bar-scrolled {
+    background-color: color-mix(in oklab, var(--color-bg) 94%, transparent);
+  }
+
+  .btn-glass {
+    background-color: var(--color-accent);
+  }
+
+  .btn-glass-chip {
+    background-color: var(--color-surface);
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .glass-bar,
+  .glass-bar-scrolled {
+    background-color: var(--color-bg);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  .btn-glass {
+    background-color: var(--color-accent);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  .btn-glass-chip {
+    background-color: var(--color-surface);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -346,24 +402,18 @@
     transition-duration: 0.01ms !important;
   }
 
-  /* Animation is removed entirely, not sped up: without it the element
-     stays in its natural visible state. */
   .reveal,
   .rise,
   .hero-word {
     animation: none !important;
   }
 
-  .hero-glow,
-  .header-progress,
-  .hero-mark {
+  .header-progress {
     animation: none !important;
   }
 
-  .text-accent-gradient {
-    color: var(--color-accent);
-    background-image: none;
-    -webkit-text-fill-color: unset;
+  .hero-caustic {
+    animation: none !important;
   }
 }
 

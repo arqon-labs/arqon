@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import Image from "next/image";
-import { ArrowDown, Send } from "lucide-react";
+import { Send } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { ButtonLink } from "@/components/ui/button";
 import { Atmosphere } from "@/components/ui/atmosphere";
@@ -16,15 +16,9 @@ export function Hero() {
   return (
     <section id="top" className="relative isolate overflow-hidden">
       <Atmosphere />
-      <p
-        className="hero-mark pointer-events-none absolute top-[8%] -right-2 select-none font-serif font-normal italic leading-none tracking-[-0.06em] text-fg/[0.045] text-[clamp(5.5rem,22vw,16rem)] sm:top-[4%]"
-        aria-hidden
-      >
-        {site.name}
-      </p>
 
       <Container>
-        <div className="pt-24 pb-20 sm:pt-32 sm:pb-28 lg:pt-40 lg:pb-36">
+        <div className="pt-24 pb-10 sm:pt-28 sm:pb-12 lg:pt-32 lg:pb-12">
           <div className="rise flex items-center gap-3.5">
             <Image
               src={portrait}
@@ -33,7 +27,7 @@ export function Hero() {
               height={72}
               priority
               sizes="72px"
-              className="size-14 rounded-full object-cover object-top ring-1 ring-accent/35 sm:size-[4.5rem]"
+              className="size-14 rounded-full object-cover object-top ring-1 ring-line sm:size-[4.5rem]"
             />
             <div>
               <p className="text-[1.0625rem] font-medium tracking-tight">
@@ -84,6 +78,7 @@ export function Hero() {
               target="_blank"
               rel="noopener noreferrer"
               size="lg"
+              variant="glassCta"
               className="w-full sm:w-auto"
             >
               <Send className="size-4" aria-hidden />
@@ -92,7 +87,6 @@ export function Hero() {
 
             <ButtonLink href="#formats" variant="secondary" size="lg" className="w-full sm:w-auto">
               {hero.secondaryCta}
-              <ArrowDown className="size-4" aria-hidden />
             </ButtonLink>
           </div>
 
@@ -100,7 +94,7 @@ export function Hero() {
             {hero.trust}
           </p>
 
-          <dl className="rise mt-16 grid gap-8 border-t border-line pt-8 sm:grid-cols-3 [animation-delay:500ms]">
+          <dl className="rise mt-12 grid gap-8 border-t border-line pt-8 sm:grid-cols-3 [animation-delay:500ms]">
             {hero.facts.map((fact) => (
               <div key={fact.label}>
                 <dd className="text-[1.125rem] font-medium tracking-tight">{fact.value}</dd>

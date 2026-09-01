@@ -18,7 +18,7 @@ export function HeaderChrome({ children }: { children: ReactNode }) {
   return (
     <header
       data-scrolled={scrolled ? "true" : "false"}
-      className="sticky top-0 z-50 border-b border-line/50 bg-bg/55 pt-[env(safe-area-inset-top)] backdrop-blur-xl backdrop-saturate-150 transition-[background-color,border-color,box-shadow] duration-300 data-[scrolled=true]:border-line/90 data-[scrolled=true]:bg-bg/88 data-[scrolled=true]:shadow-[0_16px_48px_-28px_rgb(0_0_0/0.85)]"
+      className="glass-bar sticky top-0 z-50 pt-[env(safe-area-inset-top)] transition-[background-color,border-color,box-shadow] duration-300 data-[scrolled=true]:glass-bar-scrolled"
     >
       {children}
       <span className="header-progress" aria-hidden />

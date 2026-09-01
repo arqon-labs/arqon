@@ -22,7 +22,7 @@ export function ServicesIndexPage() {
       <section className="relative isolate overflow-hidden">
         <Atmosphere glowClassName="h-[420px]" />
         <Container>
-          <div className="pt-24 pb-16 sm:pt-32 sm:pb-20">
+          <div className="pt-24 pb-12 sm:pt-28 sm:pb-14">
             <Breadcrumbs
               label={ru.services.crumbs}
               items={[
@@ -38,7 +38,7 @@ export function ServicesIndexPage() {
         </Container>
       </section>
 
-      <section className="border-t border-line pb-24 sm:pb-32">
+      <section className="border-t border-line pb-20 sm:pb-24">
         <Container>
           <ServiceList items={ru.services.items} heading="h2" className="border-t-0" />
         </Container>
@@ -57,7 +57,7 @@ export function ServiceLandingPage({ service }: { service: Service }) {
       <section className="relative isolate overflow-hidden">
         <Atmosphere glowClassName="h-[420px]" />
         <Container>
-          <div className="pt-24 pb-20 sm:pt-32 sm:pb-28">
+          <div className="pt-24 pb-12 sm:pt-28 sm:pb-14">
             <Breadcrumbs
               label={ru.services.crumbs}
               items={[
@@ -66,22 +66,11 @@ export function ServiceLandingPage({ service }: { service: Service }) {
                 { label: service.navLabel },
               ]}
             />
-            <p className="mt-8 flex items-center gap-2.5 font-mono text-meta uppercase text-fg-subtle">
-              <span
-                className="h-px w-5 bg-gradient-to-r from-accent to-transparent"
-                aria-hidden
-              />
-              {site.city} · {site.person.fullName}
-            </p>
-            <h1 className="mt-5 max-w-4xl text-display font-medium">{service.pageH1}</h1>
+            <h1 className="mt-8 max-w-4xl text-display font-medium">{service.pageH1}</h1>
             <p className="mt-6 max-w-2xl text-lead text-fg-muted">{service.description}</p>
             <blockquote className="mt-8 max-w-2xl border-l-2 border-accent pl-5">
               <p className="text-[1.0625rem] leading-relaxed text-fg">{service.outcome}</p>
             </blockquote>
-
-            <p className="mt-8 font-mono text-meta uppercase text-fg-subtle">
-              {service.tags.join(" · ")}
-            </p>
 
             <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
               <TrackedButtonLink

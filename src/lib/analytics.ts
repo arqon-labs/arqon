@@ -10,8 +10,7 @@ export type AnalyticsEvent =
   | "audit_teaser_en_click"
   | "audit_repair_link_click"
   | "audit_ru_cta_click"
-  | "audit_en_cta_click"
-  | "blog_audit_cta_click";
+  | "audit_en_cta_click";
 
 declare global {
   interface Window {

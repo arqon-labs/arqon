@@ -15,7 +15,7 @@ export const site = {
     fullName: "Антон Гончарик",
     fullNameEn: "Anton Goncharik",
     role: "Разработчик сайтов и сервисов",
-    since: 2017,
+    since: 2016,
   },
   geo: {
     latitude: 53.9023,

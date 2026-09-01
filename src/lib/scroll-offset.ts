@@ -26,7 +26,7 @@ function scrollGapPx(): number {
 
 export function scrollBehavior(): ScrollBehavior {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    ? "auto"
+    ? "instant"
     : "smooth";
 }
 

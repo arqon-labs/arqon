@@ -53,7 +53,7 @@ function AuditHero({
     <section className="relative isolate overflow-hidden">
       <Atmosphere />
       <Container>
-        <div className="pt-24 pb-20 sm:pt-32 sm:pb-28 lg:pt-40 lg:pb-36">
+        <div className="pt-24 pb-16 sm:pt-28 sm:pb-20 lg:pt-32 lg:pb-24">
           <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-3">
             <Breadcrumbs label={content.breadcrumbLabel} items={content.breadcrumbs} />
             <LanguageSwitch

@@ -10,7 +10,7 @@ export function Header() {
   return (
     <HeaderChrome>
       <Container>
-        <div className="grid grid-cols-[1fr_auto] items-center gap-x-3 md:flex md:h-16 md:gap-6">
+        <div className="flex flex-wrap items-center gap-x-3 md:h-16 md:flex-nowrap md:gap-8">
           <BrandMark className="shrink-0" />
 
           <TrackedButtonLink
@@ -18,18 +18,16 @@ export function Header() {
             href={site.contacts.telegram}
             target="_blank"
             rel="noopener noreferrer"
-            variant="secondary"
+            variant="glass"
             size="md"
-            className="shrink-0 px-3 md:px-4"
+            className="ml-auto shrink-0 px-3 md:order-3 md:ml-0 md:px-4"
             aria-label="Написать в Telegram"
           >
             <Send className="size-4" aria-hidden />
             <span className="hidden md:inline">Telegram</span>
           </TrackedButtonLink>
 
-          <div
-            className="nav-scroll col-span-2 -mx-5 overflow-x-auto border-t border-line/50 px-5 py-2 md:col-span-1 md:mx-0 md:min-w-0 md:flex-1 md:border-t-0 md:px-0 md:py-0 md:overflow-visible"
-          >
+          <div className="nav-scroll -mx-5 w-[calc(100%+2.5rem)] basis-full border-t border-line/50 px-5 py-2 md:order-2 md:mx-0 md:w-auto md:flex-1 md:basis-auto md:overflow-visible md:border-t-0 md:px-0 md:py-0">
             <HeaderNav className="md:mx-auto" />
           </div>
         </div>

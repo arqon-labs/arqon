@@ -1,8 +1,6 @@
 import type { AuditContent } from "@/content/audit";
-import { blog, type BlogPost } from "@/content/blog";
 import { ru } from "@/content/ru";
 import type { FaqItem, Service } from "@/content/types";
-import { blogPath } from "./blog";
 import { site } from "./site";
 import { servicePath } from "./services";
 
@@ -83,6 +81,7 @@ export function serviceSchema() {
     email: site.contacts.email,
     founder: { "@id": personId },
     employee: { "@id": personId },
+    foundingDate: String(site.person.since),
     address,
     geo,
     areaServed,
@@ -268,54 +267,5 @@ export function auditPageJsonLd(content: AuditContent) {
         path: item.href ?? content.path,
       })),
     ),
-  ];
-}
-
-export function blogIndexJsonLd() {
-  return [
-    personSchema(),
-    websiteSchema(),
-    {
-      ...webPageSchema(blog.path, blog.indexTitle, blog.indexDescription),
-      inLanguage: "ru-BY",
-    },
-    breadcrumbSchema([
-      { name: blog.ui.ru.home, path: "/" },
-      { name: blog.ui.ru.blog, path: blog.path },
-    ]),
-  ];
-}
-
-export function blogArticleJsonLd(post: BlogPost) {
-  const path = blogPath(post.slug);
-  const url = `${site.url}${path}`;
-  const inLanguage = post.lang === "en" ? "en" : "ru-BY";
-
-  return [
-    personSchema(),
-    websiteSchema(),
-    {
-      "@context": "https://schema.org",
-      "@type": "Article",
-      "@id": `${url}#article`,
-      headline: post.title,
-      description: post.description,
-      datePublished: post.date,
-      dateModified: post.date,
-      inLanguage,
-      url,
-      author: { "@id": personId },
-      publisher: { "@id": organizationId },
-      mainEntityOfPage: { "@id": `${url}#webpage` },
-    },
-    {
-      ...webPageSchema(path, post.title, post.description),
-      inLanguage,
-    },
-    breadcrumbSchema([
-      { name: blog.ui[post.lang].home, path: "/" },
-      { name: blog.ui[post.lang].blog, path: blog.path },
-      { name: post.title, path },
-    ]),
   ];
 }

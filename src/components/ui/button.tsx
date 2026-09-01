@@ -1,7 +1,7 @@
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
-export type ButtonVariant = "primary" | "secondary" | "ghost";
+export type ButtonVariant = "primary" | "secondary" | "ghost" | "glass" | "glassCta";
 export type ButtonSize = "md" | "lg";
 
 const base =
@@ -9,10 +9,12 @@ const base =
 
 const variants: Record<ButtonVariant, string> = {
   primary:
-    "shine bg-accent text-white shadow-[0_0_32px_-12px_color-mix(in_oklab,var(--color-accent)_80%,transparent)] hover:bg-accent-hover",
+    "bg-accent text-white hover:bg-accent-hover",
   secondary:
     "border border-line-strong bg-surface text-fg hover:border-fg-subtle hover:bg-surface-2",
   ghost: "text-fg-muted hover:text-fg",
+  glass: "btn-glass-chip",
+  glassCta: "btn-glass text-white",
 };
 
 const sizes: Record<ButtonSize, string> = {

@@ -2,7 +2,6 @@ import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { TrackedLink } from "@/components/shared/tracked-link";
 import { BrandMark } from "@/components/layout/brand-mark";
-import { blog } from "@/content/blog";
 import { ru } from "@/content/ru";
 import { site } from "@/lib/site";
 import { servicePath } from "@/lib/services";
@@ -15,12 +14,6 @@ export function Footer() {
 
   return (
     <footer className="relative overflow-hidden section-rule pt-14 pb-20">
-      <p
-        className="pointer-events-none absolute right-0 -bottom-6 left-0 select-none overflow-hidden px-5 text-center font-serif font-normal italic leading-none tracking-[-0.06em] text-fg/[0.035] text-[clamp(5rem,18vw,14rem)] sm:px-8"
-        aria-hidden
-      >
-        {site.name}
-      </p>
       <Container className="relative z-10">
         <div className="flex flex-col gap-10 sm:flex-row sm:justify-between">
           <div className="max-w-sm">
@@ -29,7 +22,7 @@ export function Footer() {
               {ru.footer.description}
             </p>
             <p className="mt-3 text-[0.9375rem] text-fg-muted">
-              {site.person.fullName} · {site.city}, {site.region}
+              {site.person.fullName}
             </p>
             <p className="mt-3 max-w-sm text-[0.9375rem] leading-relaxed text-fg-subtle">
               {ru.footer.terms}
@@ -96,11 +89,6 @@ export function Footer() {
                   LinkedIn
                 </a>
               </li>
-              <li>
-                <Link href={blog.path} className={linkClass}>
-                  Блог
-                </Link>
-              </li>
             </ul>
           </div>
         </div>
@@ -111,7 +99,7 @@ export function Footer() {
             {ru.footer.rights ? `. ${ru.footer.rights}` : ""}
           </p>
           <p>
-            {site.city}, {site.region}
+            {site.city} и удалённо
           </p>
         </div>
       </Container>

@@ -17,7 +17,7 @@ export function Section({
     <section
       id={id}
       className={cn(
-        "py-24 sm:py-32 lg:py-40",
+        "py-16 sm:py-20 lg:py-24",
         bordered && "section-rule",
         className,
       )}
