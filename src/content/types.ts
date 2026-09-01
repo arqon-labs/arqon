@@ -134,6 +134,7 @@ export type Content = {
     telegramCta: string;
     emailTitle: string;
     form: {
+      badge: string;
       nameLabel: string;
       namePlaceholder: string;
       contactLabel: string;

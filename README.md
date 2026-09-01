@@ -14,7 +14,7 @@ Russian locale, dark theme, static generation, self-hosted in Docker behind Cadd
 | Forms | react-hook-form 7.84 + custom validation |
 | Fonts | Geist Sans / Geist Mono |
 | Icons | lucide-react |
-| Lead delivery | Telegram Bot API, copy via Resend |
+| Lead delivery | Telegram Bot API |
 | Hosting | Docker + Caddy on your own VPS |
 
 All versions are pinned exactly, without ranges: upgrading is a deliberate action, not a side effect of `npm install`.
@@ -64,8 +64,6 @@ Adding an English locale is a second dictionary file plus `next-intl`; component
 
 Identity, contacts and cases are filled. `pendingRealData` in `src/lib/site.ts` is empty.
 
-`Caddyfile` and `.env.example` contain `arqon.by`. `CONTACT_EMAIL_TO` in `.env.example` is the personal inbox for lead copies.
-
 ## Contact form
 
 One server action, no separate backend:
@@ -73,36 +71,26 @@ One server action, no separate backend:
 1. Validation via `validateContact` from `src/lib/contact-rules.ts` — the same on client and server, so rules never diverge. The server call is the only one you can trust: it accepts `unknown` and does not trust the form’s data shape. No schema library: rules are simple and enumerable, and `zod` would weigh more than most of the rest of the client code.
 2. Honeypot field `company` and minimum fill time check (2.5 s). Bots get a “success” response so we do not reveal which check filtered them.
 3. Rate limit: 3 submissions per IP per 10 minutes. The counter lives in process memory — correct for a single instance. Scaling to replicas will need external storage.
-4. Telegram delivery is required: failure means an error for the user. Email copy is sent when possible and does not affect the result.
+4. Telegram delivery is required: failure means an error for the user.
 
 IP is taken from `CF-Connecting-IP`, then `X-Real-IP`, then `X-Forwarded-For` — works behind Cloudflare and directly behind Caddy.
 
 ## Deployment
 
-### First time on the server
+Same shape as the Binance services: check → Docker image to the registry → `appleboy/scp-action` + `appleboy/ssh-action` on the VPS.
+
+Push to `main` (or Run workflow) → typecheck/lint/build → image to GHCR → compose/Caddyfile/`.env` onto `/srv/arqon` → `docker compose up`. Pull requests only run CI.
+
+On the VPS: Docker Engine + Compose plugin, SSH user in the `docker` group, public key from `SSH_PRIVATE_KEY` in `authorized_keys`. DNS for `arqon.by` and `www.arqon.by` must point at the server **before** the first deploy so Caddy can get a certificate.
+
+If Cloudflare sits in front: obtain the certificate with proxying disabled (grey cloud), then enable proxying and TLS mode “Full (strict)”.
+
+Repository secrets: `SSH_PRIVATE_KEY`, `SSH_HOST`, `SSH_USER`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`.
+
+Rollback:
 
 ```bash
-# on VPS
-mkdir -p /srv/arqon && cd /srv/arqon
-# copy docker-compose.yml, Caddyfile, and a filled .env
-docker login ghcr.io -u <github-user>
-docker compose up -d
-```
-
-Caddy will obtain and renew the Let's Encrypt certificate. DNS for `arqon.by` and `www.arqon.by` must point to the server IP **before** the first start.
-
-If Cloudflare sits in front: obtain the certificate with proxying disabled (grey cloud), then enable proxying and TLS mode “Full (strict)”. Otherwise the ACME check may not reach the origin.
-
-### Ongoing
-
-Push to `main` → CI (`typecheck`, `lint`, `build`) → image build in GHCR → container update over SSH.
-
-Repository secrets: `SSH_PRIVATE_KEY`, `SSH_HOST`, `SSH_USER`, `SSH_KNOWN_HOSTS`.
-Repository variables (optional): `NEXT_PUBLIC_ANALYTICS_SRC`, `NEXT_PUBLIC_ANALYTICS_ID`.
-
-Rollback by commit tag:
-
-```bash
+cd /srv/arqon
 IMAGE=ghcr.io/<owner>/arqon:<sha> docker compose up -d --no-deps web
 ```
 
@@ -110,16 +98,14 @@ IMAGE=ghcr.io/<owner>/arqon:<sha> docker compose up -d --no-deps web
 
 Headers are set in `next.config.ts` so they survive hosting moves: CSP, HSTS, `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`, `frame-ancestors 'none'`.
 
-Deliberate CSP compromise: `script-src` includes `'unsafe-inline'`. Nonces require middleware, and middleware turns the page into dynamic rendering and removes static generation. The site has no user input in markup and no third-party scripts, so the cost of nonces outweighs the benefit. Everything else is strict: `default-src 'self'`, `object-src 'none'`, `base-uri 'none'`, `form-action 'self'`.
-
-The analytics domain is added to `script-src` and `connect-src` automatically from `NEXT_PUBLIC_ANALYTICS_SRC`.
+Deliberate CSP compromise: `script-src` includes `'unsafe-inline'`. Nonces require middleware, and middleware turns the page into dynamic rendering and removes static generation. The only third-party script is Umami (`cloud.umami.is` / `gateway.umami.is`). Everything else is strict: `default-src 'self'`, `object-src 'none'`, `base-uri 'none'`, `form-action 'self'`.
 
 ## SEO
 
 - Metadata API: title, description, canonical, OpenGraph, Twitter card, keywords
 - JSON-LD: `Person`, `ProfessionalService`, `FAQPage`, linked via `@id`
 - `robots.txt` and `sitemap.xml` generated by routes; AI crawlers allowed explicitly
-- OG image and favicon generated via `next/og`, no binary assets in the repo
+- OG images generated via `next/og`; favicon is `src/app/icon.png`
 
 After launch: add the site to Google Search Console and Yandex Webmaster, set region in both. Local queries in Belarus are the main realistic organic growth vector.
 

@@ -1,16 +1,12 @@
 import type { NextConfig } from "next";
 
-const analyticsOrigin = process.env.NEXT_PUBLIC_ANALYTICS_SRC
-  ? new URL(process.env.NEXT_PUBLIC_ANALYTICS_SRC).origin
-  : null;
-
 const csp = [
   "default-src 'self'",
-  `script-src 'self' 'unsafe-inline'${analyticsOrigin ? ` ${analyticsOrigin}` : ""}`,
+  "script-src 'self' 'unsafe-inline' https://cloud.umami.is",
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob:",
   "font-src 'self' data:",
-  `connect-src 'self'${analyticsOrigin ? ` ${analyticsOrigin}` : ""}`,
+  "connect-src 'self' https://cloud.umami.is https://gateway.umami.is",
   "form-action 'self'",
   "frame-ancestors 'none'",
   "base-uri 'none'",

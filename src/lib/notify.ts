@@ -1,4 +1,3 @@
-import { Resend } from "resend";
 import type { ContactFields } from "./contact-rules";
 
 function escapeHtml(value: string): string {
@@ -51,42 +50,10 @@ async function sendTelegram(text: string): Promise<void> {
   }
 }
 
-async function sendEmailCopy(input: ContactFields): Promise<void> {
-  const apiKey = process.env.RESEND_API_KEY;
-  const from = process.env.CONTACT_EMAIL_FROM;
-  const to = process.env.CONTACT_EMAIL_TO;
-
-  if (!apiKey || !from || !to) return;
-
-  const resend = new Resend(apiKey);
-  const { error } = await resend.emails.send({
-    from,
-    to,
-    subject: `Lead from arqon.by — ${input.name}`,
-    text: [
-      `Name: ${input.name}`,
-      `Contact: ${input.contact}`,
-      "",
-      input.message,
-    ].join("\n"),
-  });
-
-  if (error) throw new Error(error.message);
-}
-
-/**
- * Telegram is the primary channel: if delivery fails, the lead is considered lost.
- * Email copy is sent as backup and does not affect the result.
- */
+/** Telegram is the only channel: if delivery fails, the lead is considered lost. */
 export async function notifyNewLead(
   input: ContactFields,
   meta: { ip: string },
 ): Promise<void> {
   await sendTelegram(buildMessage(input, meta));
-
-  try {
-    await sendEmailCopy(input);
-  } catch (error) {
-    console.error("[contact] email copy failed", error);
-  }
 }

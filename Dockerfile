@@ -9,16 +9,10 @@ RUN npm ci
 
 FROM base AS builder
 WORKDIR /app
-# NEXT_PUBLIC_* попадают в клиентский бандл на этапе сборки,
-# поэтому передаются как build args, а не через runtime env.
-ARG NEXT_PUBLIC_ANALYTICS_SRC=""
-ARG NEXT_PUBLIC_ANALYTICS_ID=""
-ENV NEXT_PUBLIC_ANALYTICS_SRC=$NEXT_PUBLIC_ANALYTICS_SRC
-ENV NEXT_PUBLIC_ANALYTICS_ID=$NEXT_PUBLIC_ANALYTICS_ID
 ENV DOCKER_BUILD=1
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-RUN npm run build
+RUN mkdir -p public && npm run build
 
 FROM base AS runner
 WORKDIR /app

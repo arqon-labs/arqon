@@ -116,7 +116,7 @@ export function ContactForm() {
     >
       <p className="mb-6 flex items-center gap-2.5 border-b border-line pb-4 font-mono text-meta uppercase text-fg-subtle">
         <span className="size-1.5 rounded-full bg-accent" aria-hidden />
-        Новая задача
+        {copy.badge}
       </p>
       <div className="grid gap-5 sm:grid-cols-2">
         <div>

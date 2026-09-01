@@ -471,6 +471,7 @@ export const ru: Content = {
     telegramCta: "Написать в Telegram",
     emailTitle: "Почта",
     form: {
+      badge: "Новая задача",
       nameLabel: "Имя",
       namePlaceholder: "Как к вам обращаться",
       contactLabel: "Способ связи",

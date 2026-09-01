@@ -13,7 +13,7 @@ export const websiteId = `${site.url}/#website`;
 const address = {
   "@type": "PostalAddress",
   addressLocality: site.city,
-  addressRegion: site.city,
+  addressRegion: site.region,
   addressCountry: site.countryCode,
 };
 
