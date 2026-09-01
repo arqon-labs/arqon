@@ -19,8 +19,6 @@ www.arqon.by {
 arqon.by {
 	encode zstd gzip
 
-	# Заголовки безопасности задаются в next.config.ts — здесь только транспорт,
-	# чтобы не было двух источников правды.
 	header -Server
 
 	request_body {
@@ -31,9 +29,6 @@ arqon.by {
 	header @immutable Cache-Control "public, max-age=31536000, immutable"
 
 	reverse_proxy web:3000 {
-		# Caddy — край сети: IP с сокета. X-Forwarded-* Caddy и так не доверяет клиенту.
-		# Если включите Cloudflare (оранжевое облако) — уберите -CF-Connecting-IP,
-		# иначе лимит формы увидит IP Cloudflare, а не посетителя.
 		header_up X-Real-IP {remote_host}
 		header_up -CF-Connecting-IP
 
