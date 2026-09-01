@@ -5,6 +5,7 @@ import { useEffect, useRef, useState, type MouseEvent } from "react";
 import { usePathname } from "next/navigation";
 import { ru } from "@/content/ru";
 import { cn } from "@/lib/cn";
+import { enChrome, localeFromPath, ruChrome } from "@/lib/locale";
 import { scrollOffsetPx, scrollToHash } from "@/lib/scroll-offset";
 
 function sectionId(href: string): string {
@@ -68,6 +69,75 @@ export function HeaderNav({
   listClassName?: string;
 }) {
   const pathname = usePathname();
+
+  if (localeFromPath(pathname) === "en") {
+    return (
+      <EnglishNav
+        pathname={pathname}
+        className={className}
+        listClassName={listClassName}
+      />
+    );
+  }
+
+  return (
+    <RussianNav
+      pathname={pathname}
+      className={className}
+      listClassName={listClassName}
+    />
+  );
+}
+
+function EnglishNav({
+  pathname,
+  className,
+  listClassName,
+}: {
+  pathname: string;
+  className?: string;
+  listClassName?: string;
+}) {
+  return (
+    <nav aria-label={enChrome.navAria} className={className}>
+      <ul
+        className={cn(
+          "flex min-w-max items-center gap-5 md:min-w-0 md:justify-center md:gap-7",
+          listClassName,
+        )}
+      >
+        {enChrome.nav.map((item) => {
+          const isActive =
+            item.href === "/audit"
+              ? pathname === "/audit" || pathname.startsWith("/audit/")
+              : pathname === item.href;
+
+          return (
+            <li key={item.href}>
+              <Link
+                href={item.href}
+                className={cn(linkClass, isActive && "text-fg after:scale-x-100")}
+                aria-current={isActive ? "page" : undefined}
+              >
+                {item.label}
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
+  );
+}
+
+function RussianNav({
+  pathname,
+  className,
+  listClassName,
+}: {
+  pathname: string;
+  className?: string;
+  listClassName?: string;
+}) {
   const lockedId = useRef<string | null>(null);
   const [activeId, setActiveId] = useState<string | null>(() =>
     sectionFromPath(pathname),
@@ -148,7 +218,7 @@ export function HeaderNav({
   }
 
   return (
-    <nav aria-label="Разделы сайта" className={className}>
+    <nav aria-label={ruChrome().navAria} className={className}>
       <ul
         className={cn(
           "flex min-w-max items-center gap-5 md:min-w-0 md:justify-center md:gap-7",

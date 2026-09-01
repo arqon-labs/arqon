@@ -1,8 +1,12 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Container } from "@/components/ui/container";
 import { TrackedLink } from "@/components/shared/tracked-link";
 import { BrandMark } from "@/components/layout/brand-mark";
 import { ru } from "@/content/ru";
+import { enChrome, localeFromPath, ruChrome } from "@/lib/locale";
 import { site } from "@/lib/site";
 import { servicePath } from "@/lib/services";
 
@@ -10,6 +14,9 @@ const linkClass =
   "text-[0.9375rem] text-fg-muted transition-colors duration-150 hover:text-fg";
 
 export function Footer() {
+  const pathname = usePathname();
+  const english = localeFromPath(pathname) === "en";
+  const copy = english ? enChrome : ruChrome();
   const year = new Date().getFullYear();
 
   return (
@@ -17,36 +24,56 @@ export function Footer() {
       <Container className="relative z-10">
         <div className="flex flex-col gap-10 sm:flex-row sm:justify-between">
           <div className="max-w-sm">
-            <BrandMark />
+            <BrandMark homeLabel={copy.homeAria} />
             <p className="mt-3 text-[0.9375rem] text-fg-muted">
-              {ru.footer.description}
+              {copy.footer.description}
             </p>
             <p className="mt-3 text-[0.9375rem] text-fg-muted">
-              {site.person.fullName}
+              {copy.footer.person}
             </p>
             <p className="mt-3 max-w-sm text-[0.9375rem] leading-relaxed text-fg-subtle">
-              {ru.footer.terms}
+              {copy.footer.terms}
             </p>
           </div>
 
-          <div>
-            <p className="font-mono text-meta uppercase text-fg-subtle">
-              {ru.footer.servicesLabel}
-            </p>
-            <ul className="mt-4 space-y-2.5">
-              {ru.services.items.map((item) => (
-                <li key={item.slug}>
-                  <Link href={servicePath(item.slug)} className={linkClass}>
-                    {item.navLabel}
+          {english ? (
+            <div>
+              <p className="font-mono text-meta uppercase text-fg-subtle">
+                {enChrome.footer.servicesLabel}
+              </p>
+              <ul className="mt-4 space-y-2.5">
+                <li>
+                  <Link href="/" className={linkClass}>
+                    Site in Russian
                   </Link>
                 </li>
-              ))}
-            </ul>
-          </div>
+                <li>
+                  <Link href="/audit" className={linkClass}>
+                    Audit
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          ) : (
+            <div>
+              <p className="font-mono text-meta uppercase text-fg-subtle">
+                {ru.footer.servicesLabel}
+              </p>
+              <ul className="mt-4 space-y-2.5">
+                {ru.services.items.map((item) => (
+                  <li key={item.slug}>
+                    <Link href={servicePath(item.slug)} className={linkClass}>
+                      {item.navLabel}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
 
           <div>
             <p className="font-mono text-meta uppercase text-fg-subtle">
-              {ru.footer.linksLabel}
+              {copy.footer.linksLabel}
             </p>
             <ul className="mt-4 space-y-2.5">
               <li>
@@ -96,11 +123,9 @@ export function Footer() {
         <div className="mt-12 flex flex-col gap-2 border-t border-line pt-6 font-mono text-meta text-fg-subtle sm:flex-row sm:justify-between">
           <p>
             © {year} {site.name}
-            {ru.footer.rights ? `. ${ru.footer.rights}` : ""}
+            {ru.footer.rights && !english ? `. ${ru.footer.rights}` : ""}
           </p>
-          <p>
-            {site.city} и удалённо
-          </p>
+          <p>{copy.footer.location}</p>
         </div>
       </Container>
     </footer>

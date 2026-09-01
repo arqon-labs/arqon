@@ -1,17 +1,24 @@
+"use client";
+
 import { Send } from "lucide-react";
+import { usePathname } from "next/navigation";
 import { Container } from "@/components/ui/container";
 import { TrackedButtonLink } from "@/components/shared/tracked-link";
 import { HeaderNav } from "@/components/layout/header-nav";
 import { BrandMark } from "@/components/layout/brand-mark";
 import { HeaderChrome } from "@/components/layout/header-chrome";
+import { enChrome, localeFromPath, ruChrome } from "@/lib/locale";
 import { site } from "@/lib/site";
 
 export function Header() {
+  const pathname = usePathname();
+  const copy = localeFromPath(pathname) === "en" ? enChrome : ruChrome();
+
   return (
     <HeaderChrome>
       <Container>
         <div className="flex flex-wrap items-center gap-x-3 md:h-16 md:flex-nowrap md:gap-8">
-          <BrandMark className="shrink-0" />
+          <BrandMark className="shrink-0" homeLabel={copy.homeAria} />
 
           <TrackedButtonLink
             event="telegram_click"
@@ -21,7 +28,7 @@ export function Header() {
             variant="glass"
             size="md"
             className="ml-auto shrink-0 px-3 md:order-3 md:ml-0 md:px-4"
-            aria-label="Написать в Telegram"
+            aria-label={copy.telegramAria}
           >
             <Send className="size-4" aria-hidden />
             <span className="hidden md:inline">Telegram</span>

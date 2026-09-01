@@ -9,6 +9,14 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: audit.title,
   description: audit.description,
+  authors: [{ name: site.person.fullNameEn, url: site.url }],
+  creator: site.person.fullNameEn,
+  keywords: [
+    "vibe code audit",
+    "AI app security audit",
+    "Cursor security audit",
+    "Lovable security audit",
+  ],
   alternates: {
     canonical: audit.path,
     languages: {

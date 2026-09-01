@@ -3,7 +3,9 @@ import type { ReactNode } from "react";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Analytics } from "@/components/shared/analytics";
+import { DocumentLang } from "@/components/shared/document-lang";
 import { HashScroll } from "@/components/shared/hash-scroll";
+import { SkipLink } from "@/components/shared/skip-link";
 import { ru } from "@/content/ru";
 import { fontClassName } from "@/lib/fonts";
 import { site } from "@/lib/site";
@@ -47,12 +49,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang={site.lang} className={fontClassName}>
       <body className="min-h-dvh antialiased">
-        <a
-          href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-[max(1rem,env(safe-area-inset-top))] focus:z-[60] focus:rounded-md focus:bg-accent focus:px-4 focus:py-2 focus:text-white"
-        >
-          Перейти к содержанию
-        </a>
+        <DocumentLang />
+        <SkipLink />
         <Header />
         <main id="main">{children}</main>
         <Footer />
