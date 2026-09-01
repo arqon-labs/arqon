@@ -107,7 +107,8 @@ export function Footer() {
 
         <div className="mt-12 flex flex-col gap-2 border-t border-line pt-6 font-mono text-meta text-fg-subtle sm:flex-row sm:justify-between">
           <p>
-            © {year} {site.name}. {ru.footer.rights}
+            © {year} {site.name}
+            {ru.footer.rights ? `. ${ru.footer.rights}` : ""}
           </p>
           <p>
             {site.city}, {site.region}

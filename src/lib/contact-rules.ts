@@ -75,7 +75,7 @@ export function validateContact(
   const errors: FieldErrors = {};
 
   if (name.length < limits.name.min) {
-    errors.name = `Укажите имя — минимум ${limits.name.min} символа`;
+    errors.name = `Имя — минимум ${limits.name.min} символа`;
   } else if (name.length > limits.name.max) {
     errors.name = "Слишком длинное имя";
   }
@@ -89,13 +89,13 @@ export function validateContact(
     !telegramPattern.test(contact) &&
     !phonePattern.test(contact)
   ) {
-    errors.contact = "Укажите email, Telegram-username или телефон";
+    errors.contact = "Email, Telegram или телефон";
   }
 
   if (message.length < limits.message.min) {
-    errors.message = `Опишите задачу подробнее — минимум ${limits.message.min} символов`;
+    errors.message = `Опишите задачу — минимум ${limits.message.min} символов`;
   } else if (message.length > limits.message.max) {
-    errors.message = "Слишком длинное описание, лучше в Telegram";
+    errors.message = "Слишком длинно — лучше в Telegram";
   }
 
   if (Object.keys(errors).length > 0) return { ok: false, errors };

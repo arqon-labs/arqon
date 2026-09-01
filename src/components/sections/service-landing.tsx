@@ -140,7 +140,7 @@ export function ServiceLandingPage({ service }: { service: Service }) {
               className="group flex items-start justify-between gap-4 py-2 sm:items-center"
             >
               <span className="text-[1.0625rem] font-medium text-fg transition-colors duration-150 group-hover:text-accent">
-                Приложение написано нейросетью? Для этого есть отдельный аудит →
+                {ru.services.aiCue} →
               </span>
               <ArrowUpRight className="mt-1 size-4 shrink-0 text-accent sm:mt-0" aria-hidden />
             </TrackedLink>

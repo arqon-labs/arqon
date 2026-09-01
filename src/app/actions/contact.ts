@@ -38,9 +38,9 @@ export async function submitContact(payload: unknown): Promise<ContactResult> {
   if (!limit.ok) {
     return {
       status: "error",
-      message: `Слишком много заявок с одного адреса. Попробуйте через ${Math.ceil(
+      message: `Слишком много заявок. Через ${Math.ceil(
         limit.retryAfterSec / 60,
-      )} мин или напишите сразу в Telegram.`,
+      )} мин или сразу в Telegram.`,
     };
   }
 
@@ -51,7 +51,7 @@ export async function submitContact(payload: unknown): Promise<ContactResult> {
     console.error("[contact] delivery failed", error);
     return {
       status: "error",
-      message: "Попробуйте ещё раз или напишите в Telegram — там я на связи.",
+      message: "Попробуйте ещё раз или напишите в Telegram.",
     };
   }
 }

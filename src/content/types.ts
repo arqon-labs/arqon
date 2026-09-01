@@ -101,6 +101,7 @@ export type Content = {
     indexLead: string;
     moreLabel: string;
     breadcrumbHome: string;
+    aiCue: string;
     items: Service[];
   };
   cases: {

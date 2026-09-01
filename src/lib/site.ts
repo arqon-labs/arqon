@@ -1,6 +1,6 @@
 export const site = {
   name: "ARQON",
-  tagline: "Сайты и сервисы для бизнеса",
+  tagline: "Сайты и сервисы",
   domain: "arqon.by",
   url: "https://arqon.by",
   locale: "ru_BY",

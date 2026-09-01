@@ -15,12 +15,11 @@ export type BlogPost = {
 
 export const blog = {
   path: "/blog",
-  indexTitle: "Блог: заметки про приложения, собранные ИИ",
+  indexTitle: "Блог: приложения, собранные ИИ",
   indexDescription:
-    "Чеклисты запуска и утечки ключей в приложениях на Cursor, Lovable, Bolt и Replit. Тексты на русском и английском.",
-  indexH1: "Заметки про приложения, собранные ИИ",
-  indexLead:
-    "Что проверить до пользователей и инвестора. Есть тексты на русском и английском.",
+    "Чеклисты запуска и утечки ключей в Cursor, Lovable, Bolt и Replit. По-русски и по-английски.",
+  indexH1: "Заметки про приложения на ИИ",
+  indexLead: "Что проверить до запуска. Есть тексты на русском и английском.",
   ui: {
     ru: {
       home: "Главная",
@@ -39,13 +38,13 @@ export const blog = {
   },
   cta: {
     en: {
-      title: "Want me to run this on your repo?",
-      body: "Fixed-price audit, $500, plain-English report in 48 hours.",
+      title: "Want this on your repo?",
+      body: "$500, plain-English report in 48 hours.",
       button: "Get the $500 audit",
     },
     ru: {
-      title: "Нужно проверить ваш репозиторий?",
-      body: "Фикс $500, отчёт простым языком за 2 дня.",
+      title: "Проверить ваш репозиторий?",
+      body: "$500, отчёт за 2 дня.",
       button: "Заказать аудит",
     },
   },
